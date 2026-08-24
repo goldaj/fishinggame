@@ -1,9 +1,75 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><title>Pêche & Merveilles</title><style>
-:root{--bg:#071a2b;--p:#0e2a3d;--p2:#12384b;--ink:#f4f7f4;--mut:#9ab0b9;--a:#7be0c3;--g:#f0c36b}*{box-sizing:border-box}body{margin:0;background:linear-gradient(#071a2b,#09243a);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,sans-serif}button{font:inherit}.wrap{max-width:560px;margin:auto;padding:16px 14px 88px}.top{display:flex;justify-content:space-between;align-items:center}.title{font:28px Georgia,serif}.coins,.pill{border:1px solid #ffffff22;border-radius:999px;padding:8px 12px;color:var(--g);background:#ffffff08}.rank{margin:14px 0}.bar{height:7px;background:#ffffff14;border-radius:99px;overflow:hidden}.bar>i{display:block;height:100%;background:linear-gradient(90deg,#50c6aa,#9cf3d4);width:0}.screen{display:none}.screen.on{display:block}.hero,.card,.panel{background:linear-gradient(145deg,var(--p2),var(--p));border:1px solid #ffffff18;border-radius:24px;padding:18px;box-shadow:0 15px 40px #0005}.hero{min-height:360px;position:relative;overflow:hidden;background:linear-gradient(#17465d 0 35%,#0e6072 36%,#0a314d)}.sea{position:absolute;inset:35% 0 0;background:repeating-linear-gradient(175deg,transparent 0 22px,#ffffff14 23px 25px,transparent 26px 42px);animation:sea 8s linear infinite}@keyframes sea{to{background-position:70px 0}}.copy{position:absolute;left:22px;right:22px;bottom:90px}.copy h1{font:31px Georgia,serif;margin:0 0 8px}.copy p{color:#d3e5e1}.float{position:absolute;left:50%;top:47%;font-size:34px;transform:translate(-50%,-50%)}.bob{animation:bob 1.1s infinite}.bite{animation:bite .18s infinite}@keyframes bob{50%{transform:translate(-50%,-42%)}}@keyframes bite{50%{transform:translate(-50%,0)}}.primary{border:0;border-radius:16px;background:linear-gradient(#8ae7ca,#59c6ac);font-weight:900;color:#06251f;padding:14px 16px;min-height:50px}.primary:disabled{background:#536a70;color:#a7b4b8}.alert{background:linear-gradient(#ffd27b,#e5a84b)}.hero .primary{position:absolute;left:18px;right:18px;bottom:18px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}.stat,.row{background:#ffffff0b;border:1px solid #ffffff15;border-radius:15px;padding:10px}.stat small,.row small,.muted{color:var(--mut)}.nav{position:fixed;bottom:0;left:0;right:0;display:grid;grid-template-columns:repeat(4,1fr);background:#051724f2;border-top:1px solid #ffffff18}.nav button{border:0;background:none;color:#84a1a9;padding:11px 4px}.nav button.on{color:var(--a)}.list{display:grid;gap:8px}.row{display:flex;gap:12px;align-items:center}.row b{flex:1}.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.card{min-height:160px;text-align:center;position:relative}.card .ico{font-size:48px;margin:16px}.card h3{font:16px Georgia,serif;margin:0}.card.lock{filter:saturate(.25);opacity:.65}.commune{border-color:#ffffff22}.inhabituelle{border-color:#66d6aa99}.rare{border-color:#70a9ff99}.epique{border-color:#c589ff99}.legendaire{border-color:#f6c660cc}.mythique{border-color:#ff8eaecc;background:linear-gradient(145deg,#3d1631,#102b44)}.tabs{display:flex;gap:8px;margin:8px 0 12px;overflow:auto}.tabs button{border:1px solid #ffffff22;background:#ffffff08;color:#cfe2df;border-radius:999px;padding:8px 12px}.toast{position:fixed;left:50%;bottom:78px;transform:translateX(-50%);background:#e8f6f1;color:#08231e;padding:10px 14px;border-radius:14px;font-weight:800}.hide{display:none}@media(min-width:620px){.cards{grid-template-columns:repeat(3,1fr)}.nav{left:50%;width:560px;transform:translateX(-50%)}}
-</style></head><body><div class="wrap"><header class="top"><div><small class="muted">PORT DES MERVEILLES</small><div class="title">Pêche & Merveilles</div></div><div class="coins">◉ <b id="coins">0</b></div></header><section class="rank"><div><b id="rank">Rang 1</b> <small id="rtext" class="muted"></small></div><div class="bar"><i id="rbar"></i></div></section>
-<main><section id="fish" class="screen on"><div class="hero"><div class="sea"></div><div id="float" class="float hide">🎣</div><div class="copy"><h1 id="headline">La mer est calme.</h1><p id="sub">Lance ta ligne. Quand ça mord, ferre vite.</p></div><button id="cast" class="primary">Lancer la ligne</button></div><div id="result" class="row hide"></div><div class="grid"><div class="stat"><small>Espèces</small><br><b id="s1">3/100</b></div><div class="stat"><small>Panier</small><br><b id="s2">0</b></div><div class="stat"><small>Série</small><br><b id="s3">0</b></div></div></section>
-<section id="market" class="screen"><h2>Marché</h2><p class="muted">Vends tes prises pour gagner des pièces. Chaque prise vendue progresse le rang.</p><button id="sell" class="primary">Tout vendre</button><div id="inventory" class="list"></div></section>
-<section id="gacha" class="screen"><div class="panel" style="text-align:center"><div style="font-size:76px">✦</div><h2>Filet des profondeurs</h2><p class="muted">Un tirage débloque une nouvelle espèce accessible à ton rang. Pas de doublon tant qu'il reste une nouveauté.</p><p id="gstatus"></p><button id="pull" class="primary"></button><div id="odds" class="muted"></div></div></section>
-<section id="collection" class="screen"><h2>Collection <span class="pill"><b id="ccount">3</b>/100</span></h2><div class="tabs"><button data-f="all">Toutes</button><button data-f="unlocked">Débloquées</button><button data-f="locked">Verrouillées</button></div><div id="cards" class="cards"></div></section></main></div><nav class="nav"><button class="on" data-s="fish">🎣<br>Pêche</button><button data-s="market">◉<br>Marché</button><button data-s="gacha">✦<br>Gacha</button><button data-s="collection">▦<br>Cartes</button></nav><div id="toast" class="toast hide"></div><script src="core.js"></script><script>
-const G=GameCore,$=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],key='pm-save';let st=G.normalizeState(JSON.parse(localStorage.getItem(key)||'null')),phase='idle',timer,miss,filter='all';function save(){localStorage.setItem(key,JSON.stringify(st))}function toast(t){$('#toast').textContent=t;$('#toast').classList.remove('hide');setTimeout(()=>$('#toast').classList.add('hide'),1600)}function draw(){let n=G.nextRankInfo(st.totalSold);$('#coins').textContent=st.coins;$('#rank').textContent='Rang '+n.rank;$('#rtext').textContent=n.next?`${st.totalSold}/${n.next} ventes`:'maximum';$('#rbar').style.width=(n.progress*100)+'%';$('#s1').textContent=st.unlocked.length+'/100';$('#s2').textContent=G.inventoryCount(st);$('#s3').textContent=st.streak||0;market();gacha();cards()}function market(){let rows=Object.entries(st.inventory).filter(x=>x[1]>0);$('#sell').disabled=!rows.length;$('#sell').textContent=rows.length?'Tout vendre · '+G.inventoryValue(st)+' ◉':'Panier vide';$('#inventory').innerHTML=rows.length?rows.map(([id,q])=>{let c=G.creatures[id-1];return `<div class=row><span style=font-size:28px>${c.icon}</span><b>${c.name}<br><small>${c.rarityLabel} · ${c.value} ◉</small></b><span>×${q}</span></div>`}).join(''):'<div class=row><span class=muted>Ton panier est vide.</span></div>'}function gacha(){let cost=G.gachaCost(st),pool=G.eligibleLocked(st);$('#pull').textContent='Tirer · '+cost+' ◉';$('#pull').disabled=st.coins<cost||!pool.length;$('#gstatus').innerHTML=st.unlocked.length===100?'Collection complète.':!pool.length?'Atteins le rang '+G.nextGate(st)+' pour débloquer de nouvelles espèces.':pool.length+' nouvelle(s) espèce(s) possible(s).';$('#odds').innerHTML=G.gachaOdds(st).map(o=>`${o.label}: ${(o.p*100).toFixed(1)}%`).join('<br>')}function cards(){let rank=G.rankForSold(st.totalSold);$('#ccount').textContent=st.unlocked.length;$('#cards').innerHTML=G.creatures.filter(c=>filter==='all'||(filter==='unlocked')===st.unlocked.includes(c.id)).map(c=>{let u=st.unlocked.includes(c.id);return `<article class="card ${c.rarity} ${u?'':'lock'}"><small>N°${String(c.id).padStart(3,'0')}</small><div class=ico>${u?c.icon:'?'}</div><h3>${u?c.name:'Inconnue'}</h3><small>${u?c.rarityLabel:(c.gate<=rank?'Disponible au gacha':'Rang '+c.gate+' requis')}</small></article>`}).join('')}function start(){phase='wait';$('#result').classList.add('hide');$('#float').className='float bob';$('#cast').disabled=true;$('#cast').textContent='La ligne est à l’eau…';$('#headline').textContent='Quelque chose approche.';$('#sub').textContent='Ne touche pas trop tôt.';timer=setTimeout(()=>{phase='bite';navigator.vibrate&&navigator.vibrate([40,40,80]);$('#float').className='float bite';$('#cast').disabled=false;$('#cast').className='primary alert';$('#cast').textContent='FERRER !';$('#headline').textContent='ÇA MORD !';miss=setTimeout(()=>{phase='idle';st.streak=0;save();$('#float').className='float hide';$('#cast').className='primary';$('#cast').textContent='Relancer';$('#headline').textContent='Trop tard…';draw()},1800)},600+Math.random()*900)}$('#cast').onclick=()=>{if(phase==='idle')return start();if(phase!=='bite')return;clearTimeout(miss);phase='idle';let c=G.rollCatch(st);G.addCatch(st,c);save();$('#float').className='float hide';$('#cast').className='primary';$('#cast').textContent='Relancer';$('#headline').textContent='Belle prise !';$('#result').innerHTML=`<span style=font-size:32px>${c.icon}</span><b>${c.name}</b><small>${c.rarityLabel} · ${c.value} ◉</small>`;$('#result').classList.remove('hide');draw()};$('#sell').onclick=()=>{let r=G.sellAll(st);save();toast('+'+r.value+' ◉');draw()};$('#pull').onclick=()=>{let r=G.pullGacha(st);if(!r.ok)return draw();save();toast('Nouvelle espèce : '+r.creature.name);draw();go('collection')};$$('.nav button').forEach(b=>b.onclick=()=>go(b.dataset.s));function go(s){$$('.screen').forEach(x=>x.classList.toggle('on',x.id===s));$$('.nav button').forEach(x=>x.classList.toggle('on',x.dataset.s===s));draw()}$$('.tabs button').forEach(b=>b.onclick=()=>{filter=b.dataset.f;cards()});draw();
-</script></body></html>
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+<title>Pêche & Merveilles</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="brand"><small>PORT DES MERVEILLES</small><h1>Pêche & Merveilles</h1></div>
+    <div class="wallet" aria-label="Pièces"><span>◉</span><b id="coins">0</b></div>
+  </header>
+  <section class="rank-card" aria-label="Progression">
+    <div class="rank-line"><strong id="rank">Rang 1</strong><span id="rtext" class="muted"></span></div>
+    <div class="progress"><i id="rbar"></i></div>
+  </section>
+
+  <main>
+    <section id="fish" class="screen on">
+      <div class="hero">
+        <div class="sky-glow"></div><div class="water"></div>
+        <div id="ripple" class="ripple"></div><div id="float" class="float">🎣</div>
+        <div class="status-chip"><i id="statusDot" class="dot"></i><span id="statusText">Calme</span></div>
+        <div class="hero-copy" aria-live="polite"><h2 id="headline">La mer est calme.</h2><p id="sub">Lance ta ligne, puis attends la vraie touche. Un geste trop tôt ou trop tard peut faire fuir le poisson.</p></div>
+        <button id="cast" class="primary" aria-label="Action de pêche">Lancer la ligne</button>
+      </div>
+      <div class="hint"><span>◎</span><div><b>Le rythme compte.</b> Avant la touche, appuyer relève simplement la canne. Quand un poisson approche, ferrer trop tôt ou trop tard le fait rater. Les espèces rares laissent moins de temps.</div></div>
+      <div id="result" class="catch-result hide" aria-live="polite"></div>
+      <div class="metrics">
+        <div class="metric"><span>Espèces</span><strong id="s1">1/100</strong></div>
+        <div class="metric"><span>Panier</span><strong id="s2">0</strong></div>
+        <div class="metric"><span>Série</span><strong id="s3">0</strong></div>
+      </div>
+    </section>
+
+    <section id="market" class="screen">
+      <div class="section-head"><div><h2>Marché</h2><p>Vends tes prises pour financer de nouvelles découvertes.</p></div></div>
+      <div class="summary"><div class="summary-line"><div><small>Valeur du panier</small><br><strong id="basketValue">0 ◉</strong></div><span class="pill"><b id="basketCount">0</b>&nbsp;prise(s)</span></div></div>
+      <button id="sell" class="primary">Panier vide</button>
+      <div id="inventory" class="list"></div>
+    </section>
+
+    <section id="gacha" class="screen">
+      <div class="panel center">
+        <div class="gacha-mark">✦</div>
+        <h2>Filet des profondeurs</h2>
+        <p>Chaque tirage débloque une nouvelle espèce actuellement accessible. Aucun doublon tant qu’une nouveauté éligible reste disponible.</p>
+        <div class="gacha-meta"><div><small>Coût actuel</small><strong id="gcost">450 ◉</strong></div><div><small>Nouveautés possibles</small><strong id="gpool">5</strong></div></div>
+        <p id="gstatus"></p>
+        <button id="pull" class="primary"></button>
+        <div id="odds" class="odds"></div>
+      </div>
+    </section>
+
+    <section id="collection" class="screen">
+      <div class="section-head"><div><h2>Collection</h2><p>100 espèces à découvrir, avec des paliers de rang.</p></div><span class="pill"><b id="ccount">1</b>/100</span></div>
+      <div class="tabs" role="tablist"><button class="on" data-f="all">Toutes</button><button data-f="unlocked">Débloquées</button><button data-f="locked">Verrouillées</button></div>
+      <div id="cards" class="cards"></div>
+    </section>
+  </main>
+</div>
+
+<nav class="nav" aria-label="Navigation principale">
+  <button class="on" data-s="fish"><span>🎣</span>Pêche</button>
+  <button data-s="market"><span>◉</span>Marché</button>
+  <button data-s="gacha"><span>✦</span>Gacha</button>
+  <button data-s="collection"><span>▦</span>Cartes</button>
+</nav>
+<div id="toast" class="toast hide" role="status" aria-live="polite"></div>
+<script src="core.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
