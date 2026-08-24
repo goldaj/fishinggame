@@ -1,11 +1,11 @@
 (function(root){'use strict';
 const R={
-  commune:{label:'Commune',w:100,g:60,v:18,o:0,wait:[1600,5600],early:[450,950],hit:[1150,1650],late:[300,520],difficulty:'Souple',haptic:[38,58],hapticDuration:[14,20]},
-  inhabituelle:{label:'Inhabituelle',w:55,g:28,v:30,o:1,wait:[1500,6000],early:[380,1020],hit:[930,1320],late:[290,500],difficulty:'Précise',haptic:[40,61],hapticDuration:[15,21]},
-  rare:{label:'Rare',w:25,g:9,v:55,o:2,wait:[1400,6500],early:[310,1120],hit:[720,1050],late:[280,470],difficulty:'Délicate',haptic:[43,64],hapticDuration:[15,22]},
-  epique:{label:'Épique',w:10,g:2.5,v:100,o:3,wait:[1300,7100],early:[250,1240],hit:[550,860],late:[260,440],difficulty:'Exigeante',haptic:[46,67],hapticDuration:[16,23]},
-  legendaire:{label:'Légendaire',w:3,g:.45,v:220,o:4,wait:[1200,7800],early:[190,1380],hit:[430,680],late:[240,410],difficulty:'Brève',haptic:[49,70],hapticDuration:[17,24]},
-  mythique:{label:'Mythique',w:1,g:.05,v:600,o:5,wait:[1100,8600],early:[140,1500],hit:[320,500],late:[220,380],difficulty:'Fulgurante',haptic:[52,73],hapticDuration:[18,25]}
+  commune:{label:'Commune',w:100,g:60,v:18,o:0,wait:[1600,5600],early:[1000,1500],hit:[1150,1650],late:[300,520],difficulty:'Souple',haptic:[38,58],hapticDuration:[14,20]},
+  inhabituelle:{label:'Inhabituelle',w:55,g:28,v:30,o:1,wait:[1500,6000],early:[950,1900],hit:[930,1320],late:[290,500],difficulty:'Précise',haptic:[40,61],hapticDuration:[15,21]},
+  rare:{label:'Rare',w:25,g:9,v:55,o:2,wait:[1400,6500],early:[850,2400],hit:[720,1050],late:[280,470],difficulty:'Délicate',haptic:[43,64],hapticDuration:[15,22]},
+  epique:{label:'Épique',w:10,g:2.5,v:100,o:3,wait:[1300,7100],early:[700,3000],hit:[550,860],late:[260,440],difficulty:'Exigeante',haptic:[46,67],hapticDuration:[16,23]},
+  legendaire:{label:'Légendaire',w:3,g:.45,v:220,o:4,wait:[1200,7800],early:[550,3600],hit:[430,680],late:[240,410],difficulty:'Brève',haptic:[49,70],hapticDuration:[17,24]},
+  mythique:{label:'Mythique',w:1,g:.05,v:600,o:5,wait:[1100,8600],early:[400,4500],hit:[320,500],late:[220,380],difficulty:'Fulgurante',haptic:[52,73],hapticDuration:[18,25]}
 };
 const base=['Gobie','Sardine','Crabe','Ablette','Crevette','Mulet','Éperlan','Poulpe','Coquille','Girelle','Blennie','Moule','Bernard','Anchois','Rouget','Seiche','Palourde','Méduse','Barbue','Maquereau'];
 const adj=['de quai','argentée','mousse','de brume','rose','des digues','clair','nacré','des herbiers','d’orage','cobalt','perlé','voyageur','mosaïque','royal','doré','abyssal','fantôme','stellaire','des marées'];
