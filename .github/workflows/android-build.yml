@@ -40,10 +40,14 @@ jobs:
           gradle-version: "8.11.1"
 
       - name: Run gameplay logic tests
-        run: node tests/core.test.js
+        run: |
+          node tests/core.test.js
+          node tests/v122.test.js
 
       - name: Check browser JavaScript syntax
-        run: node --check app/src/main/assets/app.js
+        run: |
+          node --check app/src/main/assets/v122.js
+          node --check app/src/main/assets/app.js
 
       - name: Bootstrap Gradle Wrapper when absent
         run: |
