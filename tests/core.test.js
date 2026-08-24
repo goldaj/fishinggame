@@ -46,12 +46,12 @@ const span=r=>r[1]-r[0];
 for(let i=1;i<order.length;i++)assert(midpoint(G.rarities[order[i]].hit)<midpoint(G.rarities[order[i-1]].hit));
 for(let i=1;i<order.length;i++)assert(span(G.rarities[order[i]].wait)>span(G.rarities[order[i-1]].wait));
 for(let i=1;i<order.length;i++)assert(span(G.rarities[order[i]].early)>span(G.rarities[order[i-1]].early));
-assert.deepStrictEqual(G.rarities.commune.early,[450,950]);
-assert.deepStrictEqual(G.rarities.inhabituelle.early,[380,1020]);
-assert.deepStrictEqual(G.rarities.rare.early,[310,1120]);
-assert.deepStrictEqual(G.rarities.epique.early,[250,1240]);
-assert.deepStrictEqual(G.rarities.legendaire.early,[190,1380]);
-assert.deepStrictEqual(G.rarities.mythique.early,[140,1500]);
+assert.deepStrictEqual(G.rarities.commune.early,[1000,1500]);
+assert.deepStrictEqual(G.rarities.inhabituelle.early,[950,1900]);
+assert.deepStrictEqual(G.rarities.rare.early,[850,2400]);
+assert.deepStrictEqual(G.rarities.epique.early,[700,3000]);
+assert.deepStrictEqual(G.rarities.legendaire.early,[550,3600]);
+assert.deepStrictEqual(G.rarities.mythique.early,[400,4500]);
 assert.deepStrictEqual(G.rarities.mythique.hit,[320,500]);
 assert(span(G.rarities.commune.hit)>400);
 for(const r of order){
