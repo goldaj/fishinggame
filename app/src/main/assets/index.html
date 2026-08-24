@@ -22,11 +22,12 @@
       <div class="hero">
         <div class="sky-glow"></div><div class="water"></div>
         <div id="ripple" class="ripple"></div><div id="float" class="float">🎣</div>
+        <div id="landedFish" class="landed-fish hide" aria-live="polite"></div>
         <div class="status-chip"><i id="statusDot" class="dot"></i><span id="statusText">Calme</span></div>
         <div class="hero-copy" aria-live="polite"><h2 id="headline">La mer est calme.</h2><p id="sub">Lance ta ligne, puis attends la vraie touche. Un geste trop tôt ou trop tard peut faire fuir le poisson.</p></div>
         <button id="cast" class="primary" aria-label="Action de pêche">Lancer la ligne</button>
       </div>
-      <div class="hint"><span>◎</span><div><b>Le rythme compte.</b> Avant la touche, appuyer relève simplement la canne. Quand un poisson approche, ferrer trop tôt ou trop tard le fait rater. Les espèces rares laissent moins de temps.</div></div>
+      <div class="hint"><span>◎</span><div><b>Le rythme compte.</b> Un poisson qui travaille la ligne peut provoquer de légères vibrations, mais rien ne révèle précisément sa rareté avant la prise. Le poisson n’apparaît qu’une fois sorti de l’eau.</div></div>
       <div id="result" class="catch-result hide" aria-live="polite"></div>
       <div class="metrics">
         <div class="metric"><span>Espèces</span><strong id="s1">1/100</strong></div>
@@ -36,10 +37,16 @@
     </section>
 
     <section id="market" class="screen">
-      <div class="section-head"><div><h2>Marché</h2><p>Vends tes prises pour financer de nouvelles découvertes.</p></div></div>
+      <div class="section-head"><div><h2>Marché</h2><p>Chaque prise a son propre poids et sa propre valeur.</p></div></div>
       <div class="summary"><div class="summary-line"><div><small>Valeur du panier</small><br><strong id="basketValue">0 ◉</strong></div><span class="pill"><b id="basketCount">0</b>&nbsp;prise(s)</span></div></div>
       <button id="sell" class="primary">Panier vide</button>
       <div id="inventory" class="list"></div>
+    </section>
+
+    <section id="shop" class="screen">
+      <div class="section-head"><div><h2>Boutique</h2><p>Des améliorations permanentes, utiles mais volontairement mesurées.</p></div></div>
+      <div class="hint shop-hint"><span>⚓</span><div><b>Des aides, pas des raccourcis.</b> Les coûts augmentent fortement et certaines améliorations demandent un rang minimum.</div></div>
+      <div id="shopList" class="shop-list"></div>
     </section>
 
     <section id="gacha" class="screen">
@@ -55,7 +62,7 @@
     </section>
 
     <section id="collection" class="screen">
-      <div class="section-head"><div><h2>Collection</h2><p>100 espèces à découvrir, avec des paliers de rang.</p></div><span class="pill"><b id="ccount">1</b>/100</span></div>
+      <div class="section-head"><div><h2>Collection</h2><p>Classée du moins rare et moins cher au plus rare et plus cher.</p></div><span class="pill"><b id="ccount">1</b>/100</span></div>
       <div class="tabs" role="tablist"><button class="on" data-f="all">Toutes</button><button data-f="unlocked">Débloquées</button><button data-f="locked">Verrouillées</button></div>
       <div id="cards" class="cards"></div>
     </section>
@@ -65,9 +72,21 @@
 <nav class="nav" aria-label="Navigation principale">
   <button class="on" data-s="fish"><span>🎣</span>Pêche</button>
   <button data-s="market"><span>◉</span>Marché</button>
+  <button data-s="shop"><span>⚓</span>Boutique</button>
   <button data-s="gacha"><span>✦</span>Gacha</button>
   <button data-s="collection"><span>▦</span>Cartes</button>
 </nav>
+
+<div id="cardModal" class="modal hide" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-sheet">
+    <button id="closeModal" class="modal-close" aria-label="Fermer">×</button>
+    <div id="modalIcon" class="modal-icon"></div>
+    <small id="modalNumber" class="muted"></small>
+    <h2 id="modalTitle"></h2>
+    <div id="modalRarity" class="modal-rarity"></div>
+    <div id="modalStats" class="modal-stats"></div>
+  </div>
+</div>
 <div id="toast" class="toast hide" role="status" aria-live="polite"></div>
 <script src="core.js"></script>
 <script src="app.js"></script>
