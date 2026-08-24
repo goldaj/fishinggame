@@ -78,4 +78,4 @@ Les durées sont tirées aléatoirement dans des bornes contrôlées à chaque t
 - Interface mobile sobre et retravaillée : **OK**
 - Tests automatisés étendus : **OK**
 - Identité de signature durable documentée et clé privée tenue hors du dépôt public : **OK**
-- APK release signé avec cette identité et vérifié : **à confirmer après CI et signature finale**
+- APK release signé avec cette identité et certificat SHA-256 vérifié : **OK**
