@@ -3,11 +3,13 @@ package com.openai.pechemerveilles;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Insets;
+import android.media.AudioAttributes;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.os.VibratorManager;
+import android.view.HapticFeedbackConstants;
 import android.view.ViewGroup;
 import android.view.WindowInsets;
 import android.webkit.JavascriptInterface;
@@ -99,19 +101,40 @@ public class MainActivity extends Activity {
             return (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         }
 
+        private AudioAttributes vibrationAttributes() {
+            return new AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                    .build();
+        }
+
+        @JavascriptInterface
+        public void tap() {
+            if (webView == null) return;
+            webView.post(() -> {
+                boolean handled = webView.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
+                if (!handled) pulse(88, 22);
+            });
+        }
+
         @JavascriptInterface
         public void pulse(int requestedAmplitude, int requestedDurationMs) {
             Vibrator vibrator = vibrator();
             if (vibrator == null || !vibrator.hasVibrator()) return;
 
-            int durationMs = Math.max(8, Math.min(40, requestedDurationMs));
-            int amplitude = Math.max(1, Math.min(255, requestedAmplitude));
+            // Keep line-tension pulses subtle, but above the barely perceptible range that
+            // some devices effectively swallow.
+            int durationMs = Math.max(22, Math.min(60, requestedDurationMs));
+            int amplitude = Math.max(72, Math.min(180, requestedAmplitude));
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 int effectiveAmplitude = vibrator.hasAmplitudeControl()
                         ? amplitude
                         : VibrationEffect.DEFAULT_AMPLITUDE;
-                vibrator.vibrate(VibrationEffect.createOneShot(durationMs, effectiveAmplitude));
+                vibrator.vibrate(
+                        VibrationEffect.createOneShot(durationMs, effectiveAmplitude),
+                        vibrationAttributes()
+                );
             } else {
                 vibrator.vibrate(durationMs);
             }
