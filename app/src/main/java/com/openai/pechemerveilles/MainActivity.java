@@ -1,11 +1,17 @@
 package com.openai.pechemerveilles;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Insets;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
+import android.os.VibratorManager;
 import android.view.ViewGroup;
 import android.view.WindowInsets;
+import android.webkit.JavascriptInterface;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -28,9 +34,6 @@ public class MainActivity extends Activity {
         ));
         setContentView(root);
 
-        // Android 15 (targetSdk 35) enforces edge-to-edge. Keep the WebView itself
-        // inside the tappable system-bar insets so the fixed bottom navigation is
-        // never hidden behind gesture navigation or the 3-button navigation bar.
         root.setOnApplyWindowInsetsListener((view, windowInsets) -> {
             int left;
             int top;
@@ -64,9 +67,55 @@ public class MainActivity extends Activity {
         settings.setAllowContentAccess(false);
         settings.setTextZoom(100);
 
-        webView.setWebViewClient(new WebViewClient());
+        // This bridge is exposed only to the bundled local UI. External navigation is
+        // blocked below so untrusted web content cannot obtain access to the interface.
+        webView.addJavascriptInterface(new HapticsBridge(), "NativeHaptics");
+        webView.setWebViewClient(new WebViewClient() {
+            private boolean isLocal(String url) {
+                return url != null && url.startsWith("file:///android_asset/");
+            }
+
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                return request == null || request.getUrl() == null || !isLocal(request.getUrl().toString());
+            }
+
+            @Override
+            @SuppressWarnings("deprecation")
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                return !isLocal(url);
+            }
+        });
         webView.setBackgroundColor(0xFF071A2B);
         webView.loadUrl("file:///android_asset/index.html");
+    }
+
+    private final class HapticsBridge {
+        private Vibrator vibrator() {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                VibratorManager manager = (VibratorManager) getSystemService(Context.VIBRATOR_MANAGER_SERVICE);
+                return manager == null ? null : manager.getDefaultVibrator();
+            }
+            return (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        }
+
+        @JavascriptInterface
+        public void pulse(int requestedAmplitude, int requestedDurationMs) {
+            Vibrator vibrator = vibrator();
+            if (vibrator == null || !vibrator.hasVibrator()) return;
+
+            int durationMs = Math.max(8, Math.min(40, requestedDurationMs));
+            int amplitude = Math.max(1, Math.min(255, requestedAmplitude));
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                int effectiveAmplitude = vibrator.hasAmplitudeControl()
+                        ? amplitude
+                        : VibrationEffect.DEFAULT_AMPLITUDE;
+                vibrator.vibrate(VibrationEffect.createOneShot(durationMs, effectiveAmplitude));
+            } else {
+                vibrator.vibrate(durationMs);
+            }
+        }
     }
 
     @Override
