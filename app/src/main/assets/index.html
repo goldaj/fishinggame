@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#071A2B" />
+  <title>Pêche & Merveilles</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <div>
+        <div class="eyebrow">PORT DES MERVEILLES</div>
+        <div class="title">Pêche &amp; Merveilles</div>
+      </div>
+      <div class="currency" aria-label="Pièces"><span>◉</span><strong id="coins">0</strong></div>
+    </header>
+
+    <div class="rankbar">
+      <div class="rankline"><strong id="rankLabel">Rang 1</strong><span id="rankProgressText">0 / 8 ventes</span></div>
+      <div class="progress"><div id="rankProgress"></div></div>
+    </div>
+
+    <main>
+      <section class="screen active" id="screen-fish">
+        <div class="hero-card water-scene">
+          <div class="skyline"><span class="moon">☾</span><span class="lighthouse">▥</span></div>
+          <div class="water-lines"></div>
+          <div id="float" class="float hidden"><span></span></div>
+          <div id="streakBadge" class="streak-badge hidden">Série ×<strong id="streakCount">0</strong></div>
+          <div class="scene-copy">
+            <div class="eyebrow">JETÉE DES EMBRUNS</div>
+            <h1 id="fishHeadline">La mer est calme.</h1>
+            <p id="fishSub">Lance ta ligne. Quand ça mord, ferre vite.</p>
+          </div>
+          <button id="castBtn" class="primary big">Lancer la ligne</button>
+        </div>
+
+        <div id="catchResult" class="catch-result hidden"></div>
+
+        <div class="stats-grid">
+          <div class="stat"><span>Espèces</span><strong id="unlockedStat">3 / 100</strong></div>
+          <div class="stat"><span>Panier</span><strong id="bagStat">0 prises</strong></div>
+          <div class="stat"><span>Total</span><strong id="caughtStat">0 pêchée</strong></div>
+        </div>
+
+        <div class="tip-card">
+          <span class="tip-icon">✦</span>
+          <div><strong>Conseil du quai</strong><p>Les nouvelles espèces gagnées au gacha rejoignent aussitôt tes eaux de pêche.</p></div>
+        </div>
+      </section>
+
+      <section class="screen" id="screen-market">
+        <div class="section-head"><div><div class="eyebrow">HALLE AUX POISSONS</div><h2>Le marché</h2></div><div class="pill" id="marketValue">0 ◉</div></div>
+        <p class="section-intro">Vends tes prises pour financer de nouveaux tirages. La progression dépend du nombre de prises vendues, pas de leur prix.</p>
+        <button id="sellAllBtn" class="primary">Tout vendre</button>
+        <div id="inventoryList" class="list"></div>
+      </section>
+
+      <section class="screen" id="screen-gacha">
+        <div class="gacha-stage">
+          <div class="capsule-orb"><div class="orb-core">✦</div></div>
+          <div class="eyebrow">CABINET DES CURIOSITÉS</div>
+          <h2>Filet des profondeurs</h2>
+          <p>Un tirage garantit une espèce que tu n’as jamais débloquée, parmi celles accessibles à ton rang.</p>
+          <div id="gachaStatus" class="gacha-status"></div>
+          <button id="gachaBtn" class="primary big"></button>
+          <button id="oddsBtn" class="text-btn">Voir les probabilités actuelles</button>
+          <div id="oddsPanel" class="odds hidden"></div>
+        </div>
+      </section>
+
+      <section class="screen" id="screen-collection">
+        <div class="section-head collection-head"><div><div class="eyebrow">CARNET DU PÊCHEUR</div><h2>Collection</h2></div><div class="pill"><span id="collectionCount">3</span>/100</div></div>
+        <div class="filters" role="group" aria-label="Filtres de collection">
+          <button class="filter active" data-filter="all">Toutes</button>
+          <button class="filter" data-filter="unlocked">Débloquées</button>
+          <button class="filter" data-filter="locked">Verrouillées</button>
+        </div>
+        <div id="collectionGrid" class="collection-grid"></div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Navigation principale">
+      <button class="nav active" data-screen="fish"><span>◌</span><b>Pêche</b></button>
+      <button class="nav" data-screen="market"><span>▤</span><b>Marché</b></button>
+      <button class="nav" data-screen="gacha"><span>✦</span><b>Gacha</b></button>
+      <button class="nav" data-screen="collection"><span>▦</span><b>Collection</b></button>
+    </nav>
+  </div>
+
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-backdrop"></div>
+    <div class="modal-card" id="modalCard"></div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="core.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
