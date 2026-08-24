@@ -37,16 +37,20 @@
     </section>
 
     <section id="market" class="screen">
-      <div class="section-head"><div><h2>Marché</h2><p>Chaque prise a son propre poids et sa propre valeur.</p></div></div>
-      <div class="summary"><div class="summary-line"><div><small>Valeur du panier</small><br><strong id="basketValue">0 ◉</strong></div><span class="pill"><b id="basketCount">0</b>&nbsp;prise(s)</span></div></div>
-      <button id="sell" class="primary">Panier vide</button>
-      <div id="inventory" class="list"></div>
-    </section>
-
-    <section id="shop" class="screen">
-      <div class="section-head"><div><h2>Boutique</h2><p>Des améliorations permanentes, utiles mais volontairement mesurées.</p></div></div>
-      <div class="hint shop-hint"><span>⚓</span><div><b>Des aides, pas des raccourcis.</b> Les coûts augmentent fortement et certaines améliorations demandent un rang minimum.</div></div>
-      <div id="shopList" class="shop-list"></div>
+      <div class="section-head"><div><h2>Marché</h2><p>Vends tes prises ou investis tes pièces dans des améliorations permanentes.</p></div></div>
+      <div id="marketTabs" class="tabs" role="tablist" aria-label="Sections du marché">
+        <button class="on" data-market-tab="sell">Vendre</button>
+        <button data-market-tab="upgrades">Améliorer</button>
+      </div>
+      <div id="marketSellPanel">
+        <div class="summary"><div class="summary-line"><div><small>Valeur du panier</small><br><strong id="basketValue">0 ◉</strong></div><span class="pill"><b id="basketCount">0</b>&nbsp;prise(s)</span></div></div>
+        <button id="sell" class="primary">Panier vide</button>
+        <div id="inventory" class="list"></div>
+      </div>
+      <div id="marketUpgradePanel" class="hide">
+        <div class="hint shop-hint"><span>⚓</span><div><b>Améliorations du port.</b> Des aides permanentes et mesurées : les coûts augmentent et certaines améliorations demandent un rang minimum.</div></div>
+        <div id="shopList" class="shop-list"></div>
+      </div>
     </section>
 
     <section id="gacha" class="screen">
@@ -69,10 +73,9 @@
   </main>
 </div>
 
-<nav class="nav" aria-label="Navigation principale">
+<nav class="nav" aria-label="Navigation principale" style="grid-template-columns:repeat(4,1fr)">
   <button class="on" data-s="fish"><span>🎣</span>Pêche</button>
   <button data-s="market"><span>◉</span>Marché</button>
-  <button data-s="shop"><span>⚓</span>Boutique</button>
   <button data-s="gacha"><span>✦</span>Gacha</button>
   <button data-s="collection"><span>▦</span>Cartes</button>
 </nav>

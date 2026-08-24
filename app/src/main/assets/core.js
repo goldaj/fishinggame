@@ -1,11 +1,11 @@
 (function(root){'use strict';
 const R={
-  commune:{label:'Commune',w:100,g:60,v:18,o:0,wait:[1600,5600],early:[180,650],hit:[1150,1650],late:[300,520],difficulty:'Souple',haptic:[38,58],hapticDuration:[14,20]},
-  inhabituelle:{label:'Inhabituelle',w:55,g:28,v:30,o:1,wait:[1500,6000],early:[180,750],hit:[930,1320],late:[290,500],difficulty:'Précise',haptic:[40,61],hapticDuration:[15,21]},
-  rare:{label:'Rare',w:25,g:9,v:55,o:2,wait:[1400,6500],early:[170,860],hit:[720,1050],late:[280,470],difficulty:'Délicate',haptic:[43,64],hapticDuration:[15,22]},
-  epique:{label:'Épique',w:10,g:2.5,v:100,o:3,wait:[1300,7100],early:[160,980],hit:[550,860],late:[260,440],difficulty:'Exigeante',haptic:[46,67],hapticDuration:[16,23]},
-  legendaire:{label:'Légendaire',w:3,g:.45,v:220,o:4,wait:[1200,7800],early:[150,1120],hit:[430,680],late:[240,410],difficulty:'Brève',haptic:[49,70],hapticDuration:[17,24]},
-  mythique:{label:'Mythique',w:1,g:.05,v:600,o:5,wait:[1100,8600],early:[140,1280],hit:[320,500],late:[220,380],difficulty:'Fulgurante',haptic:[52,73],hapticDuration:[18,25]}
+  commune:{label:'Commune',w:100,g:60,v:18,o:0,wait:[1600,5600],early:[1000,1500],hit:[1150,1650],late:[300,520],difficulty:'Souple',haptic:[38,58],hapticDuration:[14,20]},
+  inhabituelle:{label:'Inhabituelle',w:55,g:28,v:30,o:1,wait:[1500,6000],early:[950,1900],hit:[930,1320],late:[290,500],difficulty:'Précise',haptic:[40,61],hapticDuration:[15,21]},
+  rare:{label:'Rare',w:25,g:9,v:55,o:2,wait:[1400,6500],early:[850,2400],hit:[720,1050],late:[280,470],difficulty:'Délicate',haptic:[43,64],hapticDuration:[15,22]},
+  epique:{label:'Épique',w:10,g:2.5,v:100,o:3,wait:[1300,7100],early:[700,3000],hit:[550,860],late:[260,440],difficulty:'Exigeante',haptic:[46,67],hapticDuration:[16,23]},
+  legendaire:{label:'Légendaire',w:3,g:.45,v:220,o:4,wait:[1200,7800],early:[550,3600],hit:[430,680],late:[240,410],difficulty:'Brève',haptic:[49,70],hapticDuration:[17,24]},
+  mythique:{label:'Mythique',w:1,g:.05,v:600,o:5,wait:[1100,8600],early:[400,4500],hit:[320,500],late:[220,380],difficulty:'Fulgurante',haptic:[52,73],hapticDuration:[18,25]}
 };
 const base=['Gobie','Sardine','Crabe','Ablette','Crevette','Mulet','Éperlan','Poulpe','Coquille','Girelle','Blennie','Moule','Bernard','Anchois','Rouget','Seiche','Palourde','Méduse','Barbue','Maquereau'];
 const adj=['de quai','argentée','mousse','de brume','rose','des digues','clair','nacré','des herbiers','d’orage','cobalt','perlé','voyageur','mosaïque','royal','doré','abyssal','fantôme','stellaire','des marées'];
@@ -43,6 +43,7 @@ const hiddenWeightBounds=creatures.map((c,i)=>{
   return[min,Math.max(min+1,Math.round(p[1]*scale*wiggle*spread))];
 });
 const thresholds=[0,40,120,260,480,800,1250,1850,2700,3800];
+const postCatchLockMs=3000;
 function rankForSold(sold){let r=1;thresholds.forEach((n,i)=>{if(sold>=n)r=i+1});return Math.min(10,r)}
 function nextRankInfo(sold){let r=rankForSold(sold);if(r>=10)return{rank:r,next:null,current:thresholds[9],progress:1};let c=thresholds[r-1],n=thresholds[r];return{rank:r,current:c,next:n,progress:Math.max(0,Math.min(1,(sold-c)/(n-c)))}}
 function defaultState(){return{version:4,coins:0,unlocked:[1],inventory:[],caughtById:{},bestWeightById:{},totalCaught:0,totalSold:0,totalEarned:0,comboEarned:0,gachaPulls:0,streak:0,maxStreak:0,failedHooks:0,retractedCasts:0,upgrades:{bait:0,reel:0,keeper:0,broker:0},tutorialSeen:false}}
@@ -113,6 +114,6 @@ function upgradeStatus(s,key){
 }
 function buyUpgrade(s,key){if(!upgrades[key])return{ok:false,reason:'unknown'};const x=upgradeStatus(s,key);if(x.maxed)return{ok:false,reason:'max',status:x};if(x.rankLocked)return{ok:false,reason:'rank',status:x};if(s.coins<x.cost)return{ok:false,reason:'coins',status:x};s.coins-=x.cost;s.upgrades[key]=x.level+1;return{ok:true,cost:x.cost,status:upgradeStatus(s,key)}}
 function hapticProfile(c,rand=Math.random){const p=R[c.rarity];return{amplitude:randBetween(p.haptic,rand),durationMs:randBetween(p.hapticDuration,rand)}}
-root.GameCore={rarities:R,creatures,thresholds,upgrades,rankForSold,nextRankInfo,defaultState,normalizeState,rollCatch,fishingTiming,fishingInputOutcome,comboBonus,rollWeight,catchValue,itemValue,addCatch,registerMiss,inventoryValue,inventoryCount,sellAll,eligibleLocked,nextGate,gachaCost,pullGacha,gachaOdds,upgradeStatus,buyUpgrade,hapticProfile};
+root.GameCore={rarities:R,creatures,thresholds,postCatchLockMs,upgrades,rankForSold,nextRankInfo,defaultState,normalizeState,rollCatch,fishingTiming,fishingInputOutcome,comboBonus,rollWeight,catchValue,itemValue,addCatch,registerMiss,inventoryValue,inventoryCount,sellAll,eligibleLocked,nextGate,gachaCost,pullGacha,gachaOdds,upgradeStatus,buyUpgrade,hapticProfile};
 if(typeof module!=='undefined')module.exports=root.GameCore;
 })(typeof window==='undefined'?globalThis:window);
