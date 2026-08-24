@@ -1,6 +1,6 @@
 const G=GameCore,$=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],key='pm-save';
 let st=G.normalizeState(JSON.parse(localStorage.getItem(key)||'null'));
-let phase='idle',encounter=null,timing=null,timers=[],filter='all';
+let phase='idle',encounter=null,timing=null,timers=[],filter='all',marketView='sell';
 function save(){localStorage.setItem(key,JSON.stringify(st))}
 function later(fn,ms){const id=setTimeout(fn,ms);timers.push(id);return id}
 function clearTimers(){timers.forEach(clearTimeout);timers=[]}
@@ -24,6 +24,12 @@ function showCatchVisual(c,reward){
 }
 function setFishUi({status='Calme',dot='',headline='La mer est calme.',sub='Lance ta ligne, puis attends la vraie touche.',button='Lancer la ligne',buttonClass='primary',float='',ripple=''}){
   $('#statusText').textContent=status;$('#statusDot').className='dot'+(dot?' '+dot:'');$('#headline').textContent=headline;$('#sub').textContent=sub;$('#cast').textContent=button;$('#cast').className=buttonClass;$('#float').className='float'+(float?' show '+float:'');$('#ripple').className='ripple'+(ripple?' '+ripple:'');
+}
+function setMarketView(view){
+  marketView=view==='upgrades'?'upgrades':'sell';
+  $('#marketSellPanel').classList.toggle('hide',marketView!=='sell');
+  $('#marketUpgradePanel').classList.toggle('hide',marketView!=='upgrades');
+  $$('#marketTabs button').forEach(b=>b.classList.toggle('on',b.dataset.marketTab===marketView));
 }
 function draw(){
   const n=G.nextRankInfo(st.totalSold);$('#coins').textContent=st.coins;$('#rank').textContent='Rang '+n.rank;$('#rtext').textContent=n.next?`${st.totalSold} / ${n.next} ventes`:'Rang maximum';$('#rbar').style.width=(n.progress*100)+'%';
@@ -83,5 +89,6 @@ $('#sell').onclick=()=>{const r=G.sellAll(st);save();toast(`+${r.value} ◉ · $
 $('#pull').onclick=()=>{const r=G.pullGacha(st);if(!r.ok)return draw();save();toast('Nouvelle espèce : '+r.creature.name);draw();go('collection')};
 $('#closeModal').onclick=closeModal;$('#cardModal').onclick=e=>{if(e.target===$('#cardModal'))closeModal()};
 $$('.nav button').forEach(b=>b.onclick=()=>go(b.dataset.s));function go(s){$$('.screen').forEach(x=>x.classList.toggle('on',x.id===s));$$('.nav button').forEach(x=>x.classList.toggle('on',x.dataset.s===s));draw()}
-$$('.tabs button').forEach(b=>b.onclick=()=>{filter=b.dataset.f;$$('.tabs button').forEach(x=>x.classList.toggle('on',x===b));cards()});
-save();draw();
+$$('#marketTabs button').forEach(b=>b.onclick=()=>setMarketView(b.dataset.marketTab));
+$$('#collection .tabs button').forEach(b=>b.onclick=()=>{filter=b.dataset.f;$$('#collection .tabs button').forEach(x=>x.classList.toggle('on',x===b));cards()});
+setMarketView(marketView);save();draw();
