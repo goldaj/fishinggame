@@ -23,7 +23,12 @@ function showCatchVisual(c,reward){
   el.classList.remove('hide');
 }
 function setFishUi({status='Calme',dot='',headline='La mer est calme.',sub='Lance ta ligne, puis attends la vraie touche.',button='Lancer la ligne',buttonClass='primary',float='',ripple=''}){
-  $('#statusText').textContent=status;$('#statusDot').className='dot'+(dot?' '+dot:'');$('#headline').textContent=headline;$('#sub').textContent=sub;$('#cast').textContent=button;$('#cast').className=buttonClass;$('#float').className='float'+(float?' show '+float:'');$('#ripple').className='ripple'+(ripple?' '+ripple:'');
+  $('#statusText').textContent=status;$('#statusDot').className='dot'+(dot?' '+dot:'');$('#headline').textContent=headline;$('#sub').textContent=sub;$('#cast').textContent=button;$('#cast').className=buttonClass;$('#cast').disabled=false;$('#float').className='float'+(float?' show '+float:'');$('#ripple').className='ripple'+(ripple?' '+ripple:'');
+}
+function startPostCatchCooldown(){
+  phase='cooldown';const unlockAt=Date.now()+G.postCatchLockMs;$('#cast').disabled=true;
+  const tick=()=>{const remaining=Math.ceil((unlockAt-Date.now())/1000);if(remaining<=0){phase='idle';$('#cast').disabled=false;$('#cast').textContent='Relancer';return}$('#cast').textContent=`Relancer · ${remaining}`;later(tick,250)};
+  tick();
 }
 function setMarketView(view){
   marketView=view==='upgrades'?'upgrades':'sell';
@@ -77,12 +82,12 @@ function miss(kind){
   clearTimers();G.registerMiss(st,kind);save();const early=kind==='early';hideCatchVisual();setFishUi({status:'Raté',dot:'bad',headline:early?'Trop tôt.':'Trop tard.',sub:early?'Le poisson a senti le mouvement et s’est éloigné.':'Le poisson a eu le temps de décrocher.',button:'Relancer',buttonClass:'primary',float:'',ripple:''});phase='idle';encounter=null;timing=null;draw();
 }
 function land(){
-  clearTimers();const c=encounter,weight=G.rollWeight(c,st),reward=G.addCatch(st,c,weight);save();phase='idle';encounter=null;timing=null;vibrate([18,20,28]);
+  clearTimers();const c=encounter,weight=G.rollWeight(c,st),reward=G.addCatch(st,c,weight);save();encounter=null;timing=null;vibrate([18,20,28]);
   const bonusText=reward.bonus?` Combo ${reward.combo} : +${reward.bonus} ◉ immédiats.`:` Combo ${reward.combo}.`;
   setFishUi({status:'Prise',dot:'live',headline:'Belle prise.',sub:`${formatWeight(reward.weightG)} · valeur ${reward.value} ◉.${bonusText}`,button:'Relancer',buttonClass:'primary'});
   showCatchVisual(c,reward);
   $('#result').innerHTML=`<span class="ico">${c.icon}</span><div><b>${c.name}</b><small>${c.rarityLabel} · ${formatWeight(reward.weightG)}${reward.record?' · nouveau record':''}</small></div><span class="value">${reward.value} ◉</span>`;$('#result').classList.remove('hide');
-  if(reward.bonus)toast(`Combo ${reward.combo} · +${reward.bonus} ◉ immédiats`);draw();
+  if(reward.bonus)toast(`Combo ${reward.combo} · +${reward.bonus} ◉ immédiats`);draw();startPostCatchCooldown();
 }
 $('#cast').onclick=()=>{const action=G.fishingInputOutcome(phase);if(action==='cast')return cast();if(action==='retract')return retract();if(action==='early-miss')return miss('early');if(action==='catch')return land();if(action==='late-miss')return miss('late')};
 $('#sell').onclick=()=>{const r=G.sellAll(st);save();toast(`+${r.value} ◉ · ${r.count} prise(s) vendue(s)${r.marketBonus?` · bonus marché +${r.marketBonus} ◉`:''}`);draw()};
