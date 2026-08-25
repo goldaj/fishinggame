@@ -3,6 +3,7 @@ const G=window.GameCore;
 if(!G)return;
 
 const $=s=>document.querySelector(s);
+const setText=(el,text)=>{if(el&&el.textContent!==text)el.textContent=text};
 let result=null,revealIndex=-1,busy=false;
 const rarityStars={commune:'·',inhabituelle:'◆',rare:'◆◆',epique:'◆◆◆',legendaire:'✦✦✦✦',mythique:'✦✦✦✦✦'};
 
@@ -64,12 +65,20 @@ function refreshPreview(){
   ensurePreview();
   const s=G.currentState;if(!s)return;
   const p=G.cardBoosterPreview(s),status=G.cardBoosterStatus(s);
-  const preview=$('#boosterPreview');if(preview){preview.className=`booster-preview preview-${p.type}`;preview.innerHTML=previewHtml(p,status)}
+  const preview=$('#boosterPreview');
+  if(preview){
+    const renderKey=[p.packNumber,p.type,p.skin,status.packsUntilRareGuarantee,status.packsUntilAbyssal].join('|');
+    if(preview.dataset.renderKey!==renderKey){
+      preview.dataset.renderKey=renderKey;
+      preview.className=`booster-preview preview-${p.type}`;
+      preview.innerHTML=previewHtml(p,status);
+    }
+  }
   const intro=$('.pack-panel h3+p');
-  if(intro)intro.textContent='Chaque booster contient 5 cartes et se révèle carte par carte. La 5e est au minimum Inhabituelle ; une Rare+ est protégée au plus tard tous les 6 boosters. Tous les 4 boosters, un Irisé garantit Rare+ ; tous les 12, un Abyssal garantit Rare+ puis Épique+.';
-  const quality=$('#packQuality');if(quality)quality.textContent=p.guaranteeLabel;
-  const pity=$('#packPity');if(pity)pity.textContent=status.guaranteedNext?'Rare+ garantie au prochain':`Rare+ dans ≤ ${status.packsUntilRareGuarantee} booster${status.packsUntilRareGuarantee>1?'s':''}`;
-  const button=$('#packPull');if(button){button.textContent=`Ouvrir 5 cartes · ${G.cardPackCost(s)} ◉`;button.disabled=s.coins<G.cardPackCost(s)}
+  setText(intro,'Chaque booster contient 5 cartes et se révèle carte par carte. La 5e est au minimum Inhabituelle ; une Rare+ est protégée au plus tard tous les 6 boosters. Tous les 4 boosters, un Irisé garantit Rare+ ; tous les 12, un Abyssal garantit Rare+ puis Épique+.');
+  const quality=$('#packQuality');setText(quality,p.guaranteeLabel);
+  const pity=$('#packPity');setText(pity,status.guaranteedNext?'Rare+ garantie au prochain':`Rare+ dans ≤ ${status.packsUntilRareGuarantee} booster${status.packsUntilRareGuarantee>1?'s':''}`);
+  const button=$('#packPull');if(button){setText(button,`Ouvrir 5 cartes · ${G.cardPackCost(s)} ◉`);button.disabled=s.coins<G.cardPackCost(s)}
 }
 
 function packShell(p){
