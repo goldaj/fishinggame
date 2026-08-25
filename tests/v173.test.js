@@ -1,0 +1,31 @@
+const assert=require('assert');
+const fs=require('fs');
+const G=require('../app/src/main/assets/v173.js');
+
+const rules=G.boosterFluidTearRules;
+assert.equal(rules.hitboxTop,-4);
+assert.equal(rules.hitboxHeight,164);
+assert.equal(rules.seamY,78);
+assert.ok(rules.tearDistanceRatio<0.4,'tear distance must stay thumb-friendly');
+assert.equal(G.boosterFluidTearDrag(90,300),90,'drag must follow the thumb 1:1 to the right');
+assert.equal(G.boosterFluidTearDrag(-90,300),-90,'drag must follow the thumb 1:1 to the left');
+assert.equal(G.boosterFluidTearDecision(110,300,500),1,'comfortable right drag must tear');
+assert.equal(G.boosterFluidTearDecision(-110,300,500),-1,'comfortable left drag must tear');
+assert.equal(G.boosterFluidTearDecision(42,300,70),1,'quick right flick must tear');
+assert.equal(G.boosterFluidTearDecision(-42,300,70),-1,'quick left flick must tear');
+assert.equal(G.boosterFluidTearDecision(24,300,300),0,'tiny slow movement must not tear');
+
+const ui=fs.readFileSync('app/src/main/assets/v173-ui.js','utf8');
+const css=fs.readFileSync('app/src/main/assets/v173.css','utf8');
+const html=fs.readFileSync('app/src/main/assets/index.html','utf8');
+const gradle=fs.readFileSync('app/build.gradle','utf8');
+assert.ok(ui.includes("getCoalescedEvents"),'coalesced pointer events should be used when available');
+assert.ok(ui.includes("pack.style.setProperty('--tear-x',`${lastDx}px`)"),'pack lid must track signed pointer travel in pixels');
+assert.ok(ui.includes('boosterFluidTearDecision'),'release must use distance/flick decision');
+assert.ok(css.includes('top:-4px!important;height:164px!important'),'tear hitbox must be wider vertically around the seam');
+assert.ok(css.includes('.tactile-pack.tear-dragging-v173 .pack-lid{transition:none!important'),'drag must have no interpolation lag');
+assert.ok(css.includes('var(--tear-final-x,118%)'),'final tear direction must be signed');
+assert.ok(html.includes('v173.css')&&html.includes('v173.js')&&html.includes('v173-ui.js'),'1.7.3 assets must be loaded');
+assert.ok(/versionCode\s+19/.test(gradle),'Android versionCode must be 19');
+assert.ok(/versionName\s+'1\.7\.3'/.test(gradle),'Android versionName must be 1.7.3');
+console.log('v1.7.3 fluid booster tear tests passed');

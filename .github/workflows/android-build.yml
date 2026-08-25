@@ -54,6 +54,7 @@ jobs:
           node tests/v160.test.js
           node tests/v170.test.js
           node tests/v171.test.js
+          node tests/v173.test.js
 
       - name: Check browser JavaScript syntax
         run: |
@@ -73,6 +74,8 @@ jobs:
           node --check app/src/main/assets/v170.js
           node --check app/src/main/assets/v170-ui.js
           node --check app/src/main/assets/v171-ui.js
+          node --check app/src/main/assets/v173.js
+          node --check app/src/main/assets/v173-ui.js
           node --check app/src/main/assets/catch-art.js
           node --check app/src/main/assets/catch-art-unique.js
           node --check app/src/main/assets/trash-art.js
@@ -95,7 +98,7 @@ jobs:
           unzip -tq "$APK"
           "${ANDROID_HOME}/build-tools/35.0.0/zipalign" -c -P 16 -v 4 "$APK"
           "${ANDROID_HOME}/build-tools/35.0.0/aapt" dump badging "$APK" | head -n 5
-          unzip -l "$APK" | grep -E 'assets/(v140-catalog.js|v140.js|v140.css|v141.js|v141.css|v142-ui.js|v142.css|v143-ui.js|v143.css|v150.js|v150-ui.js|v150.css|v160.js|v160-ui.js|v160.css|v170.js|v170-ui.js|v170.css|v171-ui.js|v171.css|index.html|app.js|catch-art.js|catch-art-unique.js)'
+          unzip -l "$APK" | grep -E 'assets/(v140-catalog.js|v140.js|v140.css|v141.js|v141.css|v142-ui.js|v142.css|v143-ui.js|v143.css|v150.js|v150-ui.js|v150.css|v160.js|v160-ui.js|v160.css|v170.js|v170-ui.js|v170.css|v171-ui.js|v171.css|v173.js|v173-ui.js|v173.css|index.html|app.js|catch-art.js|catch-art-unique.js)'
           sha256sum "$APK"
           cp "${ANDROID_HOME}/build-tools/35.0.0/lib/apksigner.jar" app/build/outputs/apk/release/apksigner.jar
 
