@@ -1,6 +1,7 @@
 (function(){'use strict';
 const G=window.GameCore;
 if(!G)return;
+const tactile170=G.releaseVersion==='1.7.0';
 
 const $=s=>document.querySelector(s);
 const setText=(el,text)=>{if(el&&el.textContent!==text)el.textContent=text};
@@ -24,6 +25,7 @@ function ensurePreview(){
     const button=$('#packPull');
     panel.insertBefore(preview,button);
   }
+  if(tactile170)return;
   let overlay=$('#boosterOpening');
   if(!overlay){
     overlay=document.createElement('div');
@@ -76,10 +78,11 @@ function refreshPreview(){
       preview.innerHTML=previewHtml(p,status);
     }
   }
-  const intro=$('.pack-panel h3+p');
-  setText(intro,`Chaque booster contient ${G.cardPackSize} cartes et se révèle carte par carte. La dernière est au minimum Inhabituelle ; une Rare+ est protégée au plus tard tous les ${rules.rarePityPacks} boosters. Tous les ${rules.iridescentEvery} boosters, un Irisé garantit Rare+ ; tous les ${rules.abyssalEvery}, un Abyssal garantit Rare+ puis Épique+.`);
   const quality=$('#packQuality');setText(quality,p.guaranteeLabel);
   const pity=$('#packPity');setText(pity,status.guaranteedNext?'Rare+ garantie au prochain':`Rare+ dans ≤ ${status.packsUntilRareGuarantee} booster${status.packsUntilRareGuarantee>1?'s':''}`);
+  if(tactile170)return;
+  const intro=$('.pack-panel h3+p');
+  setText(intro,`Chaque booster contient ${G.cardPackSize} cartes et se révèle carte par carte. La dernière est au minimum Inhabituelle ; une Rare+ est protégée au plus tard tous les ${rules.rarePityPacks} boosters. Tous les ${rules.iridescentEvery} boosters, un Irisé garantit Rare+ ; tous les ${rules.abyssalEvery}, un Abyssal garantit Rare+ puis Épique+.`);
   const button=$('#packPull');if(button){setText(button,`Ouvrir ${G.cardPackSize} cartes · ${G.cardPackCost(s)} ◉`);button.disabled=s.coins<G.cardPackCost(s)}
 }
 
@@ -203,6 +206,7 @@ function closeOverlay(force){
 
 function hook(){
   ensurePreview();refreshPreview();
+  if(tactile170)return;
   const button=$('#packPull');if(button)button.onclick=openPack;
 }
 
