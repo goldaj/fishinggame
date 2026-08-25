@@ -46,6 +46,7 @@ jobs:
           node tests/v130.test.js
           node tests/v131.test.js
           node tests/v132.test.js
+          node tests/v140.test.js
 
       - name: Check browser JavaScript syntax
         run: |
@@ -53,12 +54,12 @@ jobs:
           node --check app/src/main/assets/v130.js
           node --check app/src/main/assets/v131.js
           node --check app/src/main/assets/v132.js
+          node --check app/src/main/assets/v140-catalog.js
+          node --check app/src/main/assets/v140.js
           node --check app/src/main/assets/catch-art.js
           node --check app/src/main/assets/catch-art-unique.js
           node --check app/src/main/assets/trash-art.js
           node --check app/src/main/assets/app.js
-          node --check app/src/main/assets/v131-ui.js
-          node --check app/src/main/assets/v132-ui.js
 
       - name: Bootstrap Gradle Wrapper when absent
         run: |
@@ -77,6 +78,7 @@ jobs:
           unzip -tq "$APK"
           "${ANDROID_HOME}/build-tools/35.0.0/zipalign" -c -P 16 -v 4 "$APK"
           "${ANDROID_HOME}/build-tools/35.0.0/aapt" dump badging "$APK" | head -n 5
+          unzip -l "$APK" | grep -E 'assets/(v140-catalog.js|v140.js|v140.css|index.html|app.js|catch-art.js|catch-art-unique.js)'
           sha256sum "$APK"
           cp "${ANDROID_HOME}/build-tools/35.0.0/lib/apksigner.jar" app/build/outputs/apk/release/apksigner.jar
 
