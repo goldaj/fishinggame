@@ -5,9 +5,9 @@ if(!G){if(isNode)module.exports=null;return}
 
 const CARD_PACK_COST=800;
 const CARD_PACK_SIZE=5;
-const RARE_PITY_PACKS=6;
-const IRIDESCENT_EVERY=4;
-const ABYSSAL_EVERY=12;
+const RARE_PITY_PACKS=4;
+const IRIDESCENT_EVERY=5;
+const ABYSSAL_EVERY=15;
 const rarityOrder=['commune','inhabituelle','rare','epique','legendaire','mythique'];
 
 function clamp01(x){return Math.max(0,Math.min(.999999,Number(x)||0))}
@@ -70,14 +70,13 @@ G.cardBoosterRules={
 G.cardBoosterStatus=function(s){
   const pity=Math.max(0,Math.min(RARE_PITY_PACKS-1,Math.floor(Number(s&&s.cardRarePity)||0)));
   const opened=Math.max(0,Math.floor(Number(s&&s.cardPacksOpened)||0));
-  const nextPack=opened+1;
   return{
     pity,
     guaranteedNext:pity>=RARE_PITY_PACKS-1,
     packsUntilRareGuarantee:Math.max(1,RARE_PITY_PACKS-pity),
     packsUntilIridescent:nextMultipleDistance(opened,IRIDESCENT_EVERY),
     packsUntilAbyssal:nextMultipleDistance(opened,ABYSSAL_EVERY),
-    nextPack
+    nextPack:opened+1
   };
 };
 
