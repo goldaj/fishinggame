@@ -17,15 +17,11 @@ assert.equal(G.boosterFluidTearDecision(24,300,300),0,'tiny slow movement must n
 
 const ui=fs.readFileSync('app/src/main/assets/v173-ui.js','utf8');
 const css=fs.readFileSync('app/src/main/assets/v173.css','utf8');
-const html=fs.readFileSync('app/src/main/assets/index.html','utf8');
-const gradle=fs.readFileSync('app/build.gradle','utf8');
-assert.ok(ui.includes("getCoalescedEvents"),'coalesced pointer events should be used when available');
-assert.ok(ui.includes("pack.style.setProperty('--tear-x',`${lastDx}px`)"),'pack lid must track signed pointer travel in pixels');
-assert.ok(ui.includes('boosterFluidTearDecision'),'release must use distance/flick decision');
-assert.ok(css.includes('top:-4px!important;height:164px!important'),'tear hitbox must be wider vertically around the seam');
-assert.ok(css.includes('.tactile-pack.tear-dragging-v173 .pack-lid{transition:none!important'),'drag must have no interpolation lag');
-assert.ok(css.includes('var(--tear-final-x,118%)'),'final tear direction must be signed');
-assert.ok(html.includes('v173.css')&&html.includes('v173.js')&&html.includes('v173-ui.js'),'1.7.3 assets must be loaded');
-assert.ok(/versionCode\s+19/.test(gradle),'Android versionCode must be 19');
-assert.ok(/versionName\s+'1\.7\.3'/.test(gradle),'Android versionName must be 1.7.3');
-console.log('v1.7.3 fluid booster tear tests passed');
+assert.ok(ui.includes('getCoalescedEvents'),'coalesced pointer events should be used when available');
+assert.ok(ui.includes("pack.style.setProperty('--tear-x',`${lastDx}px`)"),'historical 1.7.3 helper must track signed pointer travel in pixels');
+assert.ok(ui.includes('boosterFluidTearDecision'),'historical 1.7.3 release used distance/flick decision');
+assert.ok(css.includes('top:-4px!important;height:164px!important'),'historical 1.7.3 hitbox geometry should stay documented');
+assert.ok(css.includes('.tactile-pack.tear-dragging-v173 .pack-lid{transition:none!important'),'historical 1.7.3 drag removed interpolation lag');
+assert.ok(css.includes('var(--tear-final-x,118%)'),'historical final tear direction was signed');
+
+console.log('v1.7.3 historical fluid tear helper tests passed');
