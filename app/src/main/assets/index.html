@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="v140.css">
 <link rel="stylesheet" href="v141.css">
 <link rel="stylesheet" href="v142.css">
+<link rel="stylesheet" href="v143.css">
 </head>
 <body>
 <div class="app">
@@ -100,11 +101,11 @@
   </main>
 </div>
 
-<nav class="nav" aria-label="Navigation principale" style="grid-template-columns:repeat(4,1fr)">
-  <button class="on" data-s="fish"><span>🎣</span>Pêche</button>
+<nav class="nav" aria-label="Navigation principale">
   <button data-s="market"><span>◉</span>Marché</button>
-  <button data-s="gacha"><span>✦</span>Gacha</button>
+  <button class="on" data-s="fish"><span>🎣</span>Pêche</button>
   <button data-s="collection"><span>▦</span>Cartes</button>
+  <button data-s="gacha" hidden aria-hidden="true"><span>✦</span>Gacha</button>
 </nav>
 
 <div id="cardModal" class="modal hide" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
@@ -131,5 +132,6 @@
 <script src="trash-art.js"></script>
 <script src="app.js"></script>
 <script src="v142-ui.js"></script>
+<script src="v143-ui.js"></script>
 </body>
 </html>
