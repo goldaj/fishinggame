@@ -12,6 +12,7 @@ function saveState(){try{localStorage.setItem('pm-save',JSON.stringify(G.current
 function redraw(){try{if(typeof window.draw==='function')window.draw()}catch(_){}}
 function buzz(pattern){try{navigator.vibrate&&navigator.vibrate(pattern)}catch(_){}}
 function reduced(){return !!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)}
+function safeFocus(el){try{el&&typeof el.focus==='function'&&el.focus({preventScroll:true})}catch(_){}}
 
 function ensurePreview(){
   const panel=$('.pack-panel');if(!panel)return;
@@ -34,40 +35,41 @@ function ensurePreview(){
     overlay.innerHTML=`
       <div class="booster-stage">
         <div class="booster-stage-head">
-          <button id="boosterClose" class="booster-icon-button" aria-label="Fermer">×</button>
+          <button id="boosterClose" class="booster-icon-button" aria-label="Afficher le bilan ou fermer">×</button>
           <div><small id="boosterStageKicker">BOOSTER</small><h2 id="boosterStageTitle"></h2></div>
           <button id="boosterSkip" class="booster-skip hide">Tout révéler</button>
         </div>
-        <div id="boosterStageBody" class="booster-stage-body"></div>
+        <div id="boosterStageBody" class="booster-stage-body" aria-live="polite"></div>
         <div class="booster-stage-foot">
           <div class="booster-progress"><i id="boosterProgress"></i></div>
           <span id="boosterCounter">Prêt</span>
         </div>
       </div>`;
     document.body.appendChild(overlay);
-    $('#boosterClose').onclick=closeOverlay;
+    $('#boosterClose').onclick=()=>closeOverlay(false);
     $('#boosterSkip').onclick=revealAll;
-    overlay.addEventListener('click',e=>{if(e.target===overlay&&revealIndex>=G.cardPackSize)closeOverlay()});
+    overlay.addEventListener('click',e=>{if(e.target===overlay&&revealIndex>=G.cardPackSize)closeOverlay(true)});
   }
 }
 
 function previewHtml(p,status){
   const special=p.special?'<span class="booster-special-badge">SPÉCIAL</span>':'';
-  const next=status.packsUntilAbyssal===1?'Abyssal au prochain booster':`Abyssal dans ${status.packsUntilAbyssal} boosters`;
+  const iridescent=status.packsUntilIridescent===1?'Irisé au prochain':`Irisé dans ${status.packsUntilIridescent}`;
+  const abyssal=status.packsUntilAbyssal===1?'Abyssal au prochain':`Abyssal dans ${status.packsUntilAbyssal}`;
   return `
     <div class="mini-pack pack-${p.skin}" aria-hidden="true">
-      <div class="mini-pack-shine"></div><span>✦</span><b>${p.type==='abyssal'?'ABYSSAL':p.type==='iridescent'?'IRISÉ':'P&M'}</b><small>5 CARTES</small>
+      <div class="mini-pack-shine"></div><span>✦</span><b>${p.type==='abyssal'?'ABYSSAL':p.type==='iridescent'?'IRISÉ':'P&M'}</b><small>${G.cardPackSize} CARTES</small>
     </div>
-    <div class="booster-preview-copy">${special}<small>PROCHAIN · #${p.packNumber}</small><h4>${p.name}</h4><p>${p.guaranteeLabel}</p><div class="booster-preview-status"><span>Rare+ ≤ ${status.packsUntilRareGuarantee}</span><span>${next}</span></div></div>`;
+    <div class="booster-preview-copy">${special}<small>PROCHAIN · #${p.packNumber}</small><h4>${p.name}</h4><p>${p.guaranteeLabel}</p><div class="booster-preview-status"><span>Rare+ ≤ ${status.packsUntilRareGuarantee}</span><span>${iridescent}</span><span>${abyssal}</span></div></div>`;
 }
 
 function refreshPreview(){
   ensurePreview();
   const s=G.currentState;if(!s)return;
-  const p=G.cardBoosterPreview(s),status=G.cardBoosterStatus(s);
+  const p=G.cardBoosterPreview(s),status=G.cardBoosterStatus(s),rules=G.cardBoosterRules;
   const preview=$('#boosterPreview');
   if(preview){
-    const renderKey=[p.packNumber,p.type,p.skin,status.packsUntilRareGuarantee,status.packsUntilAbyssal].join('|');
+    const renderKey=[p.packNumber,p.type,p.skin,status.packsUntilRareGuarantee,status.packsUntilIridescent,status.packsUntilAbyssal].join('|');
     if(preview.dataset.renderKey!==renderKey){
       preview.dataset.renderKey=renderKey;
       preview.className=`booster-preview preview-${p.type}`;
@@ -75,10 +77,10 @@ function refreshPreview(){
     }
   }
   const intro=$('.pack-panel h3+p');
-  setText(intro,'Chaque booster contient 5 cartes et se révèle carte par carte. La 5e est au minimum Inhabituelle ; une Rare+ est protégée au plus tard tous les 6 boosters. Tous les 4 boosters, un Irisé garantit Rare+ ; tous les 12, un Abyssal garantit Rare+ puis Épique+.');
+  setText(intro,`Chaque booster contient ${G.cardPackSize} cartes et se révèle carte par carte. La dernière est au minimum Inhabituelle ; une Rare+ est protégée au plus tard tous les ${rules.rarePityPacks} boosters. Tous les ${rules.iridescentEvery} boosters, un Irisé garantit Rare+ ; tous les ${rules.abyssalEvery}, un Abyssal garantit Rare+ puis Épique+.`);
   const quality=$('#packQuality');setText(quality,p.guaranteeLabel);
   const pity=$('#packPity');setText(pity,status.guaranteedNext?'Rare+ garantie au prochain':`Rare+ dans ≤ ${status.packsUntilRareGuarantee} booster${status.packsUntilRareGuarantee>1?'s':''}`);
-  const button=$('#packPull');if(button){setText(button,`Ouvrir 5 cartes · ${G.cardPackCost(s)} ◉`);button.disabled=s.coins<G.cardPackCost(s)}
+  const button=$('#packPull');if(button){setText(button,`Ouvrir ${G.cardPackSize} cartes · ${G.cardPackCost(s)} ◉`);button.disabled=s.coins<G.cardPackCost(s)}
 }
 
 function packShell(p){
@@ -89,7 +91,7 @@ function packShell(p){
       <div class="opening-pack-top">PÊCHE &amp; MERVEILLES</div>
       <div class="opening-pack-mark">✦</div>
       <strong>${p.type==='abyssal'?'ABYSSAL':p.type==='iridescent'?'IRISÉ':p.name.replace('Booster ','')}</strong>
-      <small>5 CARTES · ${p.guaranteeLabel}</small>
+      <small>${G.cardPackSize} CARTES · ${p.guaranteeLabel}</small>
       <div class="opening-pack-tear"></div>
     </div>
     <button id="tearBooster" class="primary booster-open-action">Déchirer le booster</button>
@@ -105,7 +107,6 @@ function openPack(){
   result=r;revealIndex=-1;busy=false;
   saveState();redraw();refreshPreview();
   const overlay=$('#boosterOpening'),body=$('#boosterStageBody');
-  overlay.classList.remove('hide');
   overlay.className=`booster-opening booster-${r.booster.type}`;
   $('#boosterStageTitle').textContent=r.booster.name;
   $('#boosterStageKicker').textContent=`BOOSTER #${r.packNumber}`;
@@ -121,6 +122,7 @@ function openPack(){
     tear.disabled=true;
     setTimeout(()=>{busy=false;$('#boosterSkip').classList.remove('hide');revealNext()},reduced()?40:380);
   };
+  requestAnimationFrame(()=>safeFocus(tear));
 }
 
 function particleBurst(intensity){
@@ -155,7 +157,7 @@ function revealNext(){
   $('#boosterCounter').textContent=`${revealIndex+1} / ${result.cards.length}`;
   $('#boosterProgress').style.width=`${((revealIndex+1)/result.cards.length)*100}%`;
   if(x.rarityIndex>=4)buzz([18,35,28,40,35]);else if(x.rarityIndex>=2)buzz([14,22,18]);else buzz(8);
-  requestAnimationFrame(()=>{const card=$('.reveal-card');if(card)card.classList.add('is-visible')});
+  requestAnimationFrame(()=>{const card=$('.reveal-card');if(card)card.classList.add('is-visible');safeFocus($('#nextReveal'))});
   $('#nextReveal').onclick=revealNext;
 }
 
@@ -183,17 +185,20 @@ function showSummary(){
     ${result.rareProtectionTriggered?'<div class="summary-protection">La protection Rare+ s’est déclenchée sur ce booster.</div>':''}
     <div class="summary-actions"><button id="summaryClose" class="secondary">Terminer</button><button id="summaryAgain" class="primary">Ouvrir encore · ${G.cardPackCost(G.currentState)} ◉</button></div>
   </div>`;
-  $('#summaryClose').onclick=closeOverlay;
+  $('#summaryClose').onclick=()=>closeOverlay(true);
   const again=$('#summaryAgain');
   again.disabled=G.currentState.coins<G.cardPackCost(G.currentState);
-  again.onclick=()=>{closeOverlay();setTimeout(openPack,reduced()?0:120)};
+  again.onclick=()=>{closeOverlay(true);setTimeout(openPack,reduced()?0:120)};
   if(result.jackpot)buzz([22,45,32,60,42]);
+  requestAnimationFrame(()=>safeFocus($('#summaryClose')));
 }
 
-function closeOverlay(){
+function closeOverlay(force){
+  if(!force&&result&&revealIndex<result.cards.length){revealAll();return}
   const overlay=$('#boosterOpening');if(overlay)overlay.className='booster-opening hide';
   result=null;revealIndex=-1;busy=false;
   saveState();redraw();refreshPreview();
+  safeFocus($('#packPull'));
 }
 
 function hook(){
