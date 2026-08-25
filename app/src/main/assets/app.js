@@ -1,4 +1,5 @@
 const G=GameCore,$=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],key='pm-save';
+const art=c=>window.CatchArt&&typeof window.CatchArt.render==='function'?window.CatchArt.render(c):c.icon;
 let st=G.normalizeState(JSON.parse(localStorage.getItem(key)||'null'));
 let phase='idle',encounter=null,timing=null,timers=[],filter='all',marketView='sell';
 function save(){localStorage.setItem(key,JSON.stringify(st))}
@@ -19,7 +20,7 @@ function formatWeight(g){g=Math.round(Number(g)||0);if(g>=1000){const kg=g/1000;
 function hideCatchVisual(){const el=$('#landedFish');el.classList.add('hide');el.innerHTML=''}
 function showCatchVisual(c,reward){
   const el=$('#landedFish');
-  el.innerHTML=`<span class="fish-ico">${c.icon}</span><b>${c.name}</b><small>${formatWeight(reward.weightG)} · ${reward.value} ◉${reward.record?' · <span class="record">Nouveau record</span>':''}</small>`;
+  el.innerHTML=`<span class="fish-ico">${art(c)}</span><b>${c.name}</b><small>${formatWeight(reward.weightG)} · ${reward.value} ◉${reward.record?' · <span class="record">Nouveau record</span>':''}</small>`;
   el.classList.remove('hide');
 }
 function setFishUi({status='Calme',dot='',headline='La mer est calme.',sub='Lance ta ligne, puis attends la vraie touche.',button='Lancer la ligne',buttonClass='primary',float='',ripple=''}){
@@ -42,7 +43,7 @@ function draw(){
 }
 function market(){
   const rows=st.inventory,value=G.inventoryValue(st),count=G.inventoryCount(st);$('#basketValue').textContent=value+' ◉';$('#basketCount').textContent=count;$('#sell').disabled=!rows.length;$('#sell').textContent=rows.length?`Tout vendre · ${value} ◉`:'Panier vide';
-  $('#inventory').innerHTML=rows.length?[...rows].reverse().map(item=>{const c=G.creatures[item.id-1],v=G.itemValue(st,item);return `<div class="row"><span class="ico">${c.icon}</span><div class="grow"><b>${c.name}</b><small>${c.rarityLabel} · ${formatWeight(item.weightG)}</small></div><span class="qty">${v} ◉</span></div>`}).join(''):'<div class="row"><div class="grow"><b>Rien à vendre</b><small>Chaque future prise gardera son poids individuel.</small></div></div>';
+  $('#inventory').innerHTML=rows.length?[...rows].reverse().map(item=>{const c=G.creatures[item.id-1],v=G.itemValue(st,item);return `<div class="row"><span class="ico catch-art-small">${art(c)}</span><div class="grow"><b>${c.name}</b><small>${c.rarityLabel} · ${formatWeight(item.weightG)}</small></div><span class="qty">${v} ◉</span></div>`}).join(''):'<div class="row"><div class="grow"><b>Rien à vendre</b><small>Chaque future prise gardera son poids individuel.</small></div></div>';
 }
 function shop(){
   $('#shopList').innerHTML=Object.keys(G.upgrades).map(key=>{const x=G.upgradeStatus(st,key);let button=x.maxed?'Niveau maximum':x.rankLocked?`Rang ${x.rankRequired} requis`:`Améliorer · ${x.cost} ◉`;return `<article class="shop-card"><div class="shop-top"><div><h3>${x.label}</h3><p>${x.desc}</p></div><span class="shop-level">Niv. ${x.level}/${x.max}</span></div><div class="shop-effect"><span>Actuel : ${x.current}</span><b>${x.maxed?'Maximum':'Suivant : '+x.next}</b></div><button class="buy" data-upgrade="${key}" ${x.canBuy?'':'disabled'}>${button}</button></article>`}).join('');
@@ -55,12 +56,12 @@ function gacha(){
 }
 function cards(){
   const rank=G.rankForSold(st.totalSold);$('#ccount').textContent=st.unlocked.length;
-  $('#cards').innerHTML=G.creatures.filter(c=>filter==='all'||(filter==='unlocked')===st.unlocked.includes(c.id)).map(c=>{const u=st.unlocked.includes(c.id),best=Number(st.bestWeightById[c.id])||0,status=u?`${c.rarityLabel} · ${c.value} ◉${best?' · Record '+formatWeight(best):''}`:(c.gate<=rank?'Disponible au gacha':`Rang ${c.gate} requis`);return `<button type="button" class="card ${c.rarity} ${u?'':'lock'}" data-card="${c.id}"><div class="num">N°${String(c.id).padStart(3,'0')}</div><div class="ico">${u?c.icon:'?'}</div><h3>${u?c.name:'Espèce inconnue'}</h3><div class="meta">${status}</div>${u?`<span class="rarity">${c.rarityLabel}</span>`:''}</button>`}).join('');
+  $('#cards').innerHTML=G.creatures.filter(c=>filter==='all'||(filter==='unlocked')===st.unlocked.includes(c.id)).map(c=>{const u=st.unlocked.includes(c.id),best=Number(st.bestWeightById[c.id])||0,status=u?`${c.rarityLabel} · ${c.value} ◉${best?' · Record '+formatWeight(best):''}`:(c.gate<=rank?'Disponible au gacha':`Rang ${c.gate} requis`);return `<button type="button" class="card ${c.rarity} ${u?'':'lock'}" data-card="${c.id}"><div class="num">N°${String(c.id).padStart(3,'0')}</div><div class="ico catch-art-card">${u?art(c):'?'}</div><h3>${u?c.name:'Espèce inconnue'}</h3><div class="meta">${status}</div>${u?`<span class="rarity">${c.rarityLabel}</span>`:''}</button>`}).join('');
   $$('#cards [data-card]').forEach(b=>b.onclick=()=>openCard(Number(b.dataset.card)));
 }
 function openCard(id){
   const c=G.creatures[id-1],u=st.unlocked.includes(id),best=Number(st.bestWeightById[id])||0,caught=Number(st.caughtById[id])||0;
-  $('#modalIcon').textContent=u?c.icon:'?';$('#modalNumber').textContent='N°'+String(id).padStart(3,'0');$('#modalTitle').textContent=u?c.name:'Espèce inconnue';
+  $('#modalIcon').innerHTML=u?art(c):'?';$('#modalNumber').textContent='N°'+String(id).padStart(3,'0');$('#modalTitle').textContent=u?c.name:'Espèce inconnue';
   $('#modalRarity').textContent=u?`${c.rarityLabel} · difficulté ${c.difficulty.toLowerCase()}`:(c.gate<=G.rankForSold(st.totalSold)?'Accessible au gacha':`Rang ${c.gate} requis`);
   $('#modalStats').innerHTML=u?`<div class="modal-stat"><small>Valeur de base</small><strong>${c.value} ◉</strong></div><div class="modal-stat"><small>Meilleur poids découvert</small><strong>${best?formatWeight(best):'Aucun record'}</strong></div><div class="modal-stat"><small>Captures</small><strong>${caught}</strong></div><div class="modal-stat"><small>Ordre de collection</small><strong>${id} / 100</strong></div>`:`<div class="modal-stat"><small>Déblocage</small><strong>${c.gate<=G.rankForSold(st.totalSold)?'Gacha disponible':'Rang '+c.gate}</strong></div><div class="modal-stat"><small>Informations</small><strong>À découvrir</strong></div>`;
   $('#cardModal').classList.remove('hide');
@@ -86,7 +87,7 @@ function land(){
   const bonusText=reward.bonus?` Combo ${reward.combo} : +${reward.bonus} ◉ immédiats.`:` Combo ${reward.combo}.`;
   setFishUi({status:'Prise',dot:'live',headline:'Belle prise.',sub:`${formatWeight(reward.weightG)} · valeur ${reward.value} ◉.${bonusText}`,button:'Relancer',buttonClass:'primary'});
   showCatchVisual(c,reward);
-  $('#result').innerHTML=`<span class="ico">${c.icon}</span><div><b>${c.name}</b><small>${c.rarityLabel} · ${formatWeight(reward.weightG)}${reward.record?' · nouveau record':''}</small></div><span class="value">${reward.value} ◉</span>`;$('#result').classList.remove('hide');
+  $('#result').innerHTML=`<span class="ico catch-art-result">${art(c)}</span><div><b>${c.name}</b><small>${c.rarityLabel} · ${formatWeight(reward.weightG)}${reward.record?' · nouveau record':''}</small></div><span class="value">${reward.value} ◉</span>`;$('#result').classList.remove('hide');
   if(reward.bonus)toast(`Combo ${reward.combo} · +${reward.bonus} ◉ immédiats`);draw();startPostCatchCooldown();
 }
 $('#cast').onclick=()=>{const action=G.fishingInputOutcome(phase);if(action==='cast')return cast();if(action==='retract')return retract();if(action==='early-miss')return miss('early');if(action==='catch')return land();if(action==='late-miss')return miss('late')};
