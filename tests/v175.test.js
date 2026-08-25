@@ -32,6 +32,9 @@ assert.ok(ui.includes('boosterFoldStartDirection(localX,width)'),'pointerdown mu
 assert.ok(ui.includes("if(!dir)"),'middle starts must be rejected');
 assert.ok(ui.includes("zone.setPointerCapture(pointerId)"),'valid edge grab must retain the gesture across the pack');
 assert.ok(ui.includes('getCoalescedEvents'),'pointer motion should remain direct and smooth');
+const legacyFinish=ui.indexOf("oldKeydown.call(zone");
+const selectedFinishDirection=ui.indexOf('setFinishDirection(dir)',legacyFinish);
+assert.ok(legacyFinish>=0&&selectedFinishDirection>legacyFinish,'selected left/right tear direction must be re-applied after the legacy transition');
 assert.ok(css.includes('top:52px!important')&&css.includes('height:52px!important'),'active strip must surround the 78px fold, not the top of the booster');
 assert.ok(css.includes('top:25px!important;border-top:2px dashed'),'visible seam must sit at y=77/78 within the strip');
 assert.ok(css.includes('.fold-grip-left-v175')&&css.includes('.fold-grip-right-v175'),'both fold ends must have visible grab affordances');
