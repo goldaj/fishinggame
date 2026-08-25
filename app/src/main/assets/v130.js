@@ -3,25 +3,65 @@ const isNode=typeof module!=='undefined'&&module.exports;
 const G=isNode?require('./v122.js'):root.GameCore;
 if(!G){if(isNode)module.exports=null;return}
 
-const families=[
-  ['Gobie','goby'],['Sardine','sardine'],['Crabe','crab'],['Ablette','bleak'],['Crevette','shrimp'],
-  ['Mulet','mullet'],['Éperlan','smelt'],['Poulpe','octopus'],['Coquille','scallop'],['Girelle','wrasse'],
-  ['Blennie','blenny'],['Moule','mussel'],['Bernard-l’ermite','hermit'],['Anchois','anchovy'],['Rouget','redmullet'],
-  ['Seiche','cuttlefish'],['Palourde','clam'],['Méduse','jellyfish'],['Barbue','turbot'],['Maquereau','mackerel']
+const catalog=[
+'Gobie','Sardine','Crabe vert','Ablette','Crevette grise','Mulet',
+'Éperlan','Poulpe commun','Coquille Saint-Jacques','Girelle','Blennie','Moule',
+'Bernard-l’ermite','Anchois','Rouget-barbet','Seiche','Palourde','Méduse lune','Barbue','Maquereau',
+'Bar','Dorade royale','Lieu jaune','Merlan','Sole','Plie','Limande','Turbot','Congre','Anguille européenne',
+'Truite fario','Perche commune','Brochet','Sandre','Carpe commune','Tanche','Gardon','Brème commune','Silure glane','Saumon atlantique',
+'Thon rouge','Bonite à dos rayé','Espadon','Marlin bleu','Barracuda','Mérou brun','Vivaneau rouge',
+'Poisson-clown','Poisson-chirurgien','Poisson-perroquet','Poisson-papillon','Baliste','Rascasse rouge','Saint-Pierre','Lotte de mer',
+'Baudroie commune','Petite roussette','Requin-marteau','Raie bouclée','Raie manta',
+'Homard européen','Langouste rouge','Tourteau','Araignée de mer','Étrille','Calmar commun','Calmar flèche','Ormeau','Bigorneau','Bulot','Huître creuse',
+'Couteau','Praire','Coque','Pétoncle noir','Oursin violet','Concombre de mer',
+'Étoile de mer commune','Hippocampe moucheté','Syngnathe','Poisson-lune','Poisson-globe','Poisson-scie','Poisson-ange','Murène commune','Morue de l’Atlantique','Flétan de l’Atlantique',
+'Requin-renard d’azur','Coelacanthe spectral','Esturgeon de cristal','Poisson-lion des brumes',
+'Léviathan des abysses','Serpent marin runique',
+'Régalec des constellations','Poisson-pierre de braise',
+'Kelpie des marées','Aspidochelone antique','Makara des tempêtes','Hydre océanique','Kraken des marées'
 ];
-const traits=[
-  'de quai','aux reflets d’argent','couvert de mousse','de brume','de corail rose',
-  'des digues','des eaux claires','aux reflets nacrés','des herbiers','d’orage',
-  'au bleu cobalt','aux perles blanches','voyageur','en mosaïque','des rois',
-  'aux reflets dorés','des abysses','fantôme','aux éclats stellaires','des marées'
-];
+
+function assetKind(name){
+  const n=name.toLowerCase();
+  if(n.includes('kraken'))return'kraken';
+  if(n.includes('hydre'))return'hydra';
+  if(n.includes('léviathan'))return'leviathan';
+  if(n.includes('serpent marin'))return'serpent';
+  if(n.includes('kelpie'))return'kelpie';
+  if(n.includes('aspidochelone'))return'turtle';
+  if(n.includes('makara'))return'makara';
+  if(n.includes('méduse'))return'jelly';
+  if(n.includes('poulpe'))return'octopus';
+  if(n.includes('seiche')||n.includes('calmar'))return'squid';
+  if(n.includes('crabe')||n.includes('tourteau')||n.includes('étrille')||n.includes('araignée de mer'))return'crab';
+  if(n.includes('homard')||n.includes('langouste'))return'lobster';
+  if(n.includes('crevette'))return'shrimp';
+  if(n.includes('bernard'))return'hermit';
+  if(n.includes('coquille')||n.includes('palourde')||n.includes('moule')||n.includes('huître')||n.includes('praire')||n.includes('coque')||n.includes('pétoncle')||n.includes('ormeau')||n.includes('bigorneau')||n.includes('bulot')||n==='couteau')return'shell';
+  if(n.includes('oursin'))return'urchin';
+  if(n.includes('étoile de mer'))return'starfish';
+  if(n.includes('concombre de mer'))return'seacucumber';
+  if(n.includes('hippocampe'))return'seahorse';
+  if(n.includes('syngnathe'))return'pipefish';
+  if(n.includes('raie'))return'ray';
+  if(n.includes('requin')||n.includes('roussette'))return'shark';
+  if(n.includes('poisson-scie'))return'sawfish';
+  if(n.includes('poisson-lune'))return'sunfish';
+  if(n.includes('poisson-globe'))return'puffer';
+  if(n.includes('sole')||n.includes('plie')||n.includes('limande')||n.includes('turbot')||n.includes('barbue')||n.includes('flétan'))return'flatfish';
+  if(n.includes('anguille')||n.includes('congre')||n.includes('murène')||n.includes('régalec'))return'eel';
+  if(n.includes('espadon')||n.includes('marlin'))return'billfish';
+  return'fish';
+}
+
+if(catalog.length!==100)throw new Error('Le catalogue 1.3.0 doit contenir exactement 100 prises.');
+const names=new Set(catalog);
+if(names.size!==100)throw new Error('Chaque prise 1.3.0 doit avoir un nom unique.');
 G.creatures.forEach((c,i)=>{
-  if(c.id===100){c.name='Kraken des marées';c.assetFamily='kraken';c.assetMotif=19;c.assetVariant=4;return}
-  const familyIndex=i%families.length,cycle=Math.floor(i/families.length),traitIndex=(familyIndex*7+cycle*3)%traits.length;
-  c.name=`${families[familyIndex][0]} ${traits[traitIndex]}`;
-  c.assetFamily=families[familyIndex][1];
-  c.assetMotif=traitIndex;
-  c.assetVariant=cycle;
+  c.name=catalog[i];
+  c.assetKey=`catch-${String(c.id).padStart(3,'0')}`;
+  c.assetKind=assetKind(c.name);
+  c.assetVariant=c.id;
 });
 
 const tuning={baitPerLevel:.08,reelPerLevel:.10,brokerPerLevel:.06,keeperBiasPerLevel:.12};
