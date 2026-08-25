@@ -1,0 +1,17 @@
+.pack-panel{margin:0 0 18px;padding:16px;border:1px solid rgba(255,255,255,.12);border-radius:18px;background:rgba(255,255,255,.035)}
+.pack-panel h3{margin:0 0 6px}.pack-panel p{margin:0 0 14px}
+.pack-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
+.pack-meta>div{padding:10px;border-radius:12px;background:rgba(255,255,255,.045)}
+.pack-meta small{display:block;margin-bottom:3px}.pack-meta strong{display:block}
+.pack-panel .primary{width:100%;margin:8px 0 10px}
+.draw-results{display:grid;gap:10px;margin-top:12px}
+.draw-card{display:flex;align-items:center;gap:12px;padding:12px;border-radius:14px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.035);text-align:left}
+.draw-card .draw-art{width:70px;min-width:70px;height:52px;display:grid;place-items:center}
+.draw-card .draw-art svg{width:70px;height:52px}
+.draw-card>div{display:grid;gap:2px}.draw-card small,.draw-card strong{display:block}
+#gachaResult{margin:14px 0 4px}
+.card.card-only{outline:1px solid rgba(255,255,255,.18);outline-offset:-2px}
+.card.card-only .meta::before{content:"CARTE · ";font-weight:700}
+.collection-stats{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.collection-tabs{margin-bottom:12px}
+@media(max-width:560px){.pack-meta{grid-template-columns:1fr}.draw-card .draw-art{width:58px;min-width:58px}.draw-card .draw-art svg{width:58px}}
