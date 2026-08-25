@@ -37,6 +37,18 @@ function gateForNewId(id){
 }
 function assetKind(name){
   const n=String(name||'').toLowerCase();
+  const mythicKinds=[
+    [['ichthyocentaure','each-uisge','glaucus','ahuizotl','bunyip'],'kelpie'],
+    [['umibōzu','charybde'],'jelly'],
+    [['akkorokamui','lusca'],'octopus'],
+    [['hafgufa','bake-kujira','cirein-cròin','ningen','thalassarque','abyssocéros','corallophage','maréodonte','fossarque','chronocétacé','abyssarque'],'leviathan'],
+    [['scylla'],'hydra'],
+    [['taniwha','morgawr','cadborosaure','ondrake'],'serpent'],
+    [['kappa','pélagocitadelle'],'turtle'],
+    [['noctiraie'],'ray'],
+    [['qalupalik','vodyanoy'],'seahorse']
+  ];
+  for(const [keys,kind] of mythicKinds)if(keys.some(k=>n.includes(k)))return kind;
   if(n.includes('kraken'))return'kraken';
   if(n.includes('hydre'))return'hydra';
   if(n.includes('léviathan')||n.includes('behemoth')||n.includes('béhémoth'))return'leviathan';
