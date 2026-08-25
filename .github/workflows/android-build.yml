@@ -43,10 +43,14 @@ jobs:
         run: |
           node tests/core.test.js
           node tests/v122.test.js
+          node tests/v130.test.js
 
       - name: Check browser JavaScript syntax
         run: |
           node --check app/src/main/assets/v122.js
+          node --check app/src/main/assets/v130.js
+          node --check app/src/main/assets/catch-art.js
+          node --check app/src/main/assets/catch-art-unique.js
           node --check app/src/main/assets/app.js
 
       - name: Bootstrap Gradle Wrapper when absent
