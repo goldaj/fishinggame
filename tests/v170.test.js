@@ -1,4 +1,6 @@
 const assert=require('assert');
+const fs=require('fs');
+const path=require('path');
 const G=require('../app/src/main/assets/v170.js');
 
 assert.strictEqual(G.releaseVersion,'1.7.0');
@@ -24,5 +26,11 @@ assert.strictEqual(G.boosterEdgeSignal(5),'mythic');
 
 const desc=G.boosterGestureDescription();
 assert.ok(desc.tear&&desc.reveal&&desc.inspect);
+
+{
+  const legacyUi=fs.readFileSync(path.join(__dirname,'../app/src/main/assets/v160-ui.js'),'utf8');
+  assert.ok(legacyUi.includes("const tactile170=G.releaseVersion==='1.7.0'"),'la couche V1.6 doit détecter la V1.7');
+  assert.ok(legacyUi.includes('if(tactile170)return;'),'la couche V1.6 doit devenir passive sous la V1.7');
+}
 
 console.log('v1.7.0 tactile booster gesture tests passed');
