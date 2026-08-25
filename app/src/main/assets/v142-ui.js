@@ -19,6 +19,12 @@ function badge(host,text){
   b.textContent=text;
 }
 function cleanupLater(el,ms){setTimeout(()=>{if(el&&el.remove)el.remove()},ms)}
+function stableText(host){
+  if(!host)return'';
+  const clone=host.cloneNode(true);
+  [...clone.querySelectorAll('.new-badge,.v142-card-back')].forEach(x=>x.remove());
+  return clone.textContent||'';
+}
 function centerOf(anchor){
   if(!anchor||!anchor.getBoundingClientRect)return{x:innerWidth/2,y:innerHeight/2};
   const r=anchor.getBoundingClientRect();
@@ -155,17 +161,17 @@ function enhance(){
   if(result&&!result.classList.contains('hide')){
     const nameEl=result.querySelector('b'),name=nameEl?nameEl.textContent:'';
     const statusEl=document.querySelector('#statusText'),isTrash=((statusEl?statusEl.textContent:'')||'').includes('Déchet');
-    const sig='fish:'+name+':'+result.textContent;
+    const sig='fish:'+name+':'+stableText(result);
     if(name&&!isTrash&&sig!==lastFish){lastFish=sig;const headlineEl=document.querySelector('#headline'),isNew=((headlineEl?headlineEl.textContent:'')||'').includes('Nouvelle espèce découverte');animateFish(result,isNew)}
   }
   const g=document.querySelector('#gachaResult');
   if(g&&!g.classList.contains('hide')){
-    const sig='gacha:'+g.textContent;
+    const sig='gacha:'+stableText(g);
     if(sig!==lastGacha){lastGacha=sig;const strong=g.querySelector('strong');const isNew=!!(strong&&strong.textContent.includes('Nouvelle espèce découverte'));animateGacha(g,isNew)}
   }
   const p=document.querySelector('#packResults');
   if(p&&!p.classList.contains('hide')){
-    const sig='pack:'+p.textContent;
+    const sig='pack:'+stableText(p);
     if(sig!==lastPack){lastPack=sig;animatePack(p)}
   }
 }
