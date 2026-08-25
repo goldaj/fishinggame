@@ -11,7 +11,7 @@ function decorateTearTarget(){
   if(!zone||zone.dataset.v171==='1')return;
   zone.dataset.v171='1';
   zone.classList.add('tear-zone-v171');
-  zone.setAttribute('aria-label','Poser le doigt sur le bord supérieur du booster puis glisser horizontalement pour le déchirer');
+  zone.setAttribute('aria-label','Poser le doigt autour de la jonction de déchirure du booster puis glisser horizontalement pour le déchirer');
   const oldLabel=zone.querySelector('span');
   const oldArrow=zone.querySelector('b');
   if(oldLabel)oldLabel.classList.add('legacy-tear-label');
@@ -19,10 +19,10 @@ function decorateTearTarget(){
   const tab=document.createElement('span');
   tab.className='tear-tab-v171';
   tab.setAttribute('aria-hidden','true');
-  tab.innerHTML='<i></i><strong>TIRE ICI</strong><em>↔</em>';
+  tab.innerHTML='<i></i><i></i><i></i>';
   zone.appendChild(tab);
   const copy=document.querySelector('.tactile-opening .gesture-copy');
-  if(copy)copy.textContent='Pose ton doigt sur le bord déchirable du paquet et glisse horizontalement. La zone tactile est volontairement large.';
+  if(copy)copy.textContent='Glisse horizontalement autour de la liaison du paquet pour le déchirer.';
 }
 
 function decorateReveal(){
