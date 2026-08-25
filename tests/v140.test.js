@@ -27,6 +27,12 @@ assert.strictEqual(G.creatures.filter(c=>c.id>=431&&c.id<=470&&c.gate===8).lengt
 assert.strictEqual(G.creatures.filter(c=>c.id>=471&&c.id<=490&&c.gate===9).length,20);
 assert.strictEqual(G.creatures.filter(c=>c.id>=491&&c.id<=500&&c.gate===10).length,10);
 assert.strictEqual(new Set(G.creatures.filter(c=>c.id<=500).map(c=>c.assetKey)).size,500);
+const fantasy=G.creatures.filter(c=>c.id>=471&&c.id<=500);
+assert.strictEqual(fantasy.length,30);
+assert(fantasy.every(c=>c.assetKind!=='fish'));
+const forbiddenFantasyRoots=['kraken','hydre','makara','léviathan','kelpie','aspidochelone','serpent marin','régalec'];
+const fantasyNames=fantasy.map(c=>c.name.toLowerCase()).join(' | ');
+for(const root of forbiddenFantasyRoots)assert(!fantasyNames.includes(root),`fantasy root reused: ${root}`);
 
 let s=G.defaultState();
 assert.strictEqual(s.version,5);
