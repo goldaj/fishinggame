@@ -1,0 +1,4 @@
+.new-badge{display:inline-flex;align-items:center;justify-content:center;width:max-content;padding:3px 8px;border-radius:999px;font-size:.72rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;border:1px solid currentColor;background:rgba(255,255,255,.1);margin-bottom:3px}
+.new-event-banner{position:fixed;z-index:9999;left:50%;top:max(16px,env(safe-area-inset-top));transform:translate(-50%,-14px) scale(.96);opacity:0;pointer-events:none;padding:12px 18px;border-radius:999px;background:rgba(255,255,255,.97);color:#102933;font-weight:950;letter-spacing:.06em;box-shadow:0 10px 32px rgba(0,0,0,.35);transition:opacity .18s ease,transform .18s ease;text-align:center;white-space:nowrap}
+.new-event-banner.show{opacity:1;transform:translate(-50%,0) scale(1)}
+#gachaResult .new-badge,#packResults .new-badge,#result .new-badge{display:flex}
