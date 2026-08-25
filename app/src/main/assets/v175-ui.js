@@ -64,8 +64,8 @@ function upgrade(){
     finished=true;
     clearDrag();
     pack.classList.remove('tear-dragging-v174','tear-returning-v174');
-    setFinishDirection(dir);
     if(typeof oldKeydown==='function')oldKeydown.call(zone,{key:'Enter',preventDefault(){}});
+    setFinishDirection(dir);
   };
 
   zone.onpointerdown=e=>{
