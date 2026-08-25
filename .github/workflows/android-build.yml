@@ -45,17 +45,20 @@ jobs:
           node tests/v122.test.js
           node tests/v130.test.js
           node tests/v131.test.js
+          node tests/v132.test.js
 
       - name: Check browser JavaScript syntax
         run: |
           node --check app/src/main/assets/v122.js
           node --check app/src/main/assets/v130.js
           node --check app/src/main/assets/v131.js
+          node --check app/src/main/assets/v132.js
           node --check app/src/main/assets/catch-art.js
           node --check app/src/main/assets/catch-art-unique.js
           node --check app/src/main/assets/trash-art.js
           node --check app/src/main/assets/app.js
           node --check app/src/main/assets/v131-ui.js
+          node --check app/src/main/assets/v132-ui.js
 
       - name: Bootstrap Gradle Wrapper when absent
         run: |
