@@ -1,0 +1,14 @@
+.catch-svg{display:block;width:100%;height:100%;overflow:visible;color:#dbe8e7}
+.catch-eye{fill:#071722!important;stroke:none!important}
+.catch-art-small{display:grid;place-items:center;width:42px;height:32px;flex:none}
+.catch-art-small .catch-svg{width:42px;height:32px}
+.card .ico.catch-art-card{font-size:initial;height:52px;margin:10px 0 9px;display:grid;place-items:center}
+.catch-art-card .catch-svg{width:72px;height:48px;filter:drop-shadow(0 5px 7px #0005)}
+.landed-fish .fish-ico{font-size:initial;width:96px;height:64px;display:block;filter:drop-shadow(0 8px 8px #0007)}
+.landed-fish .fish-ico .catch-svg{width:96px;height:64px}
+.catch-result .ico.catch-art-result{font-size:initial;width:54px;height:38px;display:grid;place-items:center}
+.catch-art-result .catch-svg{width:54px;height:38px}
+.modal-icon{display:grid;place-items:center;min-height:88px;font-size:66px}
+.modal-icon .catch-svg{width:132px;height:88px;filter:drop-shadow(0 8px 10px #0005)}
+.card.inhabituelle .catch-svg{color:#86ddbd}.card.rare .catch-svg{color:#8cb8ff}.card.epique .catch-svg{color:#ca9cff}.card.legendaire .catch-svg{color:#f2ca79}.card.mythique .catch-svg{color:#ff9aba}
+.row .catch-svg,.catch-result .catch-svg,.landed-fish .catch-svg,.modal-icon .catch-svg{color:#dcebe8}
