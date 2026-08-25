@@ -11,6 +11,14 @@ const trashTypes=[
   {id:1004,key:'tire',name:'Vieux pneu',weightG:7800,assetKind:'trash-tire'}
 ].map(x=>Object.assign(x,{isTrash:true,rarity:'commune',rarityLabel:'Déchet',difficulty:G.rarities.commune.difficulty,value:1,assetKey:'trash-'+x.key}));
 const trashById=new Map(trashTypes.map(x=>[x.id,x]));
+const baseCreatures=G.creatures;
+G.creatures=new Proxy(baseCreatures,{get(target,prop,receiver){
+  if(typeof prop==='string'&&/^\d+$/.test(prop)){
+    const index=Number(prop),trash=trashById.get(index+1);
+    if(trash)return trash;
+  }
+  return Reflect.get(target,prop,receiver);
+}});
 G.trashTypes=trashTypes;
 G.trashRates=trashRates.slice();
 
@@ -47,7 +55,8 @@ G.normalizeState=function(input){
     const t=trashById.get(Math.round(Number(item.id)));
     return{id:t.id,weightG:t.weightG,trash:true};
   }):[];
-  const s=previousNormalizeState(raw);
+  const baseInput=Array.isArray(raw.inventory)?Object.assign({},raw,{inventory:raw.inventory.filter(item=>!isTrashItem(item))}):raw;
+  const s=previousNormalizeState(baseInput);
   s.upgrades=Object.assign({},s.upgrades||{});
   s.upgrades.cleanup=clampLevel(raw);
   s.totalTrashCaught=Math.max(0,Math.floor(Number(raw.totalTrashCaught)||0));
@@ -77,7 +86,7 @@ G.addCatch=function(s,c,weightG){
   s.inventory.push({id:c.id,weightG:c.weightG,trash:true});
   s.totalTrashCaught=(s.totalTrashCaught||0)+1;
   s.streak=0;
-  return{combo:0,bonus:0,weightG:c.weightG,value:1,record:false,trash:true};
+  return{combo:'rompue',bonus:0,weightG:c.weightG,value:1,record:false,trash:true};
 };
 
 const previousItemValue=G.itemValue;
