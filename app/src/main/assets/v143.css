@@ -1,0 +1,9 @@
+/* 1.4.3 navigation: keep fishing exactly centered and reveal gacha only when usable. */
+.nav{grid-template-columns:repeat(5,minmax(0,1fr))}
+.nav [data-s="market"]{grid-column:1}
+.nav [data-s="fish"]{grid-column:3}
+.nav [data-s="collection"]{grid-column:5}
+.nav[data-gacha-available="true"] [data-s="collection"]{grid-column:4}
+.nav [data-s="gacha"]{grid-column:5}
+.nav [data-s="gacha"][hidden]{display:none!important}
+.nav [data-s="fish"] span{font-size:23px;transform:translateY(-1px)}
