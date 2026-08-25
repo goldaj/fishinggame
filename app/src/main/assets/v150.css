@@ -1,0 +1,12 @@
+.pack-panel{position:relative;overflow:hidden}
+.pack-panel:before{content:'';position:absolute;inset:0 0 auto;height:3px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);pointer-events:none}
+.pack-meta{grid-template-columns:repeat(2,minmax(0,1fr))}
+.pack-meta>div{min-height:64px}
+#packQuality,#packPity{line-height:1.15}
+.pack-summary{margin:12px 0 6px;padding:11px 13px;border:1px solid rgba(255,255,255,.14);border-radius:14px;background:rgba(255,255,255,.06);display:flex;flex-direction:column;gap:3px}
+.pack-summary b{font-size:.9rem}.pack-summary span{font-size:.78rem;line-height:1.35;opacity:.8}.pack-summary.hide{display:none}
+.card{position:relative}.copy-chip{position:absolute;right:8px;top:8px;z-index:2;min-width:27px;padding:3px 7px;border-radius:999px;background:rgba(8,24,31,.84);border:1px solid rgba(255,255,255,.22);font-size:.72rem;font-weight:900;line-height:1.1;box-shadow:0 3px 10px rgba(0,0,0,.18)}
+#packResults .draw-card{position:relative}
+#packResults .draw-card:last-child:after{content:'GARANTIE';position:absolute;right:8px;bottom:8px;font-size:.58rem;font-weight:950;letter-spacing:.08em;opacity:.62}
+@media(max-width:430px){.pack-meta{grid-template-columns:repeat(2,minmax(0,1fr))}.collection-stats{gap:5px}.copy-chip{right:6px;top:6px}}
+@media(prefers-reduced-motion:reduce){.pack-panel:before{display:none}}
