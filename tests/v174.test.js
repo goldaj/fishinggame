@@ -35,8 +35,11 @@ assert.ok(ui.includes('oldKeydown.call(zone'),'1.7.4 must finish through the res
 assert.ok(css.includes('top:-24px!important;bottom:-24px!important;height:auto!important'),'1.7.4 historical whole-pack hit area remains documented before the 1.7.5 override');
 assert.ok(css.includes('transform:translate3d(var(--tear-x,0px),0,0)!important'),'drag transform must visibly use the signed pointer CSS variable');
 assert.ok(css.includes('.tactile-pack.tear-dragging-v174 .pack-lid{transition:none!important'),'finger-follow must have no transition lag');
-const versionMatch=gradle.match(/versionCode\s+(\d+)/);
-assert.ok(versionMatch&&Number(versionMatch[1])>=20,'Android versionCode must not regress below 20');
-assert.ok(/versionName\s+'1\.7\.\d+'/.test(gradle),'Android versionName must remain on the 1.7.x line');
+const versionCodeMatch=gradle.match(/versionCode\s+(\d+)/);
+assert.ok(versionCodeMatch&&Number(versionCodeMatch[1])>=20,'Android versionCode must not regress below 20');
+const versionNameMatch=gradle.match(/versionName\s+'(\d+)\.(\d+)\.(\d+)'/);
+assert.ok(versionNameMatch,'Android versionName must remain semantic');
+const major=Number(versionNameMatch[1]),minor=Number(versionNameMatch[2]);
+assert.ok(major>1||(major===1&&minor>=7),'Android versionName must not regress below the tactile 1.7 generation');
 
 console.log('v1.7.4 restored tactile booster regression tests passed');

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
-<title>Pêche & Merveilles</title>
+<title>Fishing Cards</title>
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="v130.css">
 <link rel="stylesheet" href="v140.css">
@@ -16,11 +16,12 @@
 <link rel="stylesheet" href="v171.css">
 <link rel="stylesheet" href="v174.css">
 <link rel="stylesheet" href="v175.css">
+<link rel="stylesheet" href="v180.css">
 </head>
 <body>
 <div class="app">
   <header class="top">
-    <div class="brand"><small>PORT DES MERVEILLES</small><h1>Pêche & Merveilles</h1></div>
+    <div class="brand"><small>COLLECTION MARINE</small><h1>Fishing Cards</h1></div>
     <div class="wallet" aria-label="Pièces"><span>◉</span><b id="coins">0</b></div>
   </header>
   <section class="rank-card" aria-label="Progression">
@@ -35,20 +36,20 @@
         <div id="ripple" class="ripple"></div><div id="float" class="float">🎣</div>
         <div id="landedFish" class="landed-fish hide" aria-live="polite"></div>
         <div class="status-chip"><i id="statusDot" class="dot"></i><span id="statusText">Calme</span></div>
-        <div class="hero-copy" aria-live="polite"><h2 id="headline">La mer est calme.</h2><p id="sub">Lance ta ligne, puis attends la vraie touche. Un geste trop tôt ou trop tard peut faire fuir le poisson.</p></div>
+        <div class="hero-copy" aria-live="polite"><h2 id="headline">La mer est calme.</h2><p id="sub">Lance ta ligne, puis attends la vraie touche. Un geste trop tôt ou trop tard peut faire fuir la carte.</p></div>
         <button id="cast" class="primary" aria-label="Action de pêche">Lancer la ligne</button>
       </div>
-      <div class="hint"><span>◎</span><div><b>Le rythme compte.</b> Le rang rend les espèces de son palier pêchables. Une espèce encore jamais découverte reste très rare jusqu’à sa première capture ou, à partir du rang 8, un tirage gacha.</div></div>
+      <div class="hint"><span>◎</span><div><b>Le rythme compte.</b> Tu pêches désormais directement les mêmes cartes que celles de la collection. Le rang rend les espèces de son palier pêchables ; une carte jamais découverte reste très rare jusqu’à sa première capture.</div></div>
       <div id="result" class="catch-result hide" aria-live="polite"></div>
       <div class="metrics">
-        <div class="metric"><span>Espèces trouvées</span><strong id="s1">1/500</strong></div>
+        <div class="metric"><span>Cartes découvertes</span><strong id="s1">1/500</strong></div>
         <div class="metric"><span>Panier</span><strong id="s2">0</strong></div>
         <div class="metric"><span>Série</span><strong id="s3">0</strong></div>
       </div>
     </section>
 
     <section id="market" class="screen">
-      <div class="section-head"><div><h2>Marché</h2><p>Vends tes prises, tes doublons gacha et les spécimens obtenus avec les cartes, ou améliore le port.</p></div></div>
+      <div class="section-head"><div><h2>Marché</h2><p>Vends les spécimens liés aux cartes pêchées, tes doublons et les prises issues des boosters, ou améliore le port.</p></div></div>
       <div id="marketTabs" class="tabs" role="tablist" aria-label="Sections du marché">
         <button class="on" data-market-tab="sell">Vendre</button>
         <button data-market-tab="upgrades">Améliorer</button>
@@ -68,8 +69,8 @@
       <div class="panel center">
         <div class="gacha-mark">✦</div>
         <h2>Filet des profondeurs</h2>
-        <p>Le gacha ne contient que les espèces de rang 8 à 10 déjà accessibles à ton rang. Les doublons sont autorisés : un doublon devient un spécimen normal ajouté au panier, avec son poids et sa valeur.</p>
-        <div class="gacha-meta"><div><small>Coût actuel</small><strong id="gcost">4 000 ◉</strong></div><div><small>Espèces dans le pool</small><strong id="gpool">0</strong></div></div>
+        <p>Le gacha ne contient que les cartes d’espèces de rang 8 à 10 déjà accessibles à ton rang. Les doublons sont autorisés : un doublon devient un spécimen normal ajouté au panier, avec son poids et sa valeur.</p>
+        <div class="gacha-meta"><div><small>Coût actuel</small><strong id="gcost">4 000 ◉</strong></div><div><small>Cartes dans le pool</small><strong id="gpool">0</strong></div></div>
         <p id="gstatus"></p>
         <button id="pull" class="primary"></button>
         <div id="gachaResult" class="draw-results hide" aria-live="polite"></div>
@@ -79,8 +80,8 @@
 
     <section id="collection" class="screen">
       <div class="section-head">
-        <div><h2>Collection</h2><p>Une carte peut révéler une espèce sans la marquer comme trouvée. Seule une vraie découverte par pêche ou gacha change ce statut.</p></div>
-        <div class="collection-stats"><span class="pill"><b id="ccount">1</b>/500 visibles</span><span class="pill"><b id="cfound">1</b>/500 trouvées</span></div>
+        <div><h2>Collection</h2><p>La pêche et les boosters utilisent désormais exactement les mêmes cartes. Pêcher une carte compte comme une vraie découverte ; un booster peut révéler la carte sans compter comme capture à la ligne.</p></div>
+        <div class="collection-stats"><span class="pill"><b id="ccount">1</b>/500 visibles</span><span class="pill"><b id="cfound">1</b>/500 découvertes</span></div>
       </div>
 
       <div class="pack-panel">
@@ -89,7 +90,7 @@
         <div class="pack-meta">
           <div><small>Prix du booster</small><strong id="packCost">800 ◉</strong></div>
           <div><small>Cartes visibles</small><strong id="packKnown">1/500</strong></div>
-          <div><small>Poissons trouvés</small><strong id="packFound">1/500</strong></div>
+          <div><small>Cartes pêchées</small><strong id="packFound">1/500</strong></div>
         </div>
         <button id="packPull" class="primary">Ouvrir 5 cartes · 800 ◉</button>
         <div id="packResults" class="draw-results hide" aria-live="polite"></div>
@@ -98,8 +99,8 @@
 
       <div class="tabs collection-tabs" role="tablist">
         <button class="on" data-f="all">Toutes</button>
-        <button data-f="found">Trouvées</button>
-        <button data-f="cards">Cartes</button>
+        <button data-f="found">Pêchées</button>
+        <button data-f="cards">Boosters</button>
         <button data-f="unknown">Inconnues</button>
       </div>
       <div id="cards" class="cards"></div>
@@ -150,5 +151,6 @@
 <script src="v174-ui.js"></script>
 <script src="v175.js"></script>
 <script src="v175-ui.js"></script>
+<script src="v180-ui.js"></script>
 </body>
 </html>

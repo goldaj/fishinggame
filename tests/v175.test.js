@@ -39,7 +39,11 @@ assert.ok(css.includes('top:52px!important')&&css.includes('height:52px!importan
 assert.ok(css.includes('top:25px!important;border-top:2px dashed'),'visible seam must sit at y=77/78 within the strip');
 assert.ok(css.includes('.fold-grip-left-v175')&&css.includes('.fold-grip-right-v175'),'both fold ends must have visible grab affordances');
 assert.ok(css.includes('.tear-zone-v175 .tear-tab-v171{display:none!important}'),'obsolete single right-side grip must be hidden');
-assert.ok(/versionCode\s+21/.test(gradle),'Android versionCode must be 21');
-assert.ok(/versionName\s+'1\.7\.5'/.test(gradle),'Android versionName must be 1.7.5');
+const versionCodeMatch=gradle.match(/versionCode\s+(\d+)/);
+assert.ok(versionCodeMatch&&Number(versionCodeMatch[1])>=21,'Android versionCode must not regress below 21');
+const versionNameMatch=gradle.match(/versionName\s+'(\d+)\.(\d+)\.(\d+)'/);
+assert.ok(versionNameMatch,'Android versionName must remain semantic');
+const major=Number(versionNameMatch[1]),minor=Number(versionNameMatch[2]);
+assert.ok(major>1||(major===1&&minor>=7),'Android versionName must not regress below the 1.7.5 tactile generation');
 
 console.log('v1.7.5 fold-edge booster tear tests passed');
