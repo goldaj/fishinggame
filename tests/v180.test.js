@@ -12,11 +12,11 @@ const gradle=fs.readFileSync('app/build.gradle','utf8');
 assert.ok(html.includes('<title>Fishing Cards</title>'),'document title must be Fishing Cards');
 assert.ok(html.includes('<h1>Fishing Cards</h1>'),'visible game title must be Fishing Cards');
 assert.ok(html.includes('href="v180.css"'),'1.8.0 fishing-card styles must load');
-assert.ok(html.indexOf('<script src="v180-ui.js"></script>')>html.indexOf('<script src="v175-ui.js"></script>'),'Fishing Cards UX must patch the stable 1.7.5 booster layer last');
+assert.ok(html.indexOf('<script src="v180-ui.js"></script>')>html.indexOf('<script src="v175-ui.js"></script>'),'Fishing Cards UX must patch the stable 1.7.5 booster layer after it mounts');
 assert.ok(html.includes('La pêche et les boosters utilisent désormais exactement les mêmes cartes.'),'collection copy must describe the unified card identity');
 
 assert.ok(ui.includes("G.productName='Fishing Cards'"),'runtime brand must be Fishing Cards');
-assert.ok(ui.includes("G.productVersion='1.8.0'"),'runtime product version must be 1.8.0');
+assert.ok(ui.includes("G.productVersion='1.8.0'"),'historical 1.8 layer must identify itself as 1.8.0');
 assert.ok(ui.includes('class="reveal-card ${c.rarity} fishing-catch-card-v180 is-visible"'),'caught cards must reuse the exact booster reveal-card rarity classes');
 assert.ok(ui.includes('<div class="reveal-foil"></div>'),'caught cards must reuse the booster foil layer');
 assert.ok(ui.includes('Poids · ${weight}'),'caught card must add specimen weight to the card itself');
@@ -36,8 +36,10 @@ assert.ok(app.includes('timing=G.fishingTiming(encounter,st)'),'fishing timing m
 assert.ok(app.includes('const c=encounter,weight=G.rollWeight(c,st),reward=G.addCatch(st,c,weight)'),'catch probability/reward path must remain on the existing engine');
 
 assert.ok(manifest.includes('android:label="Fishing Cards"'),'Android launcher label must be Fishing Cards');
-assert.ok(/versionCode\s+22/.test(gradle),'Android versionCode must be 22');
-assert.ok(/versionName\s+'1\.8\.0'/.test(gradle),'Android versionName must be 1.8.0');
+const code=Number((gradle.match(/versionCode\s+(\d+)/)||[])[1]);
+assert.ok(code>=22,'Android versionCode must not regress below the 1.8 release');
+const version=gradle.match(/versionName\s+'(\d+)\.(\d+)\.(\d+)'/);
+assert.ok(version&&(Number(version[1])>1||(Number(version[1])===1&&Number(version[2])>=8)),'Android versionName must not regress below the 1.8 line');
 assert.ok(gradle.includes("applicationId 'com.openai.pechemerveilles'"),'applicationId must remain unchanged so the update installs over the existing app');
 
-console.log('v1.8.0 Fishing Cards UX regression tests passed');
+console.log('v1.8+ Fishing Cards card-catch compatibility tests passed');
