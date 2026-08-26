@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "Gobie",
+    "file": "001.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "b6a1960091604e25cfce5aea7b5dad0f235ec1e3855a44a9de6e204b1829f23d"
+  },
+  {
+    "id": 2,
+    "name": "Sardine",
+    "file": "002.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "e1cc0ef79327b2c0ebe94c2b29d67752465399459794928889fe2376701e95d6"
+  }
+]
