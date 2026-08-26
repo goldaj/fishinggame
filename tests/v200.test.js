@@ -98,8 +98,10 @@ assert.ok(app.includes('G.totalCollectionCards'),'main UI must render the 504-ca
 assert.ok(app.includes('G.collectionCards()'),'main UI must render fish and trash through one collection source');
 assert.ok(ui.includes('fishing-trash-card-v200')&&ui.includes('DÉCHET'),'caught trash must use the same reveal-card form as collection cards');
 assert.ok(css.includes('.fishing-trash-card-v200'),'2.0 must style trash-card presentation without a separate non-card result shape');
-assert.ok(/versionCode\s+24/.test(gradle),'Android versionCode must be 24');
-assert.ok(/versionName\s+'2\.0\.0'/.test(gradle),'Android versionName must be 2.0.0');
+const versionCode=Number((gradle.match(/versionCode\s+(\d+)/)||[])[1]);
+assert.ok(versionCode>=24,'Android versionCode must not regress below the 2.0 release');
+const versionName=gradle.match(/versionName\s+'(\d+)\.(\d+)\.(\d+)'/);
+assert.ok(versionName&&Number(versionName[1])>=2,'Android versionName must remain on or above the 2.x line');
 assert.ok(gradle.includes("applicationId 'com.openai.pechemerveilles'"),'applicationId must remain stable for in-place update');
 
-console.log('v2.0.0 unified Fishing Cards collection tests passed');
+console.log('v2.0+ unified Fishing Cards collection compatibility tests passed');
