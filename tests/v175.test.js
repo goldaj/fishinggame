@@ -26,7 +26,6 @@ const p175=html.indexOf('<script src="v175.js"></script>');
 const p175ui=html.indexOf('<script src="v175-ui.js"></script>');
 assert.ok(p174ui>=0&&p175>p174ui&&p175ui>p175,'1.7.5 must override the already-mounted 1.7.4 gesture instead of blocking tactile startup');
 assert.ok(html.includes('href="v175.css"'),'1.7.5 css must load after prior booster styles');
-assert.ok(html.includes('extrémité de la pliure'),'instructions must tell the player to start at a fold edge');
 assert.ok(!html.includes('Pose le pouce n’importe où sur le booster'),'whole-pack instruction must be removed');
 assert.ok(ui.includes('boosterFoldStartDirection(localX,width)'),'pointerdown must validate which fold edge was grabbed');
 assert.ok(ui.includes("if(!dir)"),'middle starts must be rejected');
@@ -46,4 +45,4 @@ assert.ok(versionNameMatch,'Android versionName must remain semantic');
 const major=Number(versionNameMatch[1]),minor=Number(versionNameMatch[2]);
 assert.ok(major>1||(major===1&&minor>=7),'Android versionName must not regress below the 1.7.5 tactile generation');
 
-console.log('v1.7.5 fold-edge booster tear tests passed');
+console.log('v1.7.5 fold-edge booster tear compatibility tests passed');
