@@ -17,7 +17,7 @@ assert.ok(ui.includes("if(status==='Présence')return'presence'"),'presence anim
 assert.ok(ui.includes("if(status==='TOUCHE')return'bite'"),'bite animation must synchronize to the real fishing UI state');
 assert.ok(ui.includes("if(status==='Raté')"),'miss animation must synchronize to real failed catches');
 assert.ok(ui.includes("if(status==='Découverte'||status==='Prise')return'reel-success'"),'successful fish catches must enter the reel animation');
-assert.ok(ui.includes("if(status==='Déchet')return'reel-success-trash'"),'trash catches must use the physical reel without becoming cards');
+assert.ok(ui.includes("if(status==='Déchet')return'reel-success-trash'"),'trash catches must keep the physical 1.9 reel-success path before later card presentation layers run');
 assert.ok(ui.includes('MutationObserver(syncUiState)'),'motion layer must observe real gameplay state instead of duplicating timing logic');
 assert.ok(ui.includes("landed.querySelector('.fishing-catch-card-v180')"),'1.9 must hand off to the existing canonical caught-card component');
 
@@ -31,12 +31,14 @@ assert.ok(css.includes('@media(prefers-reduced-motion:reduce)'),'motion overhaul
 
 assert.ok(app.includes("key='pm-save'"),'save key must remain unchanged');
 assert.ok(app.includes('timing=G.fishingTiming(encounter,st)'),'1.9 must keep existing fishing timing mechanics');
-assert.ok(app.includes('const c=encounter,weight=G.rollWeight(c,st),reward=G.addCatch(st,c,weight)'),'1.9 must keep existing catch/weight/reward mechanics');
-assert.ok(app.includes('startPostCatchCooldown();'),'1.9 must preserve the post-catch anti-spam cooldown');
-assert.ok(!app.includes('fishingExperienceVersion'),'core fishing engine must not be rewritten for the visual overhaul');
+assert.ok(app.includes('const c=encounter,weight=G.rollWeight(c,st),reward=G.addCatch(st,c,weight)'),'later releases must keep existing catch/weight/reward mechanics');
+assert.ok(app.includes('startPostCatchCooldown();'),'later releases must preserve the post-catch anti-spam cooldown');
+assert.ok(!app.includes('fishingExperienceVersion'),'core fishing engine must not duplicate the visual experience marker');
 
-assert.ok(/versionCode\s+23/.test(gradle),'Android versionCode must be 23');
-assert.ok(/versionName\s+'1\.9\.0'/.test(gradle),'Android versionName must be 1.9.0');
+const versionCode=Number((gradle.match(/versionCode\s+(\d+)/)||[])[1]);
+assert.ok(versionCode>=23,'Android versionCode must not regress below the 1.9 release');
+const version=gradle.match(/versionName\s+'(\d+)\.(\d+)\.(\d+)'/);
+assert.ok(version&&(Number(version[1])>1||(Number(version[1])===1&&Number(version[2])>=9)),'Android versionName must not regress below the 1.9 line');
 assert.ok(gradle.includes("applicationId 'com.openai.pechemerveilles'"),'applicationId must remain stable for in-place updates');
 
-console.log('v1.9.0 Fishing Cards fishing experience tests passed');
+console.log('v1.9+ Fishing Cards fishing experience compatibility tests passed');
