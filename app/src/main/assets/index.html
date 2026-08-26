@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="v175.css">
 <link rel="stylesheet" href="v180.css">
 <link rel="stylesheet" href="v190.css">
+<link rel="stylesheet" href="v200.css">
 </head>
 <body>
 <div class="app">
@@ -40,17 +41,17 @@
         <div class="hero-copy" aria-live="polite"><h2 id="headline">La mer est calme.</h2><p id="sub">Lance ta ligne, puis attends la vraie touche. Un geste trop tôt ou trop tard peut faire fuir la carte.</p></div>
         <button id="cast" class="primary" aria-label="Action de pêche">Lancer la ligne</button>
       </div>
-      <div class="hint"><span>◎</span><div><b>Le rythme compte.</b> Tu pêches désormais directement les mêmes cartes que celles de la collection. Le rang rend les espèces de son palier pêchables ; une carte jamais découverte reste très rare jusqu’à sa première capture.</div></div>
+      <div class="hint"><span>◎</span><div><b>Une seule collection.</b> Une carte obtenue en booster devient immédiatement pêchable. Si son rang normal est encore trop haut, elle reste beaucoup plus rare jusqu’à ce que ton rang la rattrape. Chaque prise ajoute elle aussi une copie de sa carte.</div></div>
       <div id="result" class="catch-result hide" aria-live="polite"></div>
       <div class="metrics">
-        <div class="metric"><span>Cartes découvertes</span><strong id="s1">1/500</strong></div>
+        <div class="metric"><span>Cartes obtenues</span><strong id="s1">1/504</strong></div>
         <div class="metric"><span>Panier</span><strong id="s2">0</strong></div>
         <div class="metric"><span>Série</span><strong id="s3">0</strong></div>
       </div>
     </section>
 
     <section id="market" class="screen">
-      <div class="section-head"><div><h2>Marché</h2><p>Vends les spécimens liés aux cartes pêchées, tes doublons et les prises issues des boosters, ou améliore le port.</p></div></div>
+      <div class="section-head"><div><h2>Marché</h2><p>Vends les spécimens réellement remontés à la pêche ou améliore le port. Les cartes de booster restent dans la collection : elles ne créent plus de spécimen artificiel à vendre.</p></div></div>
       <div id="marketTabs" class="tabs" role="tablist" aria-label="Sections du marché">
         <button class="on" data-market-tab="sell">Vendre</button>
         <button data-market-tab="upgrades">Améliorer</button>
@@ -66,32 +67,19 @@
       </div>
     </section>
 
-    <section id="gacha" class="screen">
-      <div class="panel center">
-        <div class="gacha-mark">✦</div>
-        <h2>Filet des profondeurs</h2>
-        <p>Le gacha ne contient que les cartes d’espèces de rang 8 à 10 déjà accessibles à ton rang. Les doublons sont autorisés : un doublon devient un spécimen normal ajouté au panier, avec son poids et sa valeur.</p>
-        <div class="gacha-meta"><div><small>Coût actuel</small><strong id="gcost">4 000 ◉</strong></div><div><small>Cartes dans le pool</small><strong id="gpool">0</strong></div></div>
-        <p id="gstatus"></p>
-        <button id="pull" class="primary"></button>
-        <div id="gachaResult" class="draw-results hide" aria-live="polite"></div>
-        <div id="odds" class="odds"></div>
-      </div>
-    </section>
-
     <section id="collection" class="screen">
       <div class="section-head">
-        <div><h2>Collection</h2><p>La pêche et les boosters utilisent désormais exactement les mêmes cartes. Pêcher une carte compte comme une vraie découverte ; un booster peut révéler la carte sans compter comme capture à la ligne.</p></div>
-        <div class="collection-stats"><span class="pill"><b id="ccount">1</b>/500 visibles</span><span class="pill"><b id="cfound">1</b>/500 découvertes</span></div>
+        <div><h2>Collection</h2><p>Pêche et boosters alimentent désormais la même collection. Obtenir une carte par l’un ou l’autre moyen augmente son nombre de copies. Les quatre déchets sont aussi des cartes communes, mais ils ne peuvent être obtenus qu’à la pêche.</p></div>
+        <div class="collection-stats"><span class="pill"><b id="ccount">1</b>/504 obtenues</span><span class="pill"><b id="cfound">0</b>/504 pêchées</span></div>
       </div>
 
       <div class="pack-panel">
         <h3>Boosters de cartes</h3>
-        <p>Attrape une extrémité de la pliure du booster puis tire vers l’autre côté pour le déchirer. Ensuite, regarde la tranche des cinq cartes et touche ou glisse les cartes une à une. La dernière reste au minimum Inhabituelle ; Rare+, Irisé et Abyssal conservent leurs garanties.</p>
+        <p>Chaque carte de poisson tirée débloque immédiatement sa pêche. Avant son rang normal, elle peut déjà mordre mais avec une fréquence fortement réduite. Les cartes Déchet sont exclues des boosters.</p>
         <div class="pack-meta">
           <div><small>Prix du booster</small><strong id="packCost">800 ◉</strong></div>
-          <div><small>Cartes visibles</small><strong id="packKnown">1/500</strong></div>
-          <div><small>Cartes pêchées</small><strong id="packFound">1/500</strong></div>
+          <div><small>Collection</small><strong id="packKnown">1/504</strong></div>
+          <div><small>Déchets trouvés</small><strong id="packFound">0/4</strong></div>
         </div>
         <button id="packPull" class="primary">Ouvrir 5 cartes · 800 ◉</button>
         <div id="packResults" class="draw-results hide" aria-live="polite"></div>
@@ -100,9 +88,8 @@
 
       <div class="tabs collection-tabs" role="tablist">
         <button class="on" data-f="all">Toutes</button>
-        <button data-f="found">Pêchées</button>
-        <button data-f="cards">Boosters</button>
-        <button data-f="unknown">Inconnues</button>
+        <button data-f="known">Obtenues</button>
+        <button data-f="unknown">Manquantes</button>
       </div>
       <div id="cards" class="cards"></div>
     </section>
@@ -113,7 +100,6 @@
   <button data-s="market"><span>◉</span>Marché</button>
   <button class="on" data-s="fish"><span>🎣</span>Pêche</button>
   <button data-s="collection"><span>▦</span>Cartes</button>
-  <button data-s="gacha" hidden aria-hidden="true"><span>✦</span>Gacha</button>
 </nav>
 
 <div id="cardModal" class="modal hide" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
@@ -141,6 +127,7 @@
 <script src="catch-art.js"></script>
 <script src="catch-art-unique.js"></script>
 <script src="trash-art.js"></script>
+<script src="v200.js"></script>
 <script src="app.js"></script>
 <script src="v142-ui.js"></script>
 <script src="v143-ui.js"></script>
@@ -154,5 +141,6 @@
 <script src="v175-ui.js"></script>
 <script src="v180-ui.js"></script>
 <script src="v190-ui.js"></script>
+<script src="v200-ui.js"></script>
 </body>
 </html>

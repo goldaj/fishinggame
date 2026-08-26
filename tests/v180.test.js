@@ -13,7 +13,7 @@ assert.ok(html.includes('<title>Fishing Cards</title>'),'document title must be 
 assert.ok(html.includes('<h1>Fishing Cards</h1>'),'visible game title must be Fishing Cards');
 assert.ok(html.includes('href="v180.css"'),'1.8.0 fishing-card styles must load');
 assert.ok(html.indexOf('<script src="v180-ui.js"></script>')>html.indexOf('<script src="v175-ui.js"></script>'),'Fishing Cards UX must patch the stable 1.7.5 booster layer after it mounts');
-assert.ok(html.includes('La pêche et les boosters utilisent désormais exactement les mêmes cartes.'),'collection copy must describe the unified card identity');
+assert.ok(html.includes('<script src="v200.js"></script>'),'later unified-card releases must be able to extend the 1.8 identity model without preserving exact legacy copy');
 
 assert.ok(ui.includes("G.productName='Fishing Cards'"),'runtime brand must be Fishing Cards');
 assert.ok(ui.includes("G.productVersion='1.8.0'"),'historical 1.8 layer must identify itself as 1.8.0');
@@ -21,7 +21,7 @@ assert.ok(ui.includes('class="reveal-card ${c.rarity} fishing-catch-card-v180 is
 assert.ok(ui.includes('<div class="reveal-foil"></div>'),'caught cards must reuse the booster foil layer');
 assert.ok(ui.includes('Poids · ${weight}'),'caught card must add specimen weight to the card itself');
 assert.ok(ui.includes('NOUVEAU RECORD'),'record state must remain visible on the caught card');
-assert.ok(ui.includes('/^Déchet\\b/i.test(detail)'),'trash must stay trash instead of becoming a collection card');
+assert.ok(ui.includes('/^Déchet\\b/i.test(detail)'),'historical 1.8 layer must leave trash untouched so a later unified-card layer can render it once');
 assert.ok(ui.includes("setText(el,'FISHING CARDS')"),'dynamically created booster wrappers must use the new brand');
 
 assert.ok(css.includes('.landed-fish.fishing-card-landed-v180'),'the fishing stage must have a dedicated card landing presentation');

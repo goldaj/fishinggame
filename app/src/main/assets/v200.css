@@ -1,0 +1,8 @@
+.unified-cards-v200 #gacha,.unified-cards-v200 [data-s="gacha"]{display:none!important}
+.card.trash-card-v200{position:relative}
+.card.trash-card-v200:not(.lock)::after{content:"PÊCHE UNIQUEMENT";position:absolute;top:10px;right:10px;font-size:9px;font-weight:900;letter-spacing:.08em;opacity:.72}
+.fishing-trash-card-v200 .reveal-card-copy{gap:5px}
+.fishing-trash-badge-v200{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18)}
+.fishing-trash-card-landed-v200 .reveal-card{background:linear-gradient(160deg,#263943,#15242c)}
+.unified-cards-v200 .collection-tabs{grid-template-columns:repeat(3,1fr)}
+@media(max-width:390px){.card.trash-card-v200:not(.lock)::after{font-size:8px;top:8px;right:8px}}
