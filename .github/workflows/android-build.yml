@@ -125,11 +125,15 @@ jobs:
           unzip -p "$APK" assets/v200.js | grep -F "G.unifiedCardsVersion='2.0.0'"
           unzip -p "$APK" assets/v200.js | grep -F 'G.totalCollectionCards=FISH_COUNT+trashList().length'
           unzip -p "$APK" assets/v200.js | grep -F "G.pullGacha=()=>({ok:false,reason:'removed'})"
-          unzip -p "$APK" assets/v201.js | grep -F "G.duplicateCardMarketVersion='2.0.2'"
-          unzip -p "$APK" assets/v201.js | grep -F "G.releaseVersion='2.0.2'"
+          unzip -p "$APK" assets/v201.js | grep -F "G.duplicateCardMarketVersion='2.0.3'"
+          unzip -p "$APK" assets/v201.js | grep -F "G.releaseVersion='2.0.3'"
           unzip -p "$APK" assets/v201.js | grep -F 'G.sellCardDuplicates=function(s)'
           unzip -p "$APK" assets/v201-ui.js | grep -F 'card-duplicate-row-v201'
-          unzip -p "$APK" assets/v201-ui.js | grep -F 'ux-cleanup-v202'
+          unzip -p "$APK" assets/v201-ui.js | grep -F 'ux-cleanup-v203'
+          unzip -p "$APK" assets/v201-ui.js | grep -F 'blankTextNodes'
+          unzip -p "$APK" assets/v170-ui.js | grep -F 'zone.onpointerdown'
+          unzip -p "$APK" assets/v170-ui.js | grep -F 'shell.onpointerdown'
+          unzip -p "$APK" assets/v171-ui.js | grep -F "dispatchEvent(new KeyboardEvent('keydown',{key:'Enter'"
           unzip -p "$APK" assets/v200-ui.js | grep -F 'fishing-trash-card-v200'
           unzip -p "$APK" assets/v190-ui.js | grep -F "G.fishingExperienceVersion='1.9.0'"
           unzip -p "$APK" assets/v190.css | grep -F '@keyframes fishingCardReelV190'

@@ -2,10 +2,10 @@ const assert=require('assert');
 const fs=require('fs');
 const G=require('../app/src/main/assets/v201.js');
 
-assert.ok(G,'2.0.2 core must load');
-assert.strictEqual(G.productVersion,'2.0.2');
-assert.strictEqual(G.releaseVersion,'2.0.2');
-assert.strictEqual(G.duplicateCardMarketVersion,'2.0.2');
+assert.ok(G,'2.0.3 core must load');
+assert.strictEqual(G.productVersion,'2.0.3');
+assert.strictEqual(G.releaseVersion,'2.0.3');
+assert.strictEqual(G.duplicateCardMarketVersion,'2.0.3');
 
 {
   const raw=G.defaultState();
@@ -13,7 +13,7 @@ assert.strictEqual(G.duplicateCardMarketVersion,'2.0.2');
   delete raw.cardObtainedById;
   raw.cardCopiesById={1:4};
   const migrated=G.normalizeState(JSON.parse(JSON.stringify(raw)));
-  assert.strictEqual(G.cardObtainedTotal(migrated,1),4,'2.0.2 migration must initialize lifetime obtained total from owned copies');
+  assert.strictEqual(G.cardObtainedTotal(migrated,1),4,'2.0.3 migration must initialize lifetime obtained total from owned copies');
   const again=G.normalizeState(JSON.parse(JSON.stringify(migrated)));
   assert.strictEqual(G.cardObtainedTotal(again,1),4,'lifetime obtained migration must be idempotent');
 }
@@ -63,14 +63,16 @@ assert.strictEqual(G.duplicateCardMarketVersion,'2.0.2');
 
 const html=fs.readFileSync('app/src/main/assets/index.html','utf8');
 const ui=fs.readFileSync('app/src/main/assets/v201-ui.js','utf8');
+const booster170=fs.readFileSync('app/src/main/assets/v170-ui.js','utf8');
+const booster171=fs.readFileSync('app/src/main/assets/v171-ui.js','utf8');
 const gradle=fs.readFileSync('app/build.gradle','utf8');
 const p200=html.indexOf('<script src="v200.js"></script>');
 const p201=html.indexOf('<script src="v201.js"></script>');
 const pApp=html.indexOf('<script src="app.js"></script>');
 const p200ui=html.indexOf('<script src="v200-ui.js"></script>');
 const p201ui=html.indexOf('<script src="v201-ui.js"></script>');
-assert.ok(p200>=0&&p201>p200&&pApp>p201,'2.0.2 core must patch 2.0 before app state is normalized');
-assert.ok(p201ui>p200ui,'2.0.2 UI must patch after the existing 2.0 presentation');
+assert.ok(p200>=0&&p201>p200&&pApp>p201,'2.0.3 core must patch 2.0 before app state is normalized');
+assert.ok(p201ui>p200ui,'2.0.3 UI cleanup must stay after the existing 2.0 presentation');
 assert.ok(ui.includes('card-duplicate-row-v201'),'duplicate cards must render as market rows');
 assert.ok(ui.includes('1 exemplaire conservé'),'market UI must preserve the duplicate-selling rule');
 assert.ok(ui.includes("hide($('#sub'))"),'fishing phase subtitles must stay hidden');
@@ -78,8 +80,22 @@ assert.ok(ui.includes("['cfound','packFound','packQuality','packPity','cardCopie
 assert.ok(ui.includes("`${capture[1]} capture(s)`"),'card list must keep only the fishing capture count instead of the owned-copy sentence');
 assert.ok(ui.includes("/^Cartes possédées$/i"),'card modal owned-copy row must be hidden');
 assert.ok(ui.includes("/^Statut$/i"),'fishing result status row must be hidden');
-assert.ok(/versionCode\s+26/.test(gradle),'Android versionCode must be 26');
-assert.ok(/versionName\s+'2\.0\.2'/.test(gradle),'Android versionName must be 2.0.2');
+
+// Booster regression guard: text may be blanked, but the interaction DOM must never be hidden or replaced by the cleanup layer.
+for(const selector of ['.gesture-copy','.edge-copy','.swipe-hint','.reveal-card-foot']){
+  assert.ok(ui.includes(selector),`cleanup must target ${selector} text explicitly`);
+}
+assert.ok(ui.includes('blankTextNodes'),'booster copy must be removed by clearing text nodes while preserving elements');
+assert.ok(!/['"]#boosterOpening \.gesture-copy['"].*forEach\(hide\)/s.test(ui),'gesture copy container must never be hidden');
+assert.ok(!/['"]#boosterOpening \.swipe-hint['"].*forEach\(hide\)/s.test(ui),'swipe hint container must never be hidden');
+assert.ok(!/['"]#boosterOpening \.reveal-card-foot['"].*forEach\(hide\)/s.test(ui),'reveal footer container must never be hidden');
+assert.ok(ui.includes("opening.querySelector('#tearFallback')"),'only the explicit Ouvrir sans geste fallback may be hidden');
+assert.ok(booster170.includes('zone.onpointerdown')&&booster170.includes('zone.onpointermove')&&booster170.includes('zone.onpointerup'),'tear gesture handlers must remain intact');
+assert.ok(booster170.includes('shell.onpointerdown')&&booster170.includes('shell.onpointermove')&&booster170.includes('shell.onpointerup'),'card swipe handlers must remain intact');
+assert.ok(booster171.includes("dispatchEvent(new KeyboardEvent('keydown',{key:'Enter'"),'tap-to-advance compatibility must remain intact');
+
+assert.ok(/versionCode\s+27/.test(gradle),'Android versionCode must be 27');
+assert.ok(/versionName\s+'2\.0\.3'/.test(gradle),'Android versionName must be 2.0.3');
 assert.ok(gradle.includes("applicationId 'com.openai.pechemerveilles'"),'applicationId must remain stable for in-place update');
 
-console.log('v2.0.2 UI cleanup and duplicate card market tests passed');
+console.log('v2.0.3 booster-preserving UI cleanup tests passed');
