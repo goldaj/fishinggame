@@ -1,0 +1,41 @@
+/* Fishing Cards 2.0.4 — copy-only cleanup. Keep the 2.0.1/1.7.5 tactile booster DOM and geometry untouched. */
+
+/* Static copy requested for removal. */
+.brand > small,
+#fish #sub,
+#fish > .hint,
+#market .section-head p,
+#marketUpgradePanel .shop-hint,
+#collection .section-head h2,
+#collection .section-head p,
+.pack-panel > p,
+#packOdds small,
+#boosterPreview .booster-preview-copy > p {
+  display: none !important;
+}
+
+/* Counters/metadata requested for removal. IDs stay alive for legacy code. */
+.collection-stats .pill:has(#cfound),
+.pack-meta > div:has(#packFound),
+.pack-meta > div:has(#packQuality),
+.pack-meta > div:has(#packPity),
+.modal-stat:has(#cardCopiesTotal) {
+  display: none !important;
+}
+
+/* Booster copy only. visibility:hidden preserves historical layout dimensions. */
+#boosterOpening .tactile-opening > .gesture-copy,
+#boosterOpening .edge-preview > small,
+#boosterOpening .edge-preview > h3,
+#boosterOpening .edge-copy,
+#boosterOpening .edge-preview > .gesture-copy,
+#boosterOpening .swipe-hint,
+#boosterOpening .reveal-card-foot {
+  visibility: hidden !important;
+}
+
+/* Requested removal: keep the node so 1.7.x bindings remain untouched. */
+#boosterOpening #tearFallback {
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
