@@ -116,8 +116,8 @@ G.sellAll=function(s){
 };
 
 G.productVersion='2.0.4';
-/* Preserve the validated 1.7.x tactile bootstrap until the UI chain has initialized. */
-G.releaseVersion='1.7.0';
+/* Browser only: preserve the validated 1.7.x tactile bootstrap until the UI chain has initialized. */
+G.releaseVersion=isNode?'2.0.4':'1.7.0';
 G.duplicateCardMarketVersion='2.0.4';
 if(!isNode)root.GameCore=G;
 if(isNode)module.exports=G;
