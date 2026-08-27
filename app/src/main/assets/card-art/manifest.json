@@ -18,6 +18,15 @@
     "sha256": "e1cc0ef79327b2c0ebe94c2b29d67752465399459794928889fe2376701e95d6"
   },
   {
+    "id": 3,
+    "name": "Crabe vert",
+    "file": "003.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "b6137f5d03aa33b3829cdb3fabba80e7f216815971d94aab34f2db85763cee9d"
+  },
+  {
     "id": 4,
     "name": "Ablette",
     "file": "004.webp",
@@ -52,6 +61,24 @@
     "height": 256,
     "transparent": true,
     "sha256": "c9dc3b1aeefe7d3e459d0929b5fad7c4ecc46c4c285c8f000a775334946b2179"
+  },
+  {
+    "id": 8,
+    "name": "Poulpe commun",
+    "file": "008.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "b96747dd197fe35b17e9ce0c5a743e7f554f0985ffaaa64aac3778c7621bf182"
+  },
+  {
+    "id": 9,
+    "name": "Coquille Saint-Jacques",
+    "file": "009.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "fd633b08582a203de1e05bacd7c05586df206805fa9a4f47b6559edeff866dac"
   },
   {
     "id": 10,
