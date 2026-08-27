@@ -2,8 +2,8 @@
 const G=window.GameCore;if(!G)return;
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 let modalCardId=null,scheduled=false;
-G.productVersion='2.0.2';
-document.body.classList.add('duplicate-card-market-v201','ux-cleanup-v202');
+G.productVersion='2.0.3';
+document.body.classList.add('duplicate-card-market-v201','ux-cleanup-v203');
 
 function art(c){return window.CatchArt&&typeof window.CatchArt.render==='function'?window.CatchArt.render(c):(c&&c.icon||'▦')}
 function cleanText(v){return String(v||'').replace(/\s+/g,' ').trim()}
@@ -13,10 +13,9 @@ function displayUnit(el){return el&&(el.closest('.pill, .pack-meta > div, .modal
 function hideById(id){const el=document.getElementById(id);if(el)hide(displayUnit(el))}
 function leadingText(meta){return [...meta.childNodes].filter(n=>n.nodeType===3).map(n=>n.nodeValue||'').join(' ').replace(/\s+/g,' ').trim()}
 function setLeadingText(meta,text){let node=[...meta.childNodes].find(n=>n.nodeType===3);if(!node){node=document.createTextNode(text);meta.insertBefore(node,meta.firstChild||null)}else if(node.nodeValue!==text)node.nodeValue=text}
+function blankTextNodes(el){if(!el)return;[...el.childNodes].forEach(node=>{if(node.nodeType===3){if(node.nodeValue)node.nodeValue=''}else if(node.nodeType===1)blankTextNodes(node)})}
 
-function patchMarketCopy(){
-  const p=$('#market .section-head p');if(p)hide(p);
-}
+function patchMarketCopy(){const p=$('#market .section-head p');if(p)hide(p)}
 function patchMarket(){
   const s=G.currentState,inventory=$('#inventory'),basketValue=$('#basketValue'),basketCount=$('#basketCount'),sell=$('#sell');
   if(!s||!inventory||!basketValue||!basketCount||!sell)return;
@@ -25,7 +24,6 @@ function patchMarket(){
   if(basketCount.textContent!==String(count))basketCount.textContent=String(count);
   sell.disabled=count===0;
   const label=count?`Tout vendre · ${value} ◉`:'Panier vide';if(sell.textContent!==label)sell.textContent=label;
-
   const hasRendered=inventory.querySelector('.card-duplicate-row-v201');
   if(!rows.length){inventory.querySelectorAll('.card-duplicate-row-v201').forEach(x=>x.remove());return}
   if(hasRendered)return;
@@ -53,7 +51,6 @@ function patchModal(){
   if(!row){row=document.createElement('div');row.className='modal-stat card-obtained-total-v201';row.innerHTML='<small>Obtenue au total</small><strong></strong>';stats.appendChild(row)}
   const strong=row.querySelector('strong');if(strong.textContent!==String(total))strong.textContent=String(total);
 }
-
 function patchCardMeta(){
   $$('#cards .meta').forEach(meta=>{
     const raw=leadingText(meta);
@@ -84,7 +81,11 @@ function patchMarketNoise(){
   $$('#inventory small').forEach(el=>{if(/^Les spécimens remontés à la pêche apparaissent ici\./i.test(cleanText(el.textContent)))hide(el)});
 }
 function patchBoosterNoise(){
-  ['#boosterOpening .gesture-copy','#boosterOpening #tearFallback','#boosterOpening .edge-copy','#boosterOpening .swipe-hint','#boosterOpening .reveal-card-foot','#boosterOpening .opening-intro > p','#boosterOpening .edge-preview > small','#boosterOpening .edge-preview > h3'].forEach(sel=>$$(sel).forEach(hide));
+  const opening=$('#boosterOpening');if(!opening)return;
+  const textOnlySelectors=['.gesture-copy','.edge-copy','.edge-preview > small','.edge-preview > h3','.swipe-hint','.reveal-card-foot'];
+  textOnlySelectors.forEach(sel=>opening.querySelectorAll(sel).forEach(blankTextNodes));
+  const tearFallback=opening.querySelector('#tearFallback');
+  if(tearFallback){if(!tearFallback.classList.contains('hide'))tearFallback.classList.add('hide');tearFallback.setAttribute('aria-hidden','true');tearFallback.tabIndex=-1}
   const patterns=[
     /^Attrape une extrémité/i,
     /^Pose ton doigt/i,
@@ -96,15 +97,13 @@ function patchBoosterNoise(){
     /^Touche ou glisse/i,
     /^touche pour la suivante/i,
     /^touche pour le bilan/i,
-    /^Ouvrir sans geste$/i,
     /^Ajoutée à la collection$/i,
     /^Pêchable à sa fréquence normale$/i,
     /^Pêche très rare jusqu’au rang/i
   ];
-  $$('#boosterOpening p,#boosterOpening small,#boosterOpening b,#boosterOpening button').forEach(el=>{const t=cleanText(el.textContent);if(patterns.some(re=>re.test(t)))hide(el)});
+  opening.querySelectorAll('p,small,b,span').forEach(el=>{const t=cleanText(el.textContent);if(t&&patterns.some(re=>re.test(t)))blankTextNodes(el)});
 }
 function patchCleanUi(){patchStaticNoise();patchCardMeta();patchFishingNoise();patchModalNoise();patchMarketNoise();patchBoosterNoise()}
-
 function sync(){scheduled=false;patchMarketCopy();patchMarket();patchCollection();patchModal();patchCleanUi()}
 function schedule(){if(scheduled)return;scheduled=true;requestAnimationFrame(sync)}
 document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('#cards [data-card]');if(b){modalCardId=Number(b.dataset.card);schedule()}});
