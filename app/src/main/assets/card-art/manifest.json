@@ -88,5 +88,95 @@
     "height": 256,
     "transparent": true,
     "sha256": "17fe924b5ad159203b0a3a5f83b5d0848ed9b922681297fb5b0ae7c7a115104f"
+  },
+  {
+    "id": 11,
+    "name": "Blennie",
+    "file": "011.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "dd6fc302887fb0be8438dd7676eee3c5b34af303a35262822ffb52d26e5795ff"
+  },
+  {
+    "id": 12,
+    "name": "Moule",
+    "file": "012.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "89851439b5b6365369e30c37a17c125f3d00d8bc76e87ace652263e0ec068d7a"
+  },
+  {
+    "id": 13,
+    "name": "Bernard-l’ermite",
+    "file": "013.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "50b289c62d85d3192351d5e8578a9123fa37b2db7d01ec114809fac482c57a62"
+  },
+  {
+    "id": 14,
+    "name": "Anchois",
+    "file": "014.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "749684d159a1abbb0b1ffc87beffd097dab52e4841e75e4e87199eedb7fa5924"
+  },
+  {
+    "id": 15,
+    "name": "Rouget-barbet",
+    "file": "015.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "13673528c24f552c82ccc5149f67dbc8a0152552d8f85e2300c52bf986fe56bd"
+  },
+  {
+    "id": 16,
+    "name": "Seiche",
+    "file": "016.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "66fd4e0fd72e0d77675245db4102d03b78de270bbe9c635776400648a84e12cf"
+  },
+  {
+    "id": 17,
+    "name": "Palourde",
+    "file": "017.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "ab5259b59ae998dbdcb1459bd38d7a9d1c5ce6c0762858d0a74aa4e367a061d7"
+  },
+  {
+    "id": 18,
+    "name": "Méduse lune",
+    "file": "018.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "dc94ec41ed3f6739d7d427046a443a3f1b27ef8c9d67b7afc39c68836239d469"
+  },
+  {
+    "id": 19,
+    "name": "Barbue",
+    "file": "019.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "9f516f9e1245668a080ddc15b60de40a1f28ebbabf35b9ec24784afd7b6bee93"
+  },
+  {
+    "id": 20,
+    "name": "Maquereau",
+    "file": "020.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "58f3d7a4885b9e16ab704912d0e439eaf00b5ce35235ab2f449bcf2fe5bff644"
   }
 ]
