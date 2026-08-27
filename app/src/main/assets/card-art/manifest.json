@@ -268,5 +268,95 @@
     "height": 256,
     "transparent": true,
     "sha256": "d34f04d824b41dac75eb4567d278468cfd78c8882926b40fbed630588282c095"
+  },
+  {
+    "id": 31,
+    "name": "Truite fario",
+    "file": "031.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "35dc0e2afa2402079e5f5fb8e0ac2451a12338035bca0efaa0a70dd703b5c35c"
+  },
+  {
+    "id": 32,
+    "name": "Perche commune",
+    "file": "032.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "1c584a753c341a66fed456454cb5c843e81c670d501474ed01245493d296319b"
+  },
+  {
+    "id": 33,
+    "name": "Brochet",
+    "file": "033.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "9024f123e4f65afa34c509e74a1a9d66af58f12af57074a8de1b83297a7673e1"
+  },
+  {
+    "id": 34,
+    "name": "Sandre",
+    "file": "034.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "9b4b6e80bb60bf05f315eb70feba993f077a6384094952685aacd53db36180d2"
+  },
+  {
+    "id": 35,
+    "name": "Carpe commune",
+    "file": "035.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "f3a4f5b96b05b5e387463ce5de6d0ce0b41ad01df11e0ddc6c8a9f12c1e3663b"
+  },
+  {
+    "id": 36,
+    "name": "Tanche",
+    "file": "036.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "4923f9612b8c2be1adbc666d1debfeb4ac30b7d66ed0322cd93c1e18cfd76a73"
+  },
+  {
+    "id": 37,
+    "name": "Gardon",
+    "file": "037.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "354d7f64adb62183a034fb4be0b00c02630cfcaf81b9f76ecff9273d06dfe3be"
+  },
+  {
+    "id": 38,
+    "name": "Brème commune",
+    "file": "038.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "e0be0da2e9710dc9b27b3b2bd1473285cb093e73af755eff46a655c1ae14df1c"
+  },
+  {
+    "id": 39,
+    "name": "Silure glane",
+    "file": "039.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "704f4f2aab1adc2b377f5a7808cb9d6db2f22b70726cad4a0b81ef49d328db73"
+  },
+  {
+    "id": 40,
+    "name": "Saumon atlantique",
+    "file": "040.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "18a0414af74225607c69172bcd7fddee44c58f21b3ab1e49d65026999a5096e4"
   }
 ]
