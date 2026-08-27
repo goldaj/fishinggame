@@ -35,9 +35,11 @@ assert(html.includes('<script src="v205-ui.js"></script>'));
 assert(html.indexOf('v205.css')>html.indexOf('v204.css'),'v205.css must load after v204.css');
 assert(html.indexOf('v205-ui.js')>html.indexOf('v201-ui.js'),'v205-ui.js must load after the existing booster/runtime layers');
 
+const coreBooster=read('v160.js');
+assert(coreBooster.includes('G.lastCardPackResult=result;'),'existing booster engine must expose its already-drawn result');
+
 const js=read('v205-ui.js');
-assert(js.includes('const result=original.apply(this,arguments);'),'pack result wrapper must delegate to the original pack function');
-assert(js.includes('return result;'),'pack result wrapper must return the original result');
+assert(js.includes('const result=G.lastCardPackResult;'),'front preview must read the existing already-drawn pack result');
 assert(js.includes("forward('onpointerdown',e)"),'wide seam input must forward to the existing tear handler');
 assert(js.includes("forward('onpointermove',e)"),'wide seam input must forward movement to the existing tear handler');
 assert(js.includes("forward('onpointerup',e)"),'wide seam input must forward release to the existing tear handler');
@@ -45,6 +47,7 @@ assert(js.includes("stack.querySelectorAll('.edge-card')"),'edge stack DOM must 
 assert(js.includes('result.cards[index]'),'front preview must use the already-drawn pack cards');
 assert(js.includes('art(c)'),'front preview must render the real card art');
 [
+  'G.openCardPack=',
   'G.boosterFoldStartDirection=',
   'G.boosterFoldTravel=',
   'G.boosterFoldProgress=',
