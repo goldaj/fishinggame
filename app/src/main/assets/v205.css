@@ -1,0 +1,94 @@
+/* Fishing Cards 2.0.5 — booster-only presentation/input patch.
+   Historical 1.7.x gesture files stay untouched; this layer changes hit area and rendering only. */
+
+/* The moving torn piece is now a thin strip centered exactly on the 78px tear seam. */
+#boosterOpening .tactile-pack .pack-lid{
+  top:70px!important;
+  height:16px!important;
+  border-top:1px solid rgba(255,255,255,.12);
+  border-bottom:1px solid rgba(255,255,255,.28);
+  border-radius:3px;
+  box-shadow:0 2px 5px rgba(0,0,0,.18);
+}
+
+/* Transparent side-to-side hit area. JS forwards pointer input to the unchanged 1.7.5 fold handler. */
+#boosterOpening .tactile-opening{position:relative}
+#boosterOpening .tear-hit-v205{
+  position:absolute;
+  left:0;
+  right:0;
+  z-index:14;
+  background:transparent;
+  touch-action:none;
+  cursor:grab;
+  user-select:none;
+  -webkit-user-select:none;
+}
+#boosterOpening .tear-hit-v205:active{cursor:grabbing}
+
+/* The pile shown before reveal now displays the actual card fronts instead of generic backs. */
+#boosterOpening .edge-card.edge-face-v205{
+  box-sizing:border-box;
+  padding:10px;
+  color:#eef8fa;
+  text-align:left;
+}
+#boosterOpening .edge-card.edge-face-v205.commune{background:linear-gradient(160deg,#263943,#15242c)}
+#boosterOpening .edge-card.edge-face-v205.inhabituelle{background:linear-gradient(160deg,#24534f,#15302f)}
+#boosterOpening .edge-card.edge-face-v205.rare{background:linear-gradient(160deg,#214b68,#2d355d 58%,#43375f)}
+#boosterOpening .edge-card.edge-face-v205.epique{background:linear-gradient(160deg,#4b2f64,#74436e 55%,#3b315a)}
+#boosterOpening .edge-card.edge-face-v205.legendaire{background:linear-gradient(160deg,#6d5221,#bd8c36 52%,#59431c)}
+#boosterOpening .edge-card.edge-face-v205.mythique{background:linear-gradient(160deg,#213c4a,#51375f 32%,#286b68 64%,#65552f)}
+#boosterOpening .edge-face-top-v205{
+  position:relative;
+  z-index:2;
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
+  font-size:.56rem;
+  font-weight:900;
+  letter-spacing:.05em;
+  opacity:.84;
+}
+#boosterOpening .edge-face-top-v205 b{letter-spacing:.1em}
+#boosterOpening .edge-face-art-v205{
+  position:absolute;
+  z-index:1;
+  left:12px;
+  right:12px;
+  top:38px;
+  bottom:62px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:3.2rem;
+}
+#boosterOpening .edge-face-art-v205 svg{
+  width:88%;
+  height:88%;
+  max-width:155px;
+  max-height:155px;
+}
+#boosterOpening .edge-face-copy-v205{
+  position:absolute;
+  z-index:2;
+  left:10px;
+  right:13px;
+  bottom:11px;
+  min-width:0;
+}
+#boosterOpening .edge-face-copy-v205 b,
+#boosterOpening .edge-face-copy-v205 small{
+  display:block;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+#boosterOpening .edge-face-copy-v205 b{font-size:.72rem;line-height:1.15}
+#boosterOpening .edge-face-copy-v205 small{margin-top:2px;font-size:.52rem;opacity:.72}
+
+/* Touching the pile already starts reveal; the redundant button is removed from layout. */
+#boosterOpening #edgeFallback{
+  display:none!important;
+  pointer-events:none!important;
+}
