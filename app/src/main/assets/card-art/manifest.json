@@ -178,5 +178,95 @@
     "height": 256,
     "transparent": true,
     "sha256": "e3b6604e07e6d2e7958ce724cfe49dfdd607a47d135d36334619ec7f5b564e61"
+  },
+  {
+    "id": 21,
+    "name": "Bar",
+    "file": "021.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "30b274fc4e6ec1e5e38d06ec1f96aa225a7c2a0253840eacf426a90f79baeb3a"
+  },
+  {
+    "id": 22,
+    "name": "Dorade royale",
+    "file": "022.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "aed9f5fc58952037a357b81016071fb03043885a8e91bbc459faf4284be4434e"
+  },
+  {
+    "id": 23,
+    "name": "Lieu jaune",
+    "file": "023.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "ab5deb72f67b74e2c0f3d109c6e99df5646605d2da3b32d7ea37a7afdc8a3267"
+  },
+  {
+    "id": 24,
+    "name": "Merlan",
+    "file": "024.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "a531cf9d0b35842fbc50bdb147d760f09368d8ac9fa3a8e338ab95c515ace835"
+  },
+  {
+    "id": 25,
+    "name": "Sole",
+    "file": "025.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "aac444b26f0aa33faff728d0bc64e654e259e67b8dca0842db1fe7a189f869cd"
+  },
+  {
+    "id": 26,
+    "name": "Plie",
+    "file": "026.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "2ce1d6191e8e0f097b879a64dae6a23fe993c5c35774372d650b94e4a9208771"
+  },
+  {
+    "id": 27,
+    "name": "Limande",
+    "file": "027.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "43de562580b5c649f15c0ce91ae8419e7fd898e603b79fc5132a1bdbc945fd45"
+  },
+  {
+    "id": 28,
+    "name": "Turbot",
+    "file": "028.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "28309b45d54f508153512440520119140afe7dbf68c7016424d0ed7fe44d865e"
+  },
+  {
+    "id": 29,
+    "name": "Congre",
+    "file": "029.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "4959ece9e075d136d23e5aaf86dccbb9beba34d28d5e90fecd8784edc5e9d807"
+  },
+  {
+    "id": 30,
+    "name": "Anguille européenne",
+    "file": "030.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "d34f04d824b41dac75eb4567d278468cfd78c8882926b40fbed630588282c095"
   }
 ]
