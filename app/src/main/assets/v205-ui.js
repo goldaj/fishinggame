@@ -2,25 +2,10 @@
 const G=window.GameCore;
 if(!G)return;
 
-const RESULT_KEY='__boosterPackResultV205';
 const rarityStars={commune:'·',inhabituelle:'◆',rare:'◆◆',epique:'◆◆◆',legendaire:'✦✦✦✦',mythique:'✦✦✦✦✦'};
 
 function art(c){return window.CatchArt&&typeof window.CatchArt.render==='function'?window.CatchArt.render(c):(c&&c.icon||'🐟')}
 function esc(value){return String(value==null?'':value).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]))}
-
-/* Observe the already-existing pack result without changing what openCardPack returns or how it mutates state. */
-function observePackResult(){
-  const original=G.openCardPack;
-  if(typeof original!=='function'||original.__v205Observed)return;
-  function observedOpenCardPack(){
-    const result=original.apply(this,arguments);
-    if(result&&result.ok)window[RESULT_KEY]=result;
-    return result;
-  }
-  Object.defineProperty(observedOpenCardPack,'__v205Observed',{value:true});
-  Object.defineProperty(observedOpenCardPack,'__v205Original',{value:original});
-  G.openCardPack=observedOpenCardPack;
-}
 
 /* Make the seam gesture startable from the empty gutters beside the pack.
    Pointer input is forwarded to the current tearZone handler, so the 1.7.5 thresholds,
@@ -68,10 +53,11 @@ function installWideTearHit(){
 }
 
 /* Replace only the generic back artwork inside the existing five-card edge stack.
-   The stack element and its original tap/drag handlers are left intact. */
+   openCardPack already exposes the exact drawn pack as G.lastCardPackResult, so no
+   pack function, random draw, state mutation or reveal logic needs to be wrapped. */
 function paintFrontFaces(){
   const stack=document.querySelector('#edgeStack');
-  const result=window[RESULT_KEY];
+  const result=G.lastCardPackResult;
   if(!stack||stack.dataset.v205==='1'||!result||!Array.isArray(result.cards))return;
   const cards=[...stack.querySelectorAll('.edge-card')];
   if(cards.length!==result.cards.length)return;
@@ -90,7 +76,6 @@ let scheduled=false;
 function sync(){scheduled=false;installWideTearHit();paintFrontFaces()}
 function schedule(){if(scheduled)return;scheduled=true;requestAnimationFrame(sync)}
 
-observePackResult();
 new MutationObserver(schedule).observe(document.body,{subtree:true,childList:true});
 sync();
 })();
