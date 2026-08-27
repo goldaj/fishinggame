@@ -19,11 +19,12 @@
 <link rel="stylesheet" href="v180.css">
 <link rel="stylesheet" href="v190.css">
 <link rel="stylesheet" href="v200.css">
+<link rel="stylesheet" href="v204.css">
 </head>
 <body>
 <div class="app">
   <header class="top">
-    <div class="brand"><small class="hide">COLLECTION MARINE</small><h1>Fishing Cards</h1></div>
+    <div class="brand"><small>COLLECTION MARINE</small><h1>Fishing Cards</h1></div>
     <div class="wallet" aria-label="Pièces"><span>◉</span><b id="coins">0</b></div>
   </header>
   <section class="rank-card" aria-label="Progression">
@@ -38,10 +39,10 @@
         <div id="ripple" class="ripple"></div><div id="float" class="float">🎣</div>
         <div id="landedFish" class="landed-fish hide" aria-live="polite"></div>
         <div class="status-chip"><i id="statusDot" class="dot"></i><span id="statusText">Calme</span></div>
-        <div class="hero-copy" aria-live="polite"><h2 id="headline">La mer est calme.</h2><p id="sub" class="hide"></p></div>
+        <div class="hero-copy" aria-live="polite"><h2 id="headline">La mer est calme.</h2><p id="sub">Lance ta ligne, puis attends la vraie touche. Un geste trop tôt ou trop tard peut faire fuir la carte.</p></div>
         <button id="cast" class="primary" aria-label="Action de pêche">Lancer la ligne</button>
       </div>
-      <div class="hint hide"><span>◎</span><div></div></div>
+      <div class="hint"><span>◎</span><div><b>Une seule collection.</b> Une carte obtenue en booster devient immédiatement pêchable. Si son rang normal est encore trop haut, elle reste beaucoup plus rare jusqu’à ce que ton rang la rattrape. Chaque prise ajoute elle aussi une copie de sa carte.</div></div>
       <div id="result" class="catch-result hide" aria-live="polite"></div>
       <div class="metrics">
         <div class="metric"><span>Cartes obtenues</span><strong id="s1">1/504</strong></div>
@@ -51,7 +52,7 @@
     </section>
 
     <section id="market" class="screen">
-      <div class="section-head"><div><h2>Marché</h2></div></div>
+      <div class="section-head"><div><h2>Marché</h2><p>Vends les spécimens réellement remontés à la pêche et les doublons de cartes. Une copie de chaque carte reste toujours dans la collection.</p></div></div>
       <div id="marketTabs" class="tabs" role="tablist" aria-label="Sections du marché">
         <button class="on" data-market-tab="sell">Vendre</button>
         <button data-market-tab="upgrades">Améliorer</button>
@@ -62,24 +63,24 @@
         <div id="inventory" class="list"></div>
       </div>
       <div id="marketUpgradePanel" class="hide">
-        <div class="hint shop-hint hide"><span>⚓</span><div></div></div>
+        <div class="hint shop-hint"><span>⚓</span><div><b>Améliorations du port.</b> Des effets permanents qui doivent réellement se sentir en jeu. Les coûts augmentent et certaines améliorations demandent un rang minimum.</div></div>
         <div id="shopList" class="shop-list"></div>
       </div>
     </section>
 
     <section id="collection" class="screen">
       <div class="section-head">
-        <div><h2 class="hide">Collection</h2></div>
-        <div class="collection-stats"><span class="pill"><b id="ccount">1</b>/504 obtenues</span><span class="pill hide"><b id="cfound">0</b>/504 pêchées</span></div>
+        <div><h2>Collection</h2><p>Pêche et boosters alimentent désormais la même collection. Obtenir une carte par l’un ou l’autre moyen augmente son nombre de copies. Les quatre déchets sont aussi des cartes communes, mais ils ne peuvent être obtenus qu’à la pêche.</p></div>
+        <div class="collection-stats"><span class="pill"><b id="ccount">1</b>/504 obtenues</span><span class="pill"><b id="cfound">0</b>/504 pêchées</span></div>
       </div>
 
       <div class="pack-panel">
         <h3>Boosters de cartes</h3>
-        <p class="hide"></p>
+        <p>Chaque carte de poisson tirée débloque immédiatement sa pêche. Avant son rang normal, elle peut déjà mordre mais avec une fréquence fortement réduite. Les cartes Déchet sont exclues des boosters.</p>
         <div class="pack-meta">
           <div><small>Prix du booster</small><strong id="packCost">800 ◉</strong></div>
           <div><small>Collection</small><strong id="packKnown">1/504</strong></div>
-          <div class="hide"><small>Déchets trouvés</small><strong id="packFound">0/4</strong></div>
+          <div><small>Déchets trouvés</small><strong id="packFound">0/4</strong></div>
         </div>
         <button id="packPull" class="primary">Ouvrir 5 cartes · 800 ◉</button>
         <div id="packResults" class="draw-results hide" aria-live="polite"></div>
