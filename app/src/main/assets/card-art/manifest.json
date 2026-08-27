@@ -16,5 +16,50 @@
     "height": 256,
     "transparent": true,
     "sha256": "e1cc0ef79327b2c0ebe94c2b29d67752465399459794928889fe2376701e95d6"
+  },
+  {
+    "id": 4,
+    "name": "Ablette",
+    "file": "004.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "438676fe0a58d6d305d8ece826984d3f2177bbbeabc7841c638d8c0b5da238dc"
+  },
+  {
+    "id": 5,
+    "name": "Crevette grise",
+    "file": "005.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "a4d551e79a1cb6f5ec3b86900545ebce81e8bb1dacde9531940ca49aa818fd70"
+  },
+  {
+    "id": 6,
+    "name": "Mulet",
+    "file": "006.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "810e411a50c7f22274c0291ce06a312bc66f2991e19e2005cf4ccd6e29e09cee"
+  },
+  {
+    "id": 7,
+    "name": "Éperlan",
+    "file": "007.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "c9dc3b1aeefe7d3e459d0929b5fad7c4ecc46c4c285c8f000a775334946b2179"
+  },
+  {
+    "id": 10,
+    "name": "Girelle",
+    "file": "010.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "17fe924b5ad159203b0a3a5f83b5d0848ed9b922681297fb5b0ae7c7a115104f"
   }
 ]

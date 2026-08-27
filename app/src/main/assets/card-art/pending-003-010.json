@@ -6,47 +6,7 @@
     "width": 256,
     "height": 256,
     "transparent": true,
-    "sha256": "c7ca95ca8d7d8e716f1521281d6ad584d0d522c2968b7777b85901f245aa2552",
-    "status": "generated-validated-pending-upload"
-  },
-  {
-    "id": 4,
-    "name": "Ablette",
-    "file": "004.webp",
-    "width": 256,
-    "height": 256,
-    "transparent": true,
-    "sha256": "7e8dfdcf0511f7d983acc3df0cc32c7dab24b97df71e717551909c5b5ab62684",
-    "status": "generated-validated-pending-upload"
-  },
-  {
-    "id": 5,
-    "name": "Crevette grise",
-    "file": "005.webp",
-    "width": 256,
-    "height": 256,
-    "transparent": true,
-    "sha256": "113b5fb63e340b02628eebb803ae7ed2e6cda5de20febfbc3258b6d89980e489",
-    "status": "generated-validated-pending-upload"
-  },
-  {
-    "id": 6,
-    "name": "Mulet",
-    "file": "006.webp",
-    "width": 256,
-    "height": 256,
-    "transparent": true,
-    "sha256": "6cda4e6de1cbfa0f800e65269e3357f44257b8fd3e8845c7a431b8fbf7e6e120",
-    "status": "generated-validated-pending-upload"
-  },
-  {
-    "id": 7,
-    "name": "Éperlan",
-    "file": "007.webp",
-    "width": 256,
-    "height": 256,
-    "transparent": true,
-    "sha256": "2592d0d122b683885c4bb3b88d147fc8ba3f6c38b87ad0be83bffab6b936a1af",
+    "sha256": "96a4cde0f5a74d10fc0886bd8edcb956a81258caaaaa2fd803b935ae2e7d1657",
     "status": "generated-validated-pending-upload"
   },
   {
@@ -56,7 +16,7 @@
     "width": 256,
     "height": 256,
     "transparent": true,
-    "sha256": "8e67a4a4c76579052fed3a4196634733226d6dc150cc02a70a4725d2860bb7e9",
+    "sha256": "23b294c0f41c5f590b2acb1c40686f06626b5afaa9e97dd4e802e00fea710a32",
     "status": "generated-validated-pending-upload"
   },
   {
@@ -66,17 +26,7 @@
     "width": 256,
     "height": 256,
     "transparent": true,
-    "sha256": "d22f95e94cdc1befce1d54a82ba649d14cf5dbd1b4f9bef60269883a4eb76395",
-    "status": "generated-validated-pending-upload"
-  },
-  {
-    "id": 10,
-    "name": "Girelle",
-    "file": "010.webp",
-    "width": 256,
-    "height": 256,
-    "transparent": true,
-    "sha256": "b885cb2affbdc43dd01b37e002c5a969480f5f408521dd151ee69fa0cda9819d",
+    "sha256": "6be18f372913258cfb687b498677dce844f0a6991179b2583d0d7195e9e7dc6d",
     "status": "generated-validated-pending-upload"
   }
 ]
