@@ -61,6 +61,7 @@ jobs:
           node tests/v190.test.js
           node tests/v200.test.js
           node tests/v201.test.js
+          node tests/card-art-manifest.test.js
 
       - name: Check browser JavaScript syntax
         run: |
@@ -114,21 +115,26 @@ jobs:
           unzip -tq "$APK"
           "${ANDROID_HOME}/build-tools/35.0.0/zipalign" -c -P 16 -v 4 "$APK"
           "${ANDROID_HOME}/build-tools/35.0.0/aapt" dump badging "$APK" | head -n 5
-          unzip -l "$APK" | grep -E 'assets/(v140-catalog.js|v140.js|v140.css|v141.js|v141.css|v142-ui.js|v142.css|v143-ui.js|v143.css|v150.js|v150-ui.js|v150.css|v160.js|v160-ui.js|v160.css|v170.js|v170-ui.js|v170.css|v171-ui.js|v171.css|v173.js|v173-ui.js|v173.css|v174.js|v174-ui.js|v174.css|v175.js|v175-ui.js|v175.css|v180-ui.js|v180.css|v190-ui.js|v190.css|v200.js|v200-ui.js|v200.css|v201.js|v201-ui.js|index.html|app.js|catch-art.js|catch-art-unique.js)'
+          unzip -l "$APK" | grep -E 'assets/(v140-catalog.js|v140.js|v140.css|v141.js|v141.css|v142-ui.js|v142.css|v143-ui.js|v143.css|v150.js|v150-ui.js|v150.css|v160.js|v160-ui.js|v160.css|v170.js|v170-ui.js|v170.css|v171-ui.js|v171.css|v173.js|v173-ui.js|v173.css|v174.js|v174-ui.js|v174.css|v175.js|v175-ui.js|v175.css|v180-ui.js|v180.css|v190-ui.js|v190.css|v200.js|v200-ui.js|v200.css|v201.js|v201-ui.js|index.html|app.js|catch-art.js|catch-art-unique.js|trash-art.js)'
           unzip -p "$APK" assets/index.html | grep -F '<title>Fishing Cards</title>'
           unzip -p "$APK" assets/index.html | grep -F '<script src="v200.js"></script>'
           unzip -p "$APK" assets/index.html | grep -F '<script src="v201.js"></script>'
           unzip -p "$APK" assets/index.html | grep -F '<script src="v200-ui.js"></script>'
           unzip -p "$APK" assets/index.html | grep -F '<script src="v201-ui.js"></script>'
+          unzip -p "$APK" assets/index.html | grep -F '<p id="sub" class="hide"></p>'
           unzip -p "$APK" assets/v200.js | grep -F "G.unifiedCardsVersion='2.0.0'"
           unzip -p "$APK" assets/v200.js | grep -F 'G.totalCollectionCards=FISH_COUNT+trashList().length'
           unzip -p "$APK" assets/v200.js | grep -F "G.pullGacha=()=>({ok:false,reason:'removed'})"
-          unzip -p "$APK" assets/v201.js | grep -F "G.duplicateCardMarketVersion='2.0.1'"
+          unzip -p "$APK" assets/v201.js | grep -F "G.duplicateCardMarketVersion='2.0.2'"
+          unzip -p "$APK" assets/v201.js | grep -F "G.releaseVersion='2.0.2'"
           unzip -p "$APK" assets/v201.js | grep -F 'G.sellCardDuplicates=function(s)'
           unzip -p "$APK" assets/v201-ui.js | grep -F 'card-duplicate-row-v201'
+          unzip -p "$APK" assets/v201-ui.js | grep -F 'ux-cleanup-v202'
           unzip -p "$APK" assets/v200-ui.js | grep -F 'fishing-trash-card-v200'
           unzip -p "$APK" assets/v190-ui.js | grep -F "G.fishingExperienceVersion='1.9.0'"
           unzip -p "$APK" assets/v190.css | grep -F '@keyframes fishingCardReelV190'
+          unzip -l "$APK" | grep -F 'assets/card-art/040.webp'
+          unzip -l "$APK" | grep -F 'assets/card-art/manifest.json'
           sha256sum "$APK"
           cp "${ANDROID_HOME}/build-tools/35.0.0/lib/apksigner.jar" app/build/outputs/apk/release/apksigner.jar
 

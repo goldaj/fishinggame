@@ -1,0 +1,362 @@
+[
+  {
+    "id": 1,
+    "name": "Gobie",
+    "file": "001.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "b6a1960091604e25cfce5aea7b5dad0f235ec1e3855a44a9de6e204b1829f23d"
+  },
+  {
+    "id": 2,
+    "name": "Sardine",
+    "file": "002.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "e1cc0ef79327b2c0ebe94c2b29d67752465399459794928889fe2376701e95d6"
+  },
+  {
+    "id": 3,
+    "name": "Crabe vert",
+    "file": "003.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "b6137f5d03aa33b3829cdb3fabba80e7f216815971d94aab34f2db85763cee9d"
+  },
+  {
+    "id": 4,
+    "name": "Ablette",
+    "file": "004.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "438676fe0a58d6d305d8ece826984d3f2177bbbeabc7841c638d8c0b5da238dc"
+  },
+  {
+    "id": 5,
+    "name": "Crevette grise",
+    "file": "005.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "a4d551e79a1cb6f5ec3b86900545ebce81e8bb1dacde9531940ca49aa818fd70"
+  },
+  {
+    "id": 6,
+    "name": "Mulet",
+    "file": "006.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "810e411a50c7f22274c0291ce06a312bc66f2991e19e2005cf4ccd6e29e09cee"
+  },
+  {
+    "id": 7,
+    "name": "Éperlan",
+    "file": "007.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "c9dc3b1aeefe7d3e459d0929b5fad7c4ecc46c4c285c8f000a775334946b2179"
+  },
+  {
+    "id": 8,
+    "name": "Poulpe commun",
+    "file": "008.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "b96747dd197fe35b17e9ce0c5a743e7f554f0985ffaaa64aac3778c7621bf182"
+  },
+  {
+    "id": 9,
+    "name": "Coquille Saint-Jacques",
+    "file": "009.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "fd633b08582a203de1e05bacd7c05586df206805fa9a4f47b6559edeff866dac"
+  },
+  {
+    "id": 10,
+    "name": "Girelle",
+    "file": "010.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "17fe924b5ad159203b0a3a5f83b5d0848ed9b922681297fb5b0ae7c7a115104f"
+  },
+  {
+    "id": 11,
+    "name": "Blennie",
+    "file": "011.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "7999939b5e791fc2c34d92b5ccbdf741d86c1769b76f8dde0571e23e2f150552"
+  },
+  {
+    "id": 12,
+    "name": "Moule",
+    "file": "012.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "1d7231502d4f9ec9498f62a620bcdc1d4a4e4b9fb2aafa485bac38d007521f1a"
+  },
+  {
+    "id": 13,
+    "name": "Bernard-l’ermite",
+    "file": "013.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "6f33d10541c38ba29e2e749850f26818650972ffca7033e9e2814904a8335e46"
+  },
+  {
+    "id": 14,
+    "name": "Anchois",
+    "file": "014.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "8d390123125babd4a6887d8f954177e3709127d564cb91909d085868e056e1ac"
+  },
+  {
+    "id": 15,
+    "name": "Rouget-barbet",
+    "file": "015.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "1d08ac0654392ee35c121991d7727e47277b9b95e4b12c8d1019c6f899b60502"
+  },
+  {
+    "id": 16,
+    "name": "Seiche",
+    "file": "016.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "2a665ec4459f13ff91b051e2168f1356756cfdca2c728576dcbca5a8a688fb3f"
+  },
+  {
+    "id": 17,
+    "name": "Palourde",
+    "file": "017.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "63a1737893fd24cad26c0ab64807f8148001e825baf71fa6fed708e7453fbac7"
+  },
+  {
+    "id": 18,
+    "name": "Méduse lune",
+    "file": "018.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "e74daf27701042a55c059121e1742dcfa360b75951cca848d20983b03c387cf4"
+  },
+  {
+    "id": 19,
+    "name": "Barbue",
+    "file": "019.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "03fefd5b80b8ee1fa22b06f07d325be9732f80acf1888b7331de503f69880780"
+  },
+  {
+    "id": 20,
+    "name": "Maquereau",
+    "file": "020.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "e3b6604e07e6d2e7958ce724cfe49dfdd607a47d135d36334619ec7f5b564e61"
+  },
+  {
+    "id": 21,
+    "name": "Bar",
+    "file": "021.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "30b274fc4e6ec1e5e38d06ec1f96aa225a7c2a0253840eacf426a90f79baeb3a"
+  },
+  {
+    "id": 22,
+    "name": "Dorade royale",
+    "file": "022.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "aed9f5fc58952037a357b81016071fb03043885a8e91bbc459faf4284be4434e"
+  },
+  {
+    "id": 23,
+    "name": "Lieu jaune",
+    "file": "023.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "ab5deb72f67b74e2c0f3d109c6e99df5646605d2da3b32d7ea37a7afdc8a3267"
+  },
+  {
+    "id": 24,
+    "name": "Merlan",
+    "file": "024.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "a531cf9d0b35842fbc50bdb147d760f09368d8ac9fa3a8e338ab95c515ace835"
+  },
+  {
+    "id": 25,
+    "name": "Sole",
+    "file": "025.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "aac444b26f0aa33faff728d0bc64e654e259e67b8dca0842db1fe7a189f869cd"
+  },
+  {
+    "id": 26,
+    "name": "Plie",
+    "file": "026.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "2ce1d6191e8e0f097b879a64dae6a23fe993c5c35774372d650b94e4a9208771"
+  },
+  {
+    "id": 27,
+    "name": "Limande",
+    "file": "027.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "43de562580b5c649f15c0ce91ae8419e7fd898e603b79fc5132a1bdbc945fd45"
+  },
+  {
+    "id": 28,
+    "name": "Turbot",
+    "file": "028.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "28309b45d54f508153512440520119140afe7dbf68c7016424d0ed7fe44d865e"
+  },
+  {
+    "id": 29,
+    "name": "Congre",
+    "file": "029.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "4959ece9e075d136d23e5aaf86dccbb9beba34d28d5e90fecd8784edc5e9d807"
+  },
+  {
+    "id": 30,
+    "name": "Anguille européenne",
+    "file": "030.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "d34f04d824b41dac75eb4567d278468cfd78c8882926b40fbed630588282c095"
+  },
+  {
+    "id": 31,
+    "name": "Truite fario",
+    "file": "031.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "35dc0e2afa2402079e5f5fb8e0ac2451a12338035bca0efaa0a70dd703b5c35c"
+  },
+  {
+    "id": 32,
+    "name": "Perche commune",
+    "file": "032.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "1c584a753c341a66fed456454cb5c843e81c670d501474ed01245493d296319b"
+  },
+  {
+    "id": 33,
+    "name": "Brochet",
+    "file": "033.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "9024f123e4f65afa34c509e74a1a9d66af58f12af57074a8de1b83297a7673e1"
+  },
+  {
+    "id": 34,
+    "name": "Sandre",
+    "file": "034.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "9b4b6e80bb60bf05f315eb70feba993f077a6384094952685aacd53db36180d2"
+  },
+  {
+    "id": 35,
+    "name": "Carpe commune",
+    "file": "035.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "f3a4f5b96b05b5e387463ce5de6d0ce0b41ad01df11e0ddc6c8a9f12c1e3663b"
+  },
+  {
+    "id": 36,
+    "name": "Tanche",
+    "file": "036.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "4923f9612b8c2be1adbc666d1debfeb4ac30b7d66ed0322cd93c1e18cfd76a73"
+  },
+  {
+    "id": 37,
+    "name": "Gardon",
+    "file": "037.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "354d7f64adb62183a034fb4be0b00c02630cfcaf81b9f76ecff9273d06dfe3be"
+  },
+  {
+    "id": 38,
+    "name": "Brème commune",
+    "file": "038.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "e0be0da2e9710dc9b27b3b2bd1473285cb093e73af755eff46a655c1ae14df1c"
+  },
+  {
+    "id": 39,
+    "name": "Silure glane",
+    "file": "039.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "704f4f2aab1adc2b377f5a7808cb9d6db2f22b70726cad4a0b81ef49d328db73"
+  },
+  {
+    "id": 40,
+    "name": "Saumon atlantique",
+    "file": "040.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "18a0414af74225607c69172bcd7fddee44c58f21b3ab1e49d65026999a5096e4"
+  }
+]

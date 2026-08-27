@@ -115,9 +115,9 @@ G.sellAll=function(s){
   };
 };
 
-G.productVersion='2.0.1';
-G.releaseVersion='2.0.1';
-G.duplicateCardMarketVersion='2.0.1';
+G.productVersion='2.0.2';
+G.releaseVersion='2.0.2';
+G.duplicateCardMarketVersion='2.0.2';
 if(!isNode)root.GameCore=G;
 if(isNode)module.exports=G;
 })(typeof window==='undefined'?globalThis:window);

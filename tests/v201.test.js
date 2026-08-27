@@ -2,9 +2,10 @@ const assert=require('assert');
 const fs=require('fs');
 const G=require('../app/src/main/assets/v201.js');
 
-assert.ok(G,'2.0.1 core must load');
-assert.strictEqual(G.productVersion,'2.0.1');
-assert.strictEqual(G.duplicateCardMarketVersion,'2.0.1');
+assert.ok(G,'2.0.2 core must load');
+assert.strictEqual(G.productVersion,'2.0.2');
+assert.strictEqual(G.releaseVersion,'2.0.2');
+assert.strictEqual(G.duplicateCardMarketVersion,'2.0.2');
 
 {
   const raw=G.defaultState();
@@ -12,7 +13,7 @@ assert.strictEqual(G.duplicateCardMarketVersion,'2.0.1');
   delete raw.cardObtainedById;
   raw.cardCopiesById={1:4};
   const migrated=G.normalizeState(JSON.parse(JSON.stringify(raw)));
-  assert.strictEqual(G.cardObtainedTotal(migrated,1),4,'2.0.1 migration must initialize lifetime obtained total from owned copies');
+  assert.strictEqual(G.cardObtainedTotal(migrated,1),4,'2.0.2 migration must initialize lifetime obtained total from owned copies');
   const again=G.normalizeState(JSON.parse(JSON.stringify(migrated)));
   assert.strictEqual(G.cardObtainedTotal(again,1),4,'lifetime obtained migration must be idempotent');
 }
@@ -68,13 +69,17 @@ const p201=html.indexOf('<script src="v201.js"></script>');
 const pApp=html.indexOf('<script src="app.js"></script>');
 const p200ui=html.indexOf('<script src="v200-ui.js"></script>');
 const p201ui=html.indexOf('<script src="v201-ui.js"></script>');
-assert.ok(p200>=0&&p201>p200&&pApp>p201,'2.0.1 core must patch 2.0 before app state is normalized');
-assert.ok(p201ui>p200ui,'2.0.1 UI must patch after the existing 2.0 presentation');
+assert.ok(p200>=0&&p201>p200&&pApp>p201,'2.0.2 core must patch 2.0 before app state is normalized');
+assert.ok(p201ui>p200ui,'2.0.2 UI must patch after the existing 2.0 presentation');
 assert.ok(ui.includes('card-duplicate-row-v201'),'duplicate cards must render as market rows');
-assert.ok(ui.includes('1 exemplaire conservé'),'market UI must explain that one collection copy is preserved');
-assert.ok(ui.includes('obtenue ${total} fois au total'),'collection UI must show lifetime obtained count separately from owned copies');
-assert.ok(/versionCode\s+25/.test(gradle),'Android versionCode must be 25');
-assert.ok(/versionName\s+'2\.0\.1'/.test(gradle),'Android versionName must be 2.0.1');
+assert.ok(ui.includes('1 exemplaire conservé'),'market UI must preserve the duplicate-selling rule');
+assert.ok(ui.includes("hide($('#sub'))"),'fishing phase subtitles must stay hidden');
+assert.ok(ui.includes("['cfound','packFound','packQuality','packPity','cardCopiesTotal']"),'collection and booster counters requested for removal must stay hidden without breaking their IDs');
+assert.ok(ui.includes("`${capture[1]} capture(s)`"),'card list must keep only the fishing capture count instead of the owned-copy sentence');
+assert.ok(ui.includes("/^Cartes possédées$/i"),'card modal owned-copy row must be hidden');
+assert.ok(ui.includes("/^Statut$/i"),'fishing result status row must be hidden');
+assert.ok(/versionCode\s+26/.test(gradle),'Android versionCode must be 26');
+assert.ok(/versionName\s+'2\.0\.2'/.test(gradle),'Android versionName must be 2.0.2');
 assert.ok(gradle.includes("applicationId 'com.openai.pechemerveilles'"),'applicationId must remain stable for in-place update');
 
-console.log('v2.0.1 duplicate card market tests passed');
+console.log('v2.0.2 UI cleanup and duplicate card market tests passed');
