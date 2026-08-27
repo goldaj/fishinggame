@@ -1,10 +1,10 @@
 /* Fishing Cards 2.0.5 — booster-only presentation/input patch.
    Historical 1.7.x gesture files stay untouched; this layer changes hit area and rendering only. */
 
-/* The moving torn piece is now a thin strip centered exactly on the 78px tear seam. */
+/* The moving torn piece is now a very thin strip centered exactly on the 78px tear seam. */
 #boosterOpening .tactile-pack .pack-lid{
-  top:70px!important;
-  height:16px!important;
+  top:72px!important;
+  height:12px!important;
   border-top:1px solid rgba(255,255,255,.12);
   border-bottom:1px solid rgba(255,255,255,.28);
   border-radius:3px;
