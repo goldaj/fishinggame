@@ -6,8 +6,8 @@ The private app-signing key is intentionally **not stored in this public reposit
 
 - Application ID: `com.openai.pechemerveilles`
 - Canonical release certificate SHA-256 fingerprint:
-  `C4:67:56:DD:0E:B0:93:76:D9:74:34:DB:3C:C5:FF:D0:34:ED:F1:DA:CA:50:6D:1F:C9:D2:6A:C5:32:9D:FA:C5`
-- Certificate validity: 2026-08-24 through 2054-01-09.
+  `EF:1C:77:18:48:56:7E:58:4B:06:9F:B4:9C:7A:50:49:16:BC:9A:27:A0:F4:8B:91:AF:E9:D6:A3:40:C6:34:B2`
+- This fingerprint was re-verified against the distributed signed 2.0.1 APK on 2026-08-27.
 
 Every distributed update must be signed with the same private key. Replacing the key would make Android treat the APK as an incompatible update unless an explicit supported key-rotation path is used.
 
