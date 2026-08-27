@@ -1,0 +1,21 @@
+name: Card Art Validation
+
+on:
+  push:
+    branches: ["feature/generated-card-art"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-card-art:
+    name: Validate generated card art mapping
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+      - name: Validate runtime IDs, manifest and WebP assets
+        run: node tests/card-art-manifest.test.js
