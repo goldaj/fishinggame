@@ -1,7 +1,7 @@
 (function(root){'use strict';
 const A=root.CatchArt;if(!A||typeof A.render!=='function')return;
 const previous=A.render.bind(A);
-const GENERATED_IDS=new Set([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40]);
+const GENERATED_IDS=new Set([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50]);
 function pad(id){return String(Math.round(Number(id)||0)).padStart(3,'0')}
 function generated(c){return `<img class="catch-svg catch-generated-art" src="card-art/${pad(c.id)}.webp" alt="" aria-hidden="true" draggable="false" loading="lazy" decoding="async">`}
 function base(inner,c){return `<svg class="catch-svg catch-trash" viewBox="0 0 96 64" aria-hidden="true" data-catch="${c.assetKey}"><g fill="currentColor" fill-opacity=".13" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round">${inner}</g></svg>`}

@@ -358,5 +358,95 @@
     "height": 256,
     "transparent": true,
     "sha256": "18a0414af74225607c69172bcd7fddee44c58f21b3ab1e49d65026999a5096e4"
+  },
+  {
+    "id": 41,
+    "name": "Thon rouge",
+    "file": "041.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "ccd13792d1c7d2d973fe2e4ddec2c8154d5b3948a424885397cf77c314320e52"
+  },
+  {
+    "id": 42,
+    "name": "Bonite à dos rayé",
+    "file": "042.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "1a0c6ac5332289c1cefe2e84d2d24c19e4d63a857b9ea74eb5a1ec146187d06d"
+  },
+  {
+    "id": 43,
+    "name": "Espadon",
+    "file": "043.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "b54e3f22515b4c385c4ddb3f2db1deefc92174a761f58da67b4e557fe5e07783"
+  },
+  {
+    "id": 44,
+    "name": "Marlin bleu",
+    "file": "044.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "7b1f41198ad85372aa1d0e336a21c1aa6e88b3228e6eb1df52f85aa5e6ad794f"
+  },
+  {
+    "id": 45,
+    "name": "Barracuda",
+    "file": "045.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "026a768a91a55c1b40c63f40c0e926c1477420c3e9f3fc767842bffb799e1614"
+  },
+  {
+    "id": 46,
+    "name": "Mérou brun",
+    "file": "046.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "128da5d219d5efea347a785e6a515f924b90825c3d6666ad3096df9f8c2dba84"
+  },
+  {
+    "id": 47,
+    "name": "Vivaneau rouge",
+    "file": "047.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "da5fcfbee8cf5dc0ce7f1e97df0aaca698206ada7257076da58cc81c63882764"
+  },
+  {
+    "id": 48,
+    "name": "Poisson-clown",
+    "file": "048.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "9cadafd84a4fdbf1d10d3d79be956a1cf1a475fc97b99c728a2b3d1e720e5bf8"
+  },
+  {
+    "id": 49,
+    "name": "Poisson-chirurgien",
+    "file": "049.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "d1fb5a4310656e1a401518fe57a0a5d67caf6b1258c6f160c30599395333f395"
+  },
+  {
+    "id": 50,
+    "name": "Poisson-perroquet",
+    "file": "050.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "5efd2915e47d708fd101508248de5a66fa6ad73da81fb7b3b9f3facb3734399c"
   }
 ]
