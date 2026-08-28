@@ -448,5 +448,95 @@
     "height": 256,
     "transparent": true,
     "sha256": "5efd2915e47d708fd101508248de5a66fa6ad73da81fb7b3b9f3facb3734399c"
+  },
+  {
+    "id": 51,
+    "name": "Poisson-papillon",
+    "file": "051.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "1db3a306b879843117f3322fdd633d358d3afacfe895b3e52b6b0d5968dcd2f8"
+  },
+  {
+    "id": 52,
+    "name": "Baliste",
+    "file": "052.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "2ba96294355ec0d26844be653688e9ec65a1f873a9a402e5c3fba37cf66fa7c6"
+  },
+  {
+    "id": 53,
+    "name": "Rascasse rouge",
+    "file": "053.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "8160e0de7d185d2e95c193f42166a9ba34f6cd432b11ddeb3ed915ebb2580bed"
+  },
+  {
+    "id": 54,
+    "name": "Saint-Pierre",
+    "file": "054.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "c9dfe47f696eb7e48786d105259858245ac300f38a566ca8309203c9853fdacc"
+  },
+  {
+    "id": 55,
+    "name": "Lotte de mer",
+    "file": "055.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "eb0debbe39cf25c6519d7441d63e2b4079c355f2256247e5163b840ddc8563a2"
+  },
+  {
+    "id": 56,
+    "name": "Baudroie commune",
+    "file": "056.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "91763bf7c0787b16afbfb31d4feb20e3f9c2f71de1ef4ce8455d2e63806c71af"
+  },
+  {
+    "id": 57,
+    "name": "Petite roussette",
+    "file": "057.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "041a68df7ef3ce43b18cdbb842fd253e1102f85a890c13ac12a0f56042d2eeab"
+  },
+  {
+    "id": 58,
+    "name": "Requin-marteau",
+    "file": "058.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "3e45ca7fccd8335bd31a7394eae14357834ecb8086c946903e9cf1c5fa899757"
+  },
+  {
+    "id": 59,
+    "name": "Raie bouclée",
+    "file": "059.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "273b8e4c25f661121eb5d5e429e1f634e4268613f3f63ba86da11eeb91036170"
+  },
+  {
+    "id": 60,
+    "name": "Raie manta",
+    "file": "060.webp",
+    "width": 256,
+    "height": 256,
+    "transparent": true,
+    "sha256": "6475f4e4eca2cf69c43e22a977c8b754377b1462413693e75e3fe80d4e340409"
   }
 ]
