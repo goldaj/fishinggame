@@ -1,0 +1,72 @@
+[
+  {
+    "id": 81,
+    "name": "Poisson-lune",
+    "file": "081.webp",
+    "status": "generation-pending",
+    "reference": "Poisson-lune : grand poisson marin presque circulaire et très comprimé latéralement, gris argenté, corps tronqué à l’arrière avec hautes nageoires dorsale et anale. Montrer le poisson entier isolé, sans décor."
+  },
+  {
+    "id": 82,
+    "name": "Poisson-globe",
+    "file": "082.webp",
+    "status": "generation-pending",
+    "reference": "Poisson-globe : poisson trapu presque sphérique, beige à jaune pâle avec petites taches sombres, grands yeux et petite bouche en bec. Montrer la forme non gonflée mais bien ronde, entière et isolée."
+  },
+  {
+    "id": 83,
+    "name": "Poisson-scie",
+    "file": "083.webp",
+    "status": "generation-pending",
+    "reference": "Poisson-scie : grand poisson cartilagineux au corps allongé avec rostre très long et plat bordé de dents régulières comme une scie. Gris-brun, profil entier isolé, rostre bien visible."
+  },
+  {
+    "id": 84,
+    "name": "Poisson-ange",
+    "file": "084.webp",
+    "status": "generation-pending",
+    "reference": "Poisson-ange : poisson tropical haut et comprimé latéralement, nageoires dorsale et anale allongées, bandes jaunes, noires et claires. Silhouette élégante entière et isolée."
+  },
+  {
+    "id": 85,
+    "name": "Murène commune",
+    "file": "085.webp",
+    "status": "generation-pending",
+    "reference": "Murène commune : poisson serpentiforme robuste, brun-vert marbré de taches plus sombres, tête épaisse et bouche légèrement entrouverte. Corps ondulant entier isolé, sans roche."
+  },
+  {
+    "id": 86,
+    "name": "Morue de l’Atlantique",
+    "file": "086.webp",
+    "status": "generation-pending",
+    "reference": "Morue de l’Atlantique : poisson allongé brun olive à gris, flancs mouchetés, ventre plus clair, trois nageoires dorsales distinctes et petit barbillon sous le menton. Profil entier isolé."
+  },
+  {
+    "id": 87,
+    "name": "Flétan de l’Atlantique",
+    "file": "087.webp",
+    "status": "generation-pending",
+    "reference": "Flétan de l’Atlantique : grand poisson plat allongé et asymétrique, brun sombre sur la face supérieure, deux yeux du même côté et large bouche. Silhouette entière isolée."
+  },
+  {
+    "id": 88,
+    "name": "Requin-renard d’azur",
+    "file": "088.webp",
+    "status": "generation-pending",
+    "reference": "Requin-renard d’azur : requin fuselé bleu-gris avec lobe supérieur de la nageoire caudale extrêmement long, presque aussi long que le corps. Profil entier isolé."
+  },
+  {
+    "id": 89,
+    "name": "Coelacanthe spectral",
+    "file": "089.webp",
+    "status": "generation-pending",
+    "reference": "Coelacanthe spectral : coelacanthe massif bleu sombre à gris ardoise, nageoires charnues lobées et écailles texturées, silhouette préhistorique reconnaissable. Animal entier isolé, sans décor."
+  },
+  {
+    "id": 90,
+    "name": "Esturgeon de cristal",
+    "file": "090.webp",
+    "status": "generation-pending",
+    "reference": "Esturgeon de cristal : esturgeon allongé argenté très pâle avec rangées de plaques osseuses, museau pointu et barbilles sous la tête. Reflets froids cristallins discrets, profil entier isolé."
+  }
+]
