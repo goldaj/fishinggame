@@ -75,7 +75,6 @@ function gitBlobSha(path){
   return crypto.createHash('sha1').update(header).update(data).digest('hex');
 }
 
-// Exact 2.0.1 / validated 1.7.5 tactile engine files. Any byte change is a regression.
 const tactileFiles={
   'v160-ui.js':'8ad170b7fa454d772122c4028746f3d0bd1f3dcf',
   'v170-ui.js':'2d8dc379d24a07be5612c2930caff1746ba88b2f',
@@ -89,7 +88,6 @@ for(const [name,sha] of Object.entries(tactileFiles)){
   assert.strictEqual(gitBlobSha(A+name),sha,`${name} must remain byte-identical to the validated 2.0.1 tactile runtime`);
 }
 
-// Exact runtime ordering needed to avoid the legacy button-based booster.
 const order=['v160-ui.js','v170-ui.js','v171-ui.js','v174.js','v174-ui.js','v175.js','v175-ui.js','v180-ui.js','v190-ui.js','v200-ui.js','v201-ui.js'];
 let last=-1;
 for(const name of order){
@@ -102,7 +100,6 @@ assert.ok(fs.readFileSync(A+'v174.js','utf8').includes("G.releaseVersion='1.7.4'
 assert.ok(fs.readFileSync(A+'v175.js','utf8').includes("G.releaseVersion='1.7.5'"),'v175 must advance the tactile runtime to 1.7.5');
 assert.ok(ui.includes("G.releaseVersion='2.0.4'"),'final UI layer must publish 2.0.4 only after tactile initialization');
 
-// The cleanup layer must never mutate the booster DOM again.
 for(const forbidden of ['boosterOpening','tearFallback','tearZone','gesture-copy','edge-copy','swipe-hint','reveal-card-foot','blankTextNodes']){
   assert.ok(!ui.includes(forbidden),`v201-ui.js must not touch booster runtime token ${forbidden}`);
 }
@@ -112,7 +109,6 @@ assert.ok(cleanupCss.includes('visibility: hidden !important'),'booster copy rem
 assert.ok(cleanupCss.includes('#boosterOpening #tearFallback'),'the explicit open-without-gesture fallback must be visually removed without deleting its DOM node');
 assert.ok(cleanupCss.includes('pointer-events: none !important'),'hidden fallback must not steal touches');
 
-// Requested non-booster copy cleanup.
 assert.ok(ui.includes("`${capture[1]} capture(s)`"),'card list must keep only fishing capture count');
 assert.ok(ui.includes("/^Cartes possédées$/i"),'card modal owned-copy row must be hidden');
 assert.ok(ui.includes("/^Statut$/i"),'fishing result status row must be hidden');
@@ -122,8 +118,8 @@ assert.ok(cleanupCss.includes('#market .section-head p'),'market explanatory cop
 assert.ok(cleanupCss.includes('#collection .section-head h2'),'Collection heading requested for removal must stay hidden');
 assert.ok(cleanupCss.includes('#packOdds small'),'booster trash/explanatory small print must stay hidden');
 
-assert.ok(/versionCode\s+32/.test(gradle),'Android versionCode must be 32');
-assert.ok(/versionName\s+'2\.0\.8'/.test(gradle),'Android versionName must be 2.0.8');
+assert.ok(/versionCode\s+33/.test(gradle),'Android versionCode must be 33');
+assert.ok(/versionName\s+'2\.0\.9'/.test(gradle),'Android versionName must be 2.0.9');
 assert.ok(gradle.includes("applicationId 'com.openai.pechemerveilles'"),'applicationId must remain stable for in-place update');
 
-console.log('v2.0.4 validated engine + Android 2.0.8 packaging tests passed');
+console.log('v2.0.4 validated engine + Android 2.0.9 packaging tests passed');
