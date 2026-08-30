@@ -91,9 +91,21 @@ function patchBoosterRevealCopy(){
   });
 }
 
-function sync(){scheduled=false;installFishingHeroClick();installPackPreviewClick();renderFishingOdds();patchBoosterOdds();patchExplanations();patchCollectionMeta();patchModal();patchBoosterRevealCopy()}
+function patchTrashCatchSummary(){
+  const result=$('#result'),landed=$('#landedFish'),status=$('#statusText');
+  if(!result||result.classList.contains('hide'))return;
+  const trashActive=clean(status&&status.textContent)==='Déchet'||!!(landed&&landed.querySelector('.fishing-trash-card-v200'));
+  if(!trashActive)return;
+  $$('#result .catch-summary-stat-v180').forEach(row=>{
+    const label=clean(row.querySelector('small')&&row.querySelector('small').textContent);
+    const value=clean(row.querySelector('strong')&&row.querySelector('strong').textContent);
+    if(label==='Collection'||/^Carte\s*×/i.test(value))row.remove();
+  });
+}
+
+function sync(){scheduled=false;installFishingHeroClick();installPackPreviewClick();renderFishingOdds();patchBoosterOdds();patchExplanations();patchCollectionMeta();patchModal();patchBoosterRevealCopy();patchTrashCatchSummary()}
 function schedule(){if(scheduled)return;scheduled=true;requestAnimationFrame(sync)}
 new MutationObserver(schedule).observe(document.body,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['class','disabled']});
-G.productVersion='2.0.8';G.releaseVersion='2.0.8';
+G.productVersion='2.0.9';G.releaseVersion='2.0.9';
 sync();
 })();
