@@ -1,4 +1,5 @@
 const assert=require('assert');
+const fs=require('fs');
 const G=require('../app/src/main/assets/v208.js');
 
 assert.ok(G,'2.0.8 core must load');
@@ -63,4 +64,12 @@ assert.deepStrictEqual(counts,{commune:200,inhabituelle:125,rare:90,epique:50,le
   assert.ok(r.cards.every(x=>typeof x.fishingUnlockText==='string'),'booster result should explain rank-based fishing without changing the draw');
 }
 
-console.log('v2.0.8 fishing balance tests passed');
+{
+  const ui=fs.readFileSync('app/src/main/assets/v208-ui.js','utf8');
+  assert.ok(ui.includes('function patchTrashCatchSummary()'),'trash fishing UI must have an explicit cleanup pass');
+  assert.ok(ui.includes("label==='Collection'"),'trash fishing cleanup must remove the Collection row');
+  assert.ok(ui.includes('/^Carte\\s*×/i'),'trash fishing cleanup must also remove a Carte ×N row defensively');
+  assert.ok(ui.includes("G.productVersion='2.0.9'"),'browser UI must publish 2.0.9');
+}
+
+console.log('v2.0.9 trash cleanup tests passed');
