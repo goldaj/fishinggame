@@ -48,7 +48,7 @@ function fish(){return (G.cardPool?G.cardPool():[]).filter(c=>c&&!c.isTrash&&c.i
 function level(s){return Math.max(0,Math.min(5,Math.floor(finite(s&&s.upgrades&&s.upgrades.rareline))))}
 function pick(items,weight,rand=Math.random){
   if(!items.length)return null;
-  const weights=items.map(x=>Math.max(0,finite(weight(x))));
+  const weights=items.map((x,i)=>Math.max(0,finite(weight(x,i))));
   const total=weights.reduce((a,b)=>a+b,0);
   if(total<=0)return items[Math.min(items.length-1,Math.floor(clamp01(rand())*items.length))];
   let r=clamp01(rand())*total;
