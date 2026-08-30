@@ -27,6 +27,13 @@ assert.deepStrictEqual(counts,{commune:200,inhabituelle:125,rare:90,epique:50,le
 
 {
   const s=G.defaultState();s.totalSold=999999;
+  const values=[.999,.45,0];let i=0;
+  const c=G.rollCatch(s,()=>values[Math.min(i++,values.length-1)]);
+  assert.strictEqual(c.rarity,'inhabituelle','actual catch roll must follow the rank-10 rarity table, not a uniform rarity pick');
+}
+
+{
+  const s=G.defaultState();s.totalSold=999999;
   const boosterBefore=G.cardOdds().map(x=>[x.rarity,x.p]);
   s.upgrades.rareline=5;
   const boosterAfter=G.cardOdds().map(x=>[x.rarity,x.p]);
