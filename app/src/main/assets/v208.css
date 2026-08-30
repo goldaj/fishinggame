@@ -1,0 +1,13 @@
+/* 2.0.8 interaction/balance presentation. No validated tactile geometry is changed. */
+#fish .hero{cursor:pointer}
+#boosterPreview .mini-pack[role="button"]{cursor:pointer;outline:none}
+#boosterPreview .mini-pack[role="button"]:focus-visible{box-shadow:0 0 0 3px rgba(255,255,255,.78),0 0 0 6px rgba(21,83,109,.45)}
+
+/* Trash cards do not need a fake collection number badge. */
+.fishing-trash-card-v200 .reveal-card-top>span,
+#cards .trash-card-v200 .num{display:none!important}
+.fishing-trash-card-v200 .reveal-card-top{justify-content:flex-end!important}
+
+.fishing-odds-v208{margin:10px 0 0;padding:10px 12px;border-radius:14px;background:rgba(10,48,65,.42);font-size:12px;line-height:1.45;text-align:center}
+.fishing-odds-v208 b{font-weight:800}
+.fishing-odds-v208 span{white-space:nowrap}
