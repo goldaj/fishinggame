@@ -1,0 +1,72 @@
+[
+  {
+    "id": 91,
+    "name": "Poisson-lion des brumes",
+    "file": "091.webp",
+    "status": "generation-pending",
+    "reference": "Poisson-lion fantastique inspiré du poisson-lion réel : larges nageoires rayonnées en éventail, longues épines, palette gris argenté et bleu brume avec touches rouge sombre, silhouette entière isolée."
+  },
+  {
+    "id": 92,
+    "name": "Léviathan des abysses",
+    "file": "092.webp",
+    "status": "generation-pending",
+    "reference": "Créature abyssale colossale de type poisson/dragon marin, corps sombre bleu-noir, gueule imposante, nageoires massives et lueurs bioluminescentes discrètes, sujet entier isolé."
+  },
+  {
+    "id": 93,
+    "name": "Serpent marin runique",
+    "file": "093.webp",
+    "status": "generation-pending",
+    "reference": "Long serpent marin fantastique, corps sinueux écailleux bleu-vert sombre avec quelques runes lumineuses intégrées aux écailles, tête reptilienne marine, sujet entier isolé."
+  },
+  {
+    "id": 94,
+    "name": "Régalec des constellations",
+    "file": "094.webp",
+    "status": "generation-pending",
+    "reference": "Régalec fantastique inspiré du poisson-ruban : corps très long argenté-bleuté, crête rouge fine, motifs stellaires subtils sur les flancs, sujet entier isolé."
+  },
+  {
+    "id": 95,
+    "name": "Poisson-pierre de braise",
+    "file": "095.webp",
+    "status": "generation-pending",
+    "reference": "Poisson-pierre massif et bosselé, camouflage rocheux brun-noir avec fissures rouge-orangé évoquant des braises, nageoires épineuses courtes, sujet entier isolé."
+  },
+  {
+    "id": 96,
+    "name": "Kelpie des marées",
+    "file": "096.webp",
+    "status": "generation-pending",
+    "reference": "Kelpie marin fantastique : silhouette équine aquatique, crinière d’algues, peau bleu-vert sombre, nageoires discrètes et queue fluide, sujet entier isolé."
+  },
+  {
+    "id": 97,
+    "name": "Aspidochelone antique",
+    "file": "097.webp",
+    "status": "generation-pending",
+    "reference": "Tortue marine mythique gigantesque, carapace ancienne épaisse évoquant un îlot rocheux couvert de quelques algues, tête et nageoires de tortue marine, sujet entier isolé."
+  },
+  {
+    "id": 98,
+    "name": "Makara des tempêtes",
+    "file": "098.webp",
+    "status": "generation-pending",
+    "reference": "Makara fantastique marin, mélange de crocodile, poisson et éléphant stylisé, corps écailleux bleu-tempête, nageoires puissantes et défenses/crocs, sujet entier isolé."
+  },
+  {
+    "id": 99,
+    "name": "Hydre océanique",
+    "file": "099.webp",
+    "status": "generation-pending",
+    "reference": "Hydre marine fantastique à plusieurs têtes serpentines reliées à un même corps aquatique, écailles bleu profond/vert sombre, nageoires et crêtes marines, sujet entier isolé."
+  },
+  {
+    "id": 100,
+    "name": "Kraken des marées",
+    "file": "100.webp",
+    "status": "generation-pending",
+    "reference": "Kraken fantastique : grand céphalopode massif, tête de poulpe/calmar et huit longs tentacules bien lisibles, palette rouge sombre-violet marin, sujet entier isolé."
+  }
+]
