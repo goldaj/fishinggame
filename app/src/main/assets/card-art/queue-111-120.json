@@ -1,0 +1,72 @@
+[
+  {
+    "id": 111,
+    "name": "Spirlin",
+    "file": "111.webp",
+    "status": "generation-pending",
+    "reference": "Petit cyprinidé argenté réel, corps élancé, dos gris-vert, ligne latérale visible et nageoires pâles, sujet entier isolé sans texte ni décor, style schématique existant."
+  },
+  {
+    "id": 112,
+    "name": "Ide mélanote",
+    "file": "112.webp",
+    "status": "generation-pending",
+    "reference": "Cyprinidé réel au corps robuste argenté à légèrement doré, dos sombre et nageoires inférieures rouge-orangé, sujet entier isolé sans texte ni décor, style schématique existant."
+  },
+  {
+    "id": 113,
+    "name": "Aspe",
+    "file": "113.webp",
+    "status": "generation-pending",
+    "reference": "Grand cyprinidé réel élancé et argenté, dos gris, grosse bouche terminale légèrement relevée et nageoires grisâtres, sujet entier isolé sans texte ni décor, style schématique existant."
+  },
+  {
+    "id": 114,
+    "name": "Apron du Rhône",
+    "file": "114.webp",
+    "status": "generation-pending",
+    "reference": "Petit poisson benthique réel allongé brun-jaune, bandes et taches sombres, deux nageoires dorsales bien visibles, sujet entier isolé sans texte ni décor, style schématique existant."
+  },
+  {
+    "id": 115,
+    "name": "Ombre commun",
+    "file": "115.webp",
+    "status": "generation-pending",
+    "reference": "Salmonidé réel élancé argenté, grande nageoire dorsale haute et colorée avec mouchetures, quelques points sombres sur les flancs, sujet entier isolé sans texte ni décor, style schématique existant."
+  },
+  {
+    "id": 116,
+    "name": "Corégone lavaret",
+    "file": "116.webp",
+    "status": "generation-pending",
+    "reference": "Corégone réel au corps argenté élancé, dos bleu-gris, petite bouche et nageoire adipeuse caractéristique, sujet entier isolé sans texte ni décor, style schématique existant."
+  },
+  {
+    "id": 117,
+    "name": "Corégone blanc",
+    "file": "117.webp",
+    "status": "generation-pending",
+    "reference": "Corégone réel argenté clair, dos gris-vert, silhouette légèrement plus trapue et nageoire adipeuse, sujet entier isolé sans texte ni décor, style schématique existant."
+  },
+  {
+    "id": 118,
+    "name": "Truite arc-en-ciel",
+    "file": "118.webp",
+    "status": "generation-pending",
+    "reference": "Truite réelle au corps argenté-olive, large bande latérale rose à rouge et nombreux petits points noirs sur le dos et les nageoires, sujet entier isolé sans texte ni décor, style schématique existant."
+  },
+  {
+    "id": 119,
+    "name": "Omble chevalier",
+    "file": "119.webp",
+    "status": "generation-pending",
+    "reference": "Omble réel au corps sombre bleu-vert, ventre orangé à rouge, points clairs sur les flancs et liserés blancs aux nageoires inférieures, sujet entier isolé sans texte ni décor, style schématique existant."
+  },
+  {
+    "id": 120,
+    "name": "Omble de fontaine",
+    "file": "120.webp",
+    "status": "generation-pending",
+    "reference": "Omble réel au dos olive vermiculé, flancs mouchetés de points rouges et jaunes, ventre orange et liserés blancs aux nageoires, sujet entier isolé sans texte ni décor, style schématique existant."
+  }
+]
