@@ -1,0 +1,72 @@
+[
+  {
+    "id": 171,
+    "name": "Tambaqui",
+    "file": "171.webp",
+    "status": "generation-pending",
+    "reference": "Grand characidé réel au corps haut gris sombre, ventre plus clair et nageoires puissantes, sujet entier isolé sans texte ni décor, style schématique existant."
+  },
+  {
+    "id": 172,
+    "name": "Poisson-tigre goliath",
+    "file": "172.webp",
+    "status": "generation-pending",
+    "reference": "Très grand poisson-tigre africain argenté, corps puissant, grandes dents triangulaires visibles et nageoires rougeâtres, sujet entier isolé sans texte ni décor, style schématique existant."
+  },
+  {
+    "id": 173,
+    "name": "Poisson-tigre africain",
+    "file": "173.webp",
+    "status": "generation-pending",
+    "reference": "Poisson-tigre réel argenté et fusiforme, mâchoire dentée, bandes sombres discrètes et nageoires rouge-orangé, sujet entier isolé sans texte ni décor, style schématique existant."
+  },
+  {
+    "id": 174,
+    "name": "Perche du Nil",
+    "file": "174.webp",
+    "status": "generation-pending",
+    "reference": "Grande perche réelle argentée-olive, corps massif, grosse bouche et deux nageoires dorsales, sujet entier isolé sans texte ni décor, style schématique existant."
+  },
+  {
+    "id": 175,
+    "name": "Tilapia du Nil",
+    "file": "175.webp",
+    "status": "generation-pending",
+    "reference": "Tilapia réel gris-olive au corps haut comprimé, nageoire dorsale épineuse et bandes verticales discrètes, sujet entier isolé sans texte ni décor, style schématique existant."
+  },
+  {
+    "id": 176,
+    "name": "Tilapia bleu",
+    "file": "176.webp",
+    "status": "generation-pending",
+    "reference": "Tilapia réel bleu-gris au corps haut, reflets turquoise et longue nageoire dorsale, sujet entier isolé sans texte ni décor, style schématique existant."
+  },
+  {
+    "id": 177,
+    "name": "Poisson-éléphant",
+    "file": "177.webp",
+    "status": "generation-pending",
+    "reference": "Poisson africain réel brun sombre, corps comprimé et museau inférieur allongé en petite trompe, sujet entier isolé sans texte ni décor, style schématique existant."
+  },
+  {
+    "id": 178,
+    "name": "Polyptère du Sénégal",
+    "file": "178.webp",
+    "status": "generation-pending",
+    "reference": "Polyptère réel allongé gris-olive, nombreux petits ailerons dorsaux séparés et nageoires pectorales charnues, sujet entier isolé sans texte ni décor, style schématique existant."
+  },
+  {
+    "id": 179,
+    "name": "Polyptère orné",
+    "file": "179.webp",
+    "status": "generation-pending",
+    "reference": "Polyptère réel sombre à motifs jaunes réticulés, corps allongé et série d’ailerons dorsaux, sujet entier isolé sans texte ni décor, style schématique existant."
+  },
+  {
+    "id": 180,
+    "name": "Poisson-couteau clown",
+    "file": "180.webp",
+    "status": "generation-pending",
+    "reference": "Poisson-couteau réel très comprimé argenté, dos arqué, longue nageoire anale et grandes taches rondes noires sur le flanc, sujet entier isolé sans texte ni décor, style schématique existant."
+  }
+]
