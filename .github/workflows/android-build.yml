@@ -123,7 +123,7 @@ jobs:
           unzip -tq "$APK"
           "${ANDROID_HOME}/build-tools/35.0.0/zipalign" -c -P 16 -v 4 "$APK"
           "${ANDROID_HOME}/build-tools/35.0.0/aapt" dump badging "$APK" | head -n 5
-          "${ANDROID_HOME}/build-tools/35.0.0/aapt" dump badging "$APK" | grep -F "versionCode='34' versionName='2.0.10'"
+          "${ANDROID_HOME}/build-tools/35.0.0/aapt" dump badging "$APK" | grep -F "versionCode='35' versionName='2.0.11'"
           unzip -l "$APK" | grep -E 'assets/(v140-catalog.js|v140.js|v140.css|v141.js|v141.css|v142-ui.js|v142.css|v143-ui.js|v143.css|v150.js|v150-ui.js|v150.css|v160.js|v160-ui.js|v160.css|v170.js|v170-ui.js|v170.css|v171-ui.js|v171.css|v173.js|v173-ui.js|v173.css|v174.js|v174-ui.js|v174.css|v175.js|v175-ui.js|v175.css|v180-ui.js|v180.css|v190-ui.js|v190.css|v200.js|v200-ui.js|v200.css|v201.js|v201-ui.js|v204.css|v205-ui.js|v205.css|v208.js|v208-ui.js|v208.css|v210.js|v210-ui.js|v210.css|index.html|app.js|catch-art.js|catch-art-unique.js|trash-art.js)'
           unzip -p "$APK" assets/index.html | grep -F '<title>Fishing Cards</title>'
           unzip -p "$APK" assets/index.html | grep -F '<link rel="stylesheet" href="v204.css">'
