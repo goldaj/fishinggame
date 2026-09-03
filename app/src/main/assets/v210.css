@@ -1,4 +1,4 @@
-/* 2.0.10 collection/pity presentation. Historical tactile opening mechanics are untouched. */
+/* 2.0.10 collection presentation. Historical tactile opening mechanics are untouched. */
 
 /* Keep the rarity signal visible on the real card after the edge-preview step. */
 .rarity-edge-v210{position:absolute;z-index:6;right:0;top:10px;bottom:10px;width:5px;border-radius:5px 0 0 5px;background:rgba(255,255,255,.12);pointer-events:none}
@@ -9,10 +9,6 @@
 .mythique>.rarity-edge-v210,.mythique .rarity-edge-v210{background:linear-gradient(#7bd8d2,#d69cff,#ffe08a);box-shadow:0 0 16px rgba(214,185,255,.86)}
 #cards .card{position:relative}
 #cards .card .rarity-edge-v210{top:12px;bottom:12px}
-
-/* Discovery pity is visible but does not compete with the rarity odds row. */
-.new-card-pity-v210{margin:7px 2px 0;padding:8px 11px;border-radius:12px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);color:#a9bec3;font-size:11px;text-align:center}
-.new-card-pity-v210 b{color:#d9e7e6}
 
 /* Missing cards advertise their deterministic collection price. */
 .missing-price-v210{margin-top:8px;padding-top:7px;border-top:1px solid rgba(255,255,255,.09);font-size:10px;font-weight:850;color:#edc67a}
@@ -31,6 +27,7 @@
 #cardModal .card-view-v210 #modalStats{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:8px}
 #cardModal .card-view-v210 .modal-stat{min-width:0}
 #cardModal .card-view-v210 .modal-stat strong{overflow-wrap:anywhere}
+.unknown-card-art-v210{display:grid;place-items:center;width:100%;height:100%;font-size:4rem;font-weight:900;opacity:.38}
 .card-buy-panel-v210{grid-column:1/-1;padding:13px;border-radius:16px;background:rgba(237,198,122,.08);border:1px solid rgba(237,198,122,.2)}
 .card-buy-panel-v210 p{margin:0 0 9px;color:#c9d8d9;font-size:12px;line-height:1.4}
 .card-buy-panel-v210 b{color:#edc67a}
