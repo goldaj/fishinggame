@@ -21,17 +21,6 @@ function patchRarityEdges(){
   $$('#cards .card').forEach(addRarityEdge);
 }
 
-function ensurePityRow(){
-  const anchor=$('#fishingOddsV208')||$('#fish .hint');if(!anchor||!G.currentState||typeof G.newCardPityStatus!=='function')return;
-  let row=$('#newCardPityV210');
-  if(!row){row=document.createElement('div');row.id='newCardPityV210';row.className='new-card-pity-v210';anchor.insertAdjacentElement('afterend',row)}
-  const x=G.newCardPityStatus(G.currentState),pct=(x.chance*100).toFixed(1).replace('.',',');
-  const text=x.chance>=x.max
-    ?`Bonus nouvelle carte : <b>${pct} %</b> · plafond atteint après ${x.dryStreak} prises sans nouveauté`
-    :`Bonus nouvelle carte : <b>${pct} %</b> · +0,1 point par prise sans nouveauté`;
-  if(row.innerHTML!==text)row.innerHTML=text;
-}
-
 function patchMissingPrices(){
   const s=G.currentState;if(!s)return;
   $$('#cards [data-card]').forEach(button=>{
@@ -49,10 +38,11 @@ function fullCardHtml(c,known,copies){
   const rarity=c.isTrash?'Commune · Déchet':c.rarityLabel;
   const footLeft=known?'Collection':'À découvrir ou acheter';
   const footRight=c.isTrash?'Pêche uniquement':`Rang ${c.gate}`;
+  const visual=known?art(c):'<span class="unknown-card-art-v210" aria-hidden="true">?</span>';
   return `<article class="reveal-card ${c.rarity} collection-card-preview-v210 is-visible">
     <div class="reveal-foil"></div>
     <div class="reveal-card-top"><span>${cardNumber(c)}</span><b>${stars}</b></div>
-    <div class="reveal-art">${art(c)}</div>
+    <div class="reveal-art">${visual}</div>
     <div class="reveal-card-copy">${badge}<h3>${c.name}</h3><p>${rarity}</p></div>
     <div class="reveal-card-foot"><span>${footLeft}</span><strong>${footRight}</strong></div>
     <i class="rarity-edge-v210" aria-hidden="true"></i>
@@ -120,7 +110,7 @@ function patchVisibleModal(){
   if(id)renderModal(id);
 }
 
-function sync(){scheduled=false;installCollectionModalCapture();ensurePityRow();patchMissingPrices();patchRarityEdges();ensureTopButton();patchVisibleModal();updateTopButton()}
+function sync(){scheduled=false;installCollectionModalCapture();patchMissingPrices();patchRarityEdges();ensureTopButton();patchVisibleModal();updateTopButton()}
 function schedule(){if(scheduled)return;scheduled=true;requestAnimationFrame(sync)}
 new MutationObserver(schedule).observe(document.body,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['class','disabled']});
 window.addEventListener('scroll',updateTopButton,{passive:true});document.addEventListener('scroll',updateTopButton,true);
