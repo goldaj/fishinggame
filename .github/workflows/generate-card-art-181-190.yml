@@ -1,0 +1,34 @@
+name: Generate card art 181-190
+
+on:
+  push:
+    branches: ["work/card-art-181-190-complete"]
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: work/card-art-181-190-complete
+          fetch-depth: 0
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install Pillow
+        run: python -m pip install --disable-pip-version-check pillow
+      - name: Generate assets and update metadata
+        run: python tools/generate_card_art_181_190.py
+      - name: Validate card art manifest
+        run: node tests/card-art-manifest.test.js
+      - name: Commit generated card art
+        run: |
+          rm -f tools/generate_card_art_181_190.py .github/workflows/generate-card-art-181-190.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "art: integrate card images 181-190 [generated-card-art-181-190]"
+          git push origin HEAD:work/card-art-181-190-complete
