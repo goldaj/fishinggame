@@ -1,0 +1,72 @@
+[
+  {
+    "id": 191,
+    "name": "Néon bleu",
+    "file": "191.webp",
+    "status": "generation-pending",
+    "reference": "Petit tétra réel argenté avec bande horizontale bleu électrique et zone rouge postérieure, sujet entier isolé sans texte ni décor, style schématique existant."
+  },
+  {
+    "id": 192,
+    "name": "Cardinalis",
+    "file": "192.webp",
+    "status": "generation-pending",
+    "reference": "Petit tétra réel au dos bleu irisé et large bande rouge sur toute la moitié inférieure du corps, sujet entier isolé sans texte ni décor, style schématique existant."
+  },
+  {
+    "id": 193,
+    "name": "Tétra empereur",
+    "file": "193.webp",
+    "status": "generation-pending",
+    "reference": "Tétra réel argenté-violet, bande latérale noire, reflets bleus et nageoires élégantes, sujet entier isolé sans texte ni décor, style schématique existant."
+  },
+  {
+    "id": 194,
+    "name": "Tétra citron",
+    "file": "194.webp",
+    "status": "generation-pending",
+    "reference": "Petit tétra réel jaune citron translucide, iris rouge et nageoires jaunes à noires, sujet entier isolé sans texte ni décor, style schématique existant."
+  },
+  {
+    "id": 195,
+    "name": "Tétra fantôme noir",
+    "file": "195.webp",
+    "status": "generation-pending",
+    "reference": "Petit tétra réel gris argenté, grande tache noire derrière l’opercule et nageoires sombres, sujet entier isolé sans texte ni décor, style schématique existant."
+  },
+  {
+    "id": 196,
+    "name": "Tétra du Congo",
+    "file": "196.webp",
+    "status": "generation-pending",
+    "reference": "Tétra réel irisé bleu-orangé, corps comprimé et nageoires allongées aux bords clairs, sujet entier isolé sans texte ni décor, style schématique existant."
+  },
+  {
+    "id": 197,
+    "name": "Discus",
+    "file": "197.webp",
+    "status": "generation-pending",
+    "reference": "Discus réel presque circulaire, corps haut et comprimé avec bandes verticales et couleurs chaudes, sujet entier isolé sans texte ni décor, style schématique existant."
+  },
+  {
+    "id": 198,
+    "name": "Scalaire",
+    "file": "198.webp",
+    "status": "generation-pending",
+    "reference": "Scalaire réel très haut et comprimé, longues nageoires triangulaires et bandes verticales sombres, sujet entier isolé sans texte ni décor, style schématique existant."
+  },
+  {
+    "id": 199,
+    "name": "Oscar",
+    "file": "199.webp",
+    "status": "generation-pending",
+    "reference": "Grand cichlidé réel sombre, corps massif, motifs orange-rouge irréguliers et grosse tête, sujet entier isolé sans texte ni décor, style schématique existant."
+  },
+  {
+    "id": 200,
+    "name": "Cichlidé jaguar",
+    "file": "200.webp",
+    "status": "generation-pending",
+    "reference": "Cichlidé réel argenté-brun couvert de taches noires irrégulières rappelant un jaguar, sujet entier isolé sans texte ni décor, style schématique existant."
+  }
+]
