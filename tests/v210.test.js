@@ -91,8 +91,14 @@ assert.strictEqual(G.collectionEconomyVersion,'2.0.10');
   assert.ok(ui.includes('fullCardHtml'),'collection modal must render a real full card');
   assert.ok(ui.includes('data-buy-card'),'missing card modal must expose a buy action');
   assert.ok(ui.includes("G.releaseVersion='2.0.10'"),'browser UI must publish 2.0.10 after tactile bootstrap');
+  assert.ok(!ui.includes('Bonus nouvelle carte'),'discovery pity probability must never be displayed to the player');
+  assert.ok(!ui.includes('newCardPityV210'),'discovery pity must have no UI row');
+  assert.ok(ui.includes("const visual=known?art(c):'<span class=\"unknown-card-art-v210\""),'unknown collection cards must not render their artwork');
+  assert.ok(ui.includes('<h3>${c.name}</h3>'),'unknown card detail can still reveal the species name');
   assert.ok(css.includes('.rarity-edge-v210'),'real cards must keep the rarity edge signal');
   assert.ok(css.includes('.collection-card-preview-v210'),'collection card preview styling must exist');
+  assert.ok(css.includes('.unknown-card-art-v210'),'unknown card artwork placeholder styling must exist');
+  assert.ok(!css.includes('.new-card-pity-v210'),'removed discovery pity row must not retain presentation CSS');
 }
 
 console.log('v2.0.10 discovery pity, collection purchase and UI source tests passed');
