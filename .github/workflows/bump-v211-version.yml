@@ -1,0 +1,42 @@
+name: Bump v2.0.11 packaging
+
+on:
+  push:
+    branches: ["work/v211-version-patch"]
+
+permissions:
+  contents: write
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: work/v211-version-patch
+      - name: Bump Android and runtime version
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          files = [
+            Path('app/build.gradle'),
+            Path('app/src/main/assets/v210.js'),
+            Path('app/src/main/assets/v210-ui.js'),
+            Path('tests/v201.test.js'),
+            Path('tests/v210.test.js'),
+            Path('.github/workflows/android-build.yml'),
+          ]
+          for p in files:
+            s=p.read_text()
+            s=s.replace('versionCode 34','versionCode 35')
+            s=s.replace("versionCode='34' versionName='2.0.10'","versionCode='35' versionName='2.0.11'")
+            s=s.replace("versionCode\\s+34","versionCode\\s+35")
+            s=s.replace('2.0.10','2.0.11')
+            p.write_text(s)
+          PY
+          rm .github/workflows/bump-v211-version.yml
+          git config user.name goldaj
+          git config user.email goldajj@gmail.com
+          git add -A
+          git commit -m "release: bump hotfix to Android 2.0.11 code 35"
+          git push origin HEAD:work/v211-version-patch
