@@ -1,0 +1,72 @@
+[
+  {
+    "id": 261,
+    "name": "Brosme",
+    "file": "261.webp",
+    "status": "generation-pending",
+    "reference": "Brosme réel brun-jaune, corps épais de gadidé avec longues nageoires dorsale et anale, sujet entier isolé sans texte ni décor."
+  },
+  {
+    "id": 262,
+    "name": "Grenadier de roche",
+    "file": "262.webp",
+    "status": "generation-pending",
+    "reference": "Grenadier de roche réel gris-brun, grosse tête et longue queue effilée, sujet entier isolé sans texte ni décor."
+  },
+  {
+    "id": 263,
+    "name": "Grenadier abyssal",
+    "file": "263.webp",
+    "status": "generation-pending",
+    "reference": "Grenadier abyssal réel sombre, tête massive et queue très fine, sujet entier isolé sans texte ni décor."
+  },
+  {
+    "id": 264,
+    "name": "Sabre noir",
+    "file": "264.webp",
+    "status": "generation-pending",
+    "reference": "Sabre noir réel noir argenté, corps extrêmement allongé en ruban et grande mâchoire, sujet entier isolé sans texte ni décor."
+  },
+  {
+    "id": 265,
+    "name": "Sabre argenté",
+    "file": "265.webp",
+    "status": "generation-pending",
+    "reference": "Sabre argenté réel brillant, corps très allongé en ruban argenté, sujet entier isolé sans texte ni décor."
+  },
+  {
+    "id": 266,
+    "name": "Escolier noir",
+    "file": "266.webp",
+    "status": "generation-pending",
+    "reference": "Escolier noir réel brun-noir, corps allongé puissant avec grandes dorsales, sujet entier isolé sans texte ni décor."
+  },
+  {
+    "id": 267,
+    "name": "Escolier serpent",
+    "file": "267.webp",
+    "status": "generation-pending",
+    "reference": "Escolier serpent réel noir, corps très long serpentiforme et tête prédatrice, sujet entier isolé sans texte ni décor."
+  },
+  {
+    "id": 268,
+    "name": "Bonite à ventre rayé",
+    "file": "268.webp",
+    "status": "generation-pending",
+    "reference": "Bonite réelle fuselée bleu acier avec plusieurs rayures sombres sur le ventre, sujet entier isolé sans texte ni décor."
+  },
+  {
+    "id": 269,
+    "name": "Thonine commune",
+    "file": "269.webp",
+    "status": "generation-pending",
+    "reference": "Thonine réelle fuselée bleu sombre avec petites taches et nageoires courtes, sujet entier isolé sans texte ni décor."
+  },
+  {
+    "id": 270,
+    "name": "Thon germon",
+    "file": "270.webp",
+    "status": "generation-pending",
+    "reference": "Thon germon réel argenté bleu avec très longues nageoires pectorales, sujet entier isolé sans texte ni décor."
+  }
+]
