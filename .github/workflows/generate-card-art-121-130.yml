@@ -1,0 +1,27 @@
+name: Generate card art 121-130
+on:
+  push:
+    branches: ["work/card-art-121-130-complete"]
+permissions:
+  contents: write
+jobs:
+  generate:
+    if: ${{ !contains(github.event.head_commit.message, '[generated-card-art-121-130]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Install Pillow
+        run: python -m pip install --quiet pillow
+      - name: Generate assets and update metadata
+        run: python scripts/generate-card-art-121-130.py
+      - name: Validate card art manifest
+        run: node tests/card-art-manifest.test.js
+      - name: Commit generated card art
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "art: integrate card images 121-130 [generated-card-art-121-130]"
+          git push origin HEAD:${GITHUB_REF_NAME}
