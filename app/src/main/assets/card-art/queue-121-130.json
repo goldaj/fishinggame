@@ -1,0 +1,72 @@
+[
+  {
+    "id": 121,
+    "name": "Huchon",
+    "file": "121.webp",
+    "status": "generation-pending",
+    "reference": "Grand salmonidé réel massif, corps brun-olive à cuivré, taches sombres irrégulières et grande tête, sujet entier isolé sans texte ni décor, style schématique existant."
+  },
+  {
+    "id": 122,
+    "name": "Saumon du Danube",
+    "file": "122.webp",
+    "status": "generation-pending",
+    "reference": "Grand salmonidé réel robuste argenté-brun, dos sombre, flancs légèrement cuivrés et petites taches noires, sujet entier isolé sans texte ni décor, style schématique existant."
+  },
+  {
+    "id": 123,
+    "name": "Lamproie marine",
+    "file": "123.webp",
+    "status": "generation-pending",
+    "reference": "Lamproie réelle allongée gris-brun marbré, bouche ronde en ventouse bien visible et absence de nageoires paires, sujet entier isolé sans texte ni décor, style schématique existant."
+  },
+  {
+    "id": 124,
+    "name": "Lamproie fluviatile",
+    "file": "124.webp",
+    "status": "generation-pending",
+    "reference": "Lamproie réelle élancée gris argenté à brun, corps lisse et bouche circulaire en ventouse, sujet entier isolé sans texte ni décor, style schématique existant."
+  },
+  {
+    "id": 125,
+    "name": "Lamproie de Planer",
+    "file": "125.webp",
+    "status": "generation-pending",
+    "reference": "Petite lamproie réelle fine brun-olive, ventre plus clair et bouche en ventouse discrète, sujet entier isolé sans texte ni décor, style schématique existant."
+  },
+  {
+    "id": 126,
+    "name": "Anguille d’Amérique",
+    "file": "126.webp",
+    "status": "generation-pending",
+    "reference": "Anguille réelle très allongée brun-olive, ventre jaunâtre et nageoire continue autour de la queue, sujet entier isolé sans texte ni décor, style schématique existant."
+  },
+  {
+    "id": 127,
+    "name": "Anguille japonaise",
+    "file": "127.webp",
+    "status": "generation-pending",
+    "reference": "Anguille réelle allongée gris-brun à olive, ventre clair et silhouette serpentine lisse, sujet entier isolé sans texte ni décor, style schématique existant."
+  },
+  {
+    "id": 128,
+    "name": "Alosa feinte",
+    "file": "128.webp",
+    "status": "generation-pending",
+    "reference": "Alose réelle argentée au corps comprimé, dos bleu-vert et série de petites taches sombres derrière l’opercule, sujet entier isolé sans texte ni décor, style schématique existant."
+  },
+  {
+    "id": 129,
+    "name": "Grande alose",
+    "file": "129.webp",
+    "status": "generation-pending",
+    "reference": "Grande alose réelle argentée, corps haut et comprimé, dos bleu-gris et une grosse tache sombre derrière l’opercule, sujet entier isolé sans texte ni décor, style schématique existant."
+  },
+  {
+    "id": 130,
+    "name": "Poisson-chat commun",
+    "file": "130.webp",
+    "status": "generation-pending",
+    "reference": "Petit poisson-chat réel brun sombre, tête large, plusieurs longs barbillons et nageoires robustes, sujet entier isolé sans texte ni décor, style schématique existant."
+  }
+]
