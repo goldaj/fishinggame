@@ -118,8 +118,8 @@ assert.ok(cleanupCss.includes('#market .section-head p'),'market explanatory cop
 assert.ok(cleanupCss.includes('#collection .section-head h2'),'Collection heading requested for removal must stay hidden');
 assert.ok(cleanupCss.includes('#packOdds small'),'booster trash/explanatory small print must stay hidden');
 
-assert.ok(/versionCode\s+34/.test(gradle),'Android versionCode must be 34');
-assert.ok(/versionName\s+'2\.0\.10'/.test(gradle),'Android versionName must be 2.0.10');
+assert.ok(/versionCode\s+35/.test(gradle),'Android versionCode must be 35');
+assert.ok(/versionName\s+'2\.0\.11'/.test(gradle),'Android versionName must be 2.0.11');
 assert.ok(gradle.includes("applicationId 'com.openai.pechemerveilles'"),'applicationId must remain stable for in-place update');
 
-console.log('v2.0.4 validated engine + Android 2.0.10 packaging tests passed');
+console.log('v2.0.4 validated engine + Android 2.0.11 packaging tests passed');
