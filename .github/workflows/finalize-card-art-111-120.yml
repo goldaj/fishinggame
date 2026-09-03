@@ -1,0 +1,25 @@
+name: Finalize card art 111-120
+on:
+  push:
+    branches: ["work/card-art-111-120-complete"]
+permissions:
+  contents: write
+jobs:
+  finalize:
+    if: ${{ !contains(github.event.head_commit.message, '[finalized-card-art-111-120]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Finalize manifest renderer and queue
+        run: node scripts/finalize-card-art-111-120.js
+      - name: Validate card art manifest
+        run: node tests/card-art-manifest.test.js
+      - name: Commit finalized card art
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "art: integrate card images 111-120 [finalized-card-art-111-120]"
+          git push origin HEAD:${GITHUB_REF_NAME}
