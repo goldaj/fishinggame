@@ -13,6 +13,8 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - name: Check syntax
-        run: node --check app/src/main/assets/v210.js
+        run: |
+          node --check app/src/main/assets/v210.js
+          node --check app/src/main/assets/v210-ui.js
       - name: Run v210 tests
         run: node tests/v210.test.js
