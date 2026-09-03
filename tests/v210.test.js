@@ -1,4 +1,5 @@
 const assert=require('assert');
+const fs=require('fs');
 const G=require('../app/src/main/assets/v210.js');
 
 assert.ok(G,'2.0.10 core must load');
@@ -57,12 +58,14 @@ assert.strictEqual(G.collectionEconomyVersion,'2.0.10');
   const s=G.defaultState();s.coins=1000000;s.cardCopiesById={};s.cardObtainedById={};s.unlocked=[];s.caughtById={};
   const c=G.cardPool().find(x=>x.rarity==='rare');
   const beforeCaught=Number(s.caughtById[c.id])||0;
+  const dryBefore=s.newCardDryStreak=7;
   const r=G.buyMissingCard(s,c.id);
   assert.strictEqual(r.ok,true);
   assert.strictEqual(r.cost,40000);
   assert.strictEqual(G.cardCopies(s,c.id),1);
   assert.strictEqual(G.isKnownInCollection(s,c),true);
   assert.strictEqual(Number(s.caughtById[c.id])||0,beforeCaught,'buying a card must not create a fake fishing capture');
+  assert.strictEqual(s.newCardDryStreak,dryBefore,'buying a card must not reset fishing drought');
   assert.strictEqual(G.buyMissingCard(s,c.id).reason,'owned','a known card cannot be bought again');
 }
 
@@ -81,4 +84,15 @@ assert.strictEqual(G.collectionEconomyVersion,'2.0.10');
   assert.strictEqual(r.ok,false);assert.strictEqual(r.reason,'coins');assert.strictEqual(r.cost,10000);
 }
 
-console.log('v2.0.10 discovery pity and collection purchase tests passed');
+{
+  const ui=fs.readFileSync('app/src/main/assets/v210-ui.js','utf8');
+  const css=fs.readFileSync('app/src/main/assets/v210.css','utf8');
+  assert.ok(ui.includes('collectionTopV210'),'collection must expose a scroll-to-top control');
+  assert.ok(ui.includes('fullCardHtml'),'collection modal must render a real full card');
+  assert.ok(ui.includes('data-buy-card'),'missing card modal must expose a buy action');
+  assert.ok(ui.includes("G.releaseVersion='2.0.10'"),'browser UI must publish 2.0.10 after tactile bootstrap');
+  assert.ok(css.includes('.rarity-edge-v210'),'real cards must keep the rarity edge signal');
+  assert.ok(css.includes('.collection-card-preview-v210'),'collection card preview styling must exist');
+}
+
+console.log('v2.0.10 discovery pity, collection purchase and UI source tests passed');
