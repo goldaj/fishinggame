@@ -1,0 +1,34 @@
+name: Bump v201 packaging test
+
+on:
+  push:
+    branches: ["work/v211-version-code35"]
+
+permissions:
+  contents: write
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: work/v211-version-code35
+      - name: Update packaging assertion
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('tests/v201.test.js')
+          s=p.read_text()
+          s=s.replace("versionCode\\s+34","versionCode\\s+35")
+          s=s.replace("versionName\\s+'2\\.0\\.10'","versionName\\s+'2\\.0\\.11'")
+          s=s.replace('Android versionCode must be 34','Android versionCode must be 35')
+          s=s.replace('Android versionName must be 2.0.10','Android versionName must be 2.0.11')
+          s=s.replace('Android 2.0.10 packaging tests passed','Android 2.0.11 packaging tests passed')
+          p.write_text(s)
+          PY
+          git config user.name goldaj
+          git config user.email goldajj@gmail.com
+          git add tests/v201.test.js
+          git commit -m "test: expect Android 2.0.11 code 35"
+          git push origin HEAD:work/v211-version-code35
