@@ -29,7 +29,7 @@ assert.strictEqual(trash.rarity,'commune');
 assert.strictEqual(trash.difficulty,common.difficulty);
 
 const renderTrash=G.trashTypes.map(c=>Art.render(c));
-assert(renderTrash.every(x=>/^<svg/.test(x)&&x.includes('catch-trash')));
+assert(renderTrash.every((x,i)=>/^<img/.test(x)&&x.includes('catch-generated-art')&&x.includes(`card-art/${1001+i}.webp`)),'les quatre déchets doivent utiliser leurs assets WebP générés');
 assert.strictEqual(new Set(renderTrash).size,4,'les quatre déchets doivent avoir quatre pictogrammes distincts');
 
 const state=G.defaultState();state.streak=7;state.totalSold=12;state.coins=0;
