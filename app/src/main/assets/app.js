@@ -1,9 +1,29 @@
 const G=GameCore,$=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],key='pm-save';
 const art=c=>window.CatchArt&&typeof window.CatchArt.render==='function'?window.CatchArt.render(c):c.icon;
-let st=G.normalizeState(JSON.parse(localStorage.getItem(key)||'null'));
+function loadSavedState(){
+  try {
+    return G.normalizeState(JSON.parse(localStorage.getItem(key)||'null'));
+  } catch (error) {
+    console.warn('Sauvegarde locale illisible : reprise sur un profil vierge.',error);
+    return G.normalizeState(null);
+  }
+}
+let st=loadSavedState();
 let phase='idle',encounter=null,timing=null,timers=[],filter='all',marketView='sell';
 
-function save(){localStorage.setItem(key,JSON.stringify(st))}
+let saveWarningShown=false;
+function save(){
+  try {
+    localStorage.setItem(key,JSON.stringify(st));
+    saveWarningShown=false;
+  } catch (error) {
+    console.warn('Impossible de sauvegarder la partie sur cet appareil.',error);
+    if(!saveWarningShown){
+      saveWarningShown=true;
+      toast('Stockage indisponible : progression non enregistrée');
+    }
+  }
+}
 function later(fn,ms){const id=setTimeout(fn,ms);timers.push(id);return id}
 function clearTimers(){timers.forEach(clearTimeout);timers=[]}
 function vibrate(pattern){try{navigator.vibrate&&navigator.vibrate(pattern)}catch(_){}}
