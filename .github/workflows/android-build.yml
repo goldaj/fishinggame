@@ -43,6 +43,7 @@ jobs:
         run: |
           node tests/core.test.js
           node tests/save-normalization.test.js
+          node tests/save-startup.test.js
           node tests/v122.test.js
           node tests/v130.test.js
           node tests/v131.test.js
