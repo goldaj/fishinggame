@@ -52,7 +52,13 @@ function clampWeight(c,w){const [a,b]=boundsFor(c);return Math.max(a,Math.min(b,
 function normalizeState(input){
   const incoming=input||{},s=Object.assign(defaultState(),incoming);
   if(!Array.isArray(s.unlocked))s.unlocked=[1];if(!s.unlocked.includes(1))s.unlocked.push(1);
-  s.unlocked=[...new Set(s.unlocked)].filter(id=>id>=1&&id<=100).sort((a,b)=>a-b);
+  // Old WebView saves can contain string IDs and stringified totals.
+  // Normalize them before collection checks and arithmetic.
+  s.unlocked=[...new Set(s.unlocked.map(Number))].filter(id=>Number.isInteger(id)&&id>=1&&id<=100).sort((a,b)=>a-b);
+  for(const key of ['coins','totalCaught','totalSold','totalEarned','comboEarned','gachaPulls','streak','maxStreak','failedHooks','retractedCasts']){
+    const value=Number(s[key]);
+    s[key]=Number.isFinite(value)?Math.max(0,Math.floor(value)):0;
+  }
   s.caughtById=s.caughtById&&typeof s.caughtById==='object'?s.caughtById:{};
   s.bestWeightById=s.bestWeightById&&typeof s.bestWeightById==='object'?s.bestWeightById:{};
   const normalized=[];
