@@ -1,0 +1,116 @@
+# Audit de branches et passation — 30 octobre 2026
+
+**Audit de références, pas validation du logiciel.** Branches et PR ouvertes interrogées sur GitHub. Ne pas supprimer par simple intuition.
+
+- Dépôt : `goldaj/fishinggame`, branche principale : `main`.
+- PR ouvertes : aucune.
+
+## Branches recensées (98)
+- `chatgpt/get-a-point-20260902`
+- `chatgpt/review-20261024`
+- `ci/apk-validation`
+- `feat/fishing-cards-v180`
+- `feat/fishing-experience-v190`
+- `feat/sell-card-duplicates-v201`
+- `feat/unified-cards-v200`
+- `feature/better-reveal-animations-v1-4-2`
+- `feature/booster-experience-1.6.0`
+- `feature/catalog-500-cards-gacha-v1-4-0`
+- `feature/combo-timing-v1-2`
+- `feature/generated-card-art`
+- `feature/generated-card-art-temp-check`
+- `feature/generated-card-art-temp-check-2`
+- `feature/generated-card-art-temp-check-3`
+- `feature/nav-layout-gacha-lock-v1-4-3`
+- `feature/patience-fishing-v1-1`
+- `feature/pro-card-boosters-v1-5-0`
+- `feature/pro-tcg-boosters-v1-5-0`
+- `feature/rank-wild-discovery-v1-3-2`
+- `feature/stronger-upgrades-unique-assets-v1-3-0`
+- `feature/tactile-booster-experience-1.7.0`
+- `fix/android-safe-area`
+- `fix/booster-opening-ux-2.0.5`
+- `fix/card-pack-cost-v1-4-1`
+- `fix/haptics-streak-v1-2-2`
+- `fix/market-shop-unified-v1-2-1`
+- `fix/v170-disable-legacy-booster-ui`
+- `fix/v170-tap-and-tear-target`
+- `fix/v172-tear-band`
+- `fix/v173-fluid-tear`
+- `fix/v174-restore-real-tactile-booster`
+- `fix/v175-tear-from-fold-edges`
+- `game-initial`
+- `hotfix/booster-2.0.3`
+- `hotfix/booster-2.0.4`
+- `main` (branche par défaut)
+- `noop`
+- `tmp-card-art-071-080-transport-check`
+- `work/card-art-091-100-assets`
+- `work/card-art-091-100-binary`
+- `work/card-art-091-100-deletequeue`
+- `work/card-art-091-100-deletequeue2`
+- `work/card-art-091-100-final`
+- `work/card-art-091-100-finalstage`
+- `work/card-art-091-100-finalstage2`
+- `work/card-art-091-100-integrate`
+- `work/card-art-091-100-pack`
+- `work/card-art-091-100-ready`
+- `work/card-art-091-100-ready2`
+- `work/card-art-091-100-ready3`
+- `work/card-art-091-100-ready4`
+- `work/card-art-091-100-staged`
+- `work/card-art-091-100-v2`
+- `work/card-art-091-100`
+- `work/card-art-101-110-a`
+- `work/card-art-101-110-binary`
+- `work/card-art-101-110-complete`
+- `work/card-art-101-110-final2`
+- `work/card-art-101-110-finalize`
+- `work/card-art-101-110-real`
+- `work/card-art-101-110-stage`
+- `work/card-art-101-110-work`
+- `work/card-art-111-120-complete`
+- `work/card-art-121-130-complete`
+- `work/card-art-131-140-complete`
+- `work/card-art-141-150-complete`
+- `work/card-art-151-160-exact`
+- `work/card-art-161-170-complete`
+- `work/card-art-171-180-complete`
+- `work/card-art-181-190-complete`
+- `work/card-art-191-200-complete`
+- `work/card-art-201-210`
+- `work/card-art-211-220`
+- `work/card-art-221-240`
+- `work/card-art-241-260`
+- `work/card-art-261-270`
+- `work/card-art-261-280`
+- `work/card-art-271-280`
+- `work/card-art-281-300`
+- `work/card-art-301-320`
+- `work/card-art-321-340`
+- `work/card-art-341-360`
+- `work/card-art-361-380`
+- `work/card-art-381-420`
+- `work/card-art-421-504`
+- `work/last-route-check`
+- `work/route-bug-final`
+- `work/route-check-blob`
+- `work/route-forced-by-schema`
+- `work/test-blob-route`
+- `work/v208-fishing-balance`
+- `work/v209-trash-cleanup`
+- `work/v209-trash-cleanup-clean`
+- `work/v210-card-collection`
+- `work/v211-hide-pity-and-spoilers`
+- `work/v211-version-code35`
+- `work/v211-version-patch`
+
+## Contre-analyse / actions de reprise
+- **Risque élevé :** nombreuses branches d'illustrations et de versions Android. Vérifier les assets binaires, les 500 cartes, les versions publiées et les variantes temporaires avant tout ménage.
+- PR historiques #1 et #2 clôturées sans fusion ; le graphe reste divergent. Ne pas restaurer aveuglément leurs anciens fichiers.
+- Contrôler chaque SHA et chaque comparaison `base...head`, puis analyser les différences de fichiers pour les branches divergentes.
+- Examiner PR fermées, branches de release, CI, build, assets et dépendances interbranches.
+- Vérifier les tests et ne pas casser la production. Une PR déjà fusionnée ne justifie pas automatiquement la suppression d'un tag ou d'une branche utile.
+- Les branches non comparées individuellement restent **à qualifier**, pas « à supprimer ».
+
+**Statut :** inventaire GitHub effectué, audit exhaustif des diffs et exécution des tests encore nécessaires.
