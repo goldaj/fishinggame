@@ -198,3 +198,9 @@ AGENTS (extrait) : # AGENTS.md — Pêche & Merveilles (Fishinggame)
 4. Rebuilder un APK signé de test, vérifier sur Android réel, rotation/zone de sécurité, performances tactiles, robustesse après perte de réseau.
 5. Contrôler les runs Actions, ne pas déduire que 32 PR fusionnées signifient 32 fonctionnalités actuellement correctes. Ne pas modifier `main` pour une simple opération de graphe Git.
 6. Faire porter tout changement futur dans une PR ciblée avec preuve de tests et note de compatibilité. Aucune suppression de branche, aucun merge ou changement de gameplay réalisé par **cet audit documentaire**.
+
+
+## Vérification CI distante (30 octobre 2026)
+- [Android Release Candidate](https://github.com/goldaj/fishinggame/actions/runs/41046494534) : **success** sur commit documentaire `63c75469a7a2`.
+
+Ce résultat décrit uniquement le workflow cité, pas un test utilisateur, un playtest complet ni une validation de la production. Le prochain agent doit lire les jobs, confirmer la couverture des scénarios demandés et relancer après ses modifications.
